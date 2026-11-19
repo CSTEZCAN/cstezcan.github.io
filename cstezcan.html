@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celil Serhan TEZCAN | Autodidact Polymath Inventor & Deep-Tech Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#090d16',
+            panel: '#0f1624',
+            panelLight: '#151f33',
+            cyanGlow: '#06b6d4',
+            emeraldGlow: '#10b981',
+            amberGlow: '#f59e0b',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Custom scrollbar & subtle hardware grid aesthetics */
+    body {
+      background-color: #090d16;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .lab-grid {
+      background-size: 44px 44px;
+      background-image:
+        linear-gradient(to right, rgba(6, 182, 212, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 182, 212, 0.045) 1px, transparent 1px);
+    }
+    .wafer-ring {
+      background-image: radial-gradient(circle at center, rgba(6, 182, 212, 0.14) 0%, rgba(16, 185, 129, 0.05) 38%, transparent 70%);
+    }
+    .glass-card {
+      background: rgba(15, 22, 36, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+    .glass-card:hover {
+      border-color: rgba(6, 182, 212, 0.38);
+      box-shadow: 0 12px 32px -10px rgba(6, 182, 212, 0.14);
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #06b6d4;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-200 lab-grid">
+
+  <!-- Sticky Top Telemetry Navbar -->
+  <header class="sticky top-0 z-50 border-b border-slate-800/80 bg-[#090d16]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <!-- Personal Brand Mark -->
+      <a href="#top" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border border-cyan-500/40 flex items-center justify-center shadow-inner group-hover:border-cyan-400 transition">
+          <!-- Custom Wafer / Optical Lithography SVG Icon -->
+          <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <circle cx="12" cy="12" r="9" />
+            <circle cx="12" cy="12" r="4.5" stroke-dasharray="2 2" />
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+          </svg>
+        </div>
+        <div>
+          <span class="font-bold tracking-tight text-slate-100 text-sm sm:text-base block leading-none">C. SERHAN TEZCAN</span>
+          <span class="font-mono text-[10px] text-cyan-400 tracking-widest uppercase">LAB // R&amp;D ARCHIVE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-slate-400">
+        <a href="#origin" class="hover:text-cyan-400 transition" data-i18n="nav_origin">Origin</a>
+        <a href="#stack" class="hover:text-cyan-400 transition" data-i18n="nav_stack">Polymath Stack</a>
+        <a href="#inventions" class="hover:text-cyan-400 transition" data-i18n="nav_inventions">Inventions</a>
+        <a href="#patents" class="hover:text-cyan-400 transition" data-i18n="nav_patents">Patents</a>
+        <a href="#recognition" class="hover:text-cyan-400 transition" data-i18n="nav_recognition">Global Impact</a>
+        <a href="#contact" class="hover:text-cyan-400 transition" data-i18n="nav_contact">Contact</a>
+      </nav>
+
+      <!-- Controls: ENG/TRK Instant Switcher + Mobile Menu Toggle -->
+      <div class="flex items-center gap-2.5">
+        <button id="langToggle" onclick="toggleLanguage()" aria-label="Switch Language"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-cyan-500/40 hover:border-cyan-400 text-xs font-mono font-semibold text-slate-200 transition shadow-sm">
+          <span id="langBadgeEn" class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300">ENG</span>
+          <span class="text-slate-600">/</span>
+          <span id="langBadgeTr" class="px-1.5 py-0.5 rounded text-slate-400">TRK</span>
+        </button>
+
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu"
+          class="lg:hidden p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyan-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800 bg-[#090d16] px-4 py-3 space-y-2 font-mono text-xs uppercase">
+      <a href="#origin" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_origin">Origin</a>
+      <a href="#stack" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_stack">Polymath Stack</a>
+      <a href="#inventions" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_inventions">Inventions</a>
+      <a href="#patents" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_patents">Patents</a>
+      <a href="#recognition" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_recognition">Global Impact</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-cyan-400" data-i18n="nav_contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 1. HERO SECTION -->
+    <section class="relative overflow-hidden pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-slate-800/80 wafer-ring">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <!-- Left Narrative & Identity -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-mono text-xs">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span data-i18n="hero_status">SOLO DEEP-TECH R&amp;D ARCHITECT // BURSA &amp; BALIKESİR, TÜRKİYE</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08]">
+              CELİL SERHAN <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-amber-300">TEZCAN</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl font-medium text-cyan-300/95 leading-snug" data-i18n="hero_tagline">
+              Autodidact Polymath Inventor • Edge AI &amp; Robotics Architect • Photonics &amp; Lithography Pioneer
+            </p>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl" data-i18n="hero_manifesto">
+              I build deep-tech systems from the ground up—chemistry, photopolymers, custom PCBs, micron-precision wafer stages, autonomous robots, and CUDA-accelerated neural networks. As a 4th-generation farmer and 2nd-generation agricultural engineer, I founded TARSENS R&amp;D Ltd. in 2017 as my personal engineering vehicle to take inventions from bare silicon and optical benches to commercial deployment across four continents.
+            </p>
+
+            <!-- Action & Profile Links -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="#inventions" class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold text-sm hover:opacity-95 transition shadow-lg shadow-cyan-500/20" data-i18n="hero_cta_primary">
+                Explore Inventions &amp; Systems
+              </a>
+              <a href="#contact" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-slate-200 font-medium text-sm transition" data-i18n="hero_cta_secondary">
+                Collaborate / R&amp;D Inquiry
+              </a>
+            </div>
+
+            <!-- Verified Social & Repository Links -->
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-mono text-xs text-slate-400">
+              <a href="https://github.com/cstezcan" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                github.com/cstezcan
+              </a>
+              <a href="https://linkedin.com/in/cstezcan" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 hover:text-cyan-300 transition">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                linkedin.com/in/cstezcan
+              </a>
+              <a href="https://youtube.com/@SelfAwareDevices" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 hover:text-amber-300 transition">
+                @SelfAwareDevices
+              </a>
+              <a href="https://youtube.com/@Tarsens" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 hover:text-amber-300 transition">
+                @Tarsens
+              </a>
+              <a href="https://youtube.com/@Canonest" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 hover:text-amber-300 transition">
+                @Canonest
+              </a>
+              <button onclick="copyEmail()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 hover:text-emerald-300 transition">
+                cstezcan@gmail.com
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Interactive Optical Wafer & Telemetry Console -->
+          <div class="lg:col-span-5">
+            <div class="glass-card rounded-2xl p-5 border border-cyan-500/25 shadow-2xl relative overflow-hidden">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 font-mono text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                  <span class="text-slate-400 ml-1">OPTICAL_BENCH // LIVE_SIM</span>
+                </div>
+                <span class="text-cyan-400" id="simModeLabel">1024-LENS ARRAY</span>
+              </div>
+
+              <!-- Interactive Canvas: Metalens Phase & Interferometry Visualizer -->
+              <div class="relative rounded-xl overflow-hidden bg-[#060911] border border-slate-800/90 aspect-[16/11]">
+                <canvas id="opticsCanvas" class="w-full h-full block"></canvas>
+                <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono bg-slate-950/80 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-800">
+                  <span class="text-emerald-400">SSIM: 0.996 | PSNR: 42.85 dB</span>
+                  <span class="text-slate-400" data-i18n="canvas_hint">Move cursor to steer UV wavefront</span>
+                </div>
+              </div>
+
+              <!-- Hardware Pedigree Badges -->
+              <div class="grid grid-cols-3 gap-2.5 mt-4 font-mono text-center">
+                <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                  <div class="text-cyan-400 font-bold text-sm">3x NVIDIA</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="badge_nvidia">GPU Grant Winner</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                  <div class="text-emerald-400 font-bold text-sm">ESA #1</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="badge_esa">ActInSpace Story</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800">
+                  <div class="text-amber-400 font-bold text-sm">TÜBİTAK</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5" data-i18n="badge_tubitak">1512 Deep-Tech</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KEY TELEMETRY METRICS BAR -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+          <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-400">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-white">99.778%</div>
+            <div class="text-xs font-medium text-emerald-400 mt-1" data-i18n="metric_1_title">World-Record Vineyard Yield Accuracy</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5" data-i18n="metric_1_sub">Verified in California &amp; EU</div>
+          </div>
+
+          <div class="glass-card rounded-xl p-4 border-l-4 border-l-cyan-400">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-white">0.996 <span class="text-base font-normal text-cyan-300">SSIM</span></div>
+            <div class="text-xs font-medium text-cyan-400 mt-1" data-i18n="metric_2_title">Flat-Optics AI Reconstruction</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5">42.85 dB PSNR // 1024-Lens Array</div>
+          </div>
+
+          <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-400">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-white">3,600x</div>
+            <div class="text-xs font-medium text-amber-400 mt-1" data-i18n="metric_3_title">Faster-Than-Real-Time NDVI</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5" data-i18n="metric_3_sub">&lt;1 sec onboard vs. 1 hr cloud</div>
+          </div>
+
+          <div class="glass-card rounded-xl p-4 border-l-4 border-l-purple-400">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-white">8+ <span class="text-base font-normal text-purple-300" data-i18n="years_unit">Years</span></div>
+            <div class="text-xs font-medium text-purple-400 mt-1" data-i18n="metric_4_title">WSN Node Battery Life (2xAA)</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5" data-i18n="metric_4_sub">3.5B+ points (-4°C to 72°C)</div>
+          </div>
+
+          <div class="glass-card rounded-xl p-4 border-l-4 border-l-rose-400">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-white">9+</div>
+            <div class="text-xs font-medium text-rose-400 mt-1" data-i18n="metric_5_title">Patents &amp; Active Filings</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5" data-i18n="metric_5_sub">TR, US &amp; PCT Optical/AI IP</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ORIGIN & AUTODIDACT STORY -->
+    <section id="origin" class="py-16 sm:py-20 border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="font-mono text-xs uppercase tracking-widest text-cyan-400" data-i18n="origin_kicker">01 // FIRST-PRINCIPLES PEDIGREE</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight" data-i18n="origin_heading">
+              From Soil &amp; Microcontrollers to Flat Optics &amp; Orbital Manufacturing
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="origin_sub">
+              4th-generation farmer • 2nd-generation Agricultural Engineer (BSc Animal Sciences, MSc Biosystems Engineering — Bursa Uludağ University).
+            </p>
+          </div>
+
+          <div class="lg:col-span-7 space-y-4 text-slate-300 text-base leading-relaxed">
+            <p data-i18n="origin_p1">
+              Growing up on family farmland with an agricultural engineer father gave me an unfiltered view of physical reality: if a sensor fails at 72°C inside a greenhouse or an algorithm takes an hour to process a drone flight, it is useless in the field. Without a formal electrical engineering or computer science degree, I taught myself circuit design, C++/CUDA programming, optics, and photopolymer lithography from first principles.
+            </p>
+            <p data-i18n="origin_p2">
+              In 2017, I established <strong class="text-white">TARSENS R&amp;D Ltd.</strong> as my personal engineering and commercialization vehicle. Whether designing over 50% of my PCBs in-house, machining micron-accurate wafer stages for masked UV lithography, or training generative adversarial networks on 1M+ agricultural images, I own the entire vertical stack so hardware and AI co-evolve without friction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. THE POLYMATH STACK (VERTICAL OWNERSHIP) -->
+    <section id="stack" class="py-16 sm:py-20 border-b border-slate-800/80 bg-[#0b101c]/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-12">
+          <div class="font-mono text-xs uppercase tracking-widest text-emerald-400" data-i18n="stack_kicker">02 // FULL-STACK VERTICAL OWNERSHIP</div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2" data-i18n="stack_heading">The Polymath Engineering Stack</h2>
+          <p class="text-slate-400 mt-3 text-base" data-i18n="stack_desc">
+            Zero hand-offs between departments. Every layer—from photopolymer chemistry and custom PCBs to articulated UGV kinematics and CUDA kernels—is engineered as a unified physical-digital organism.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Pillar 1: Photonics & Masked Lithography -->
+          <div class="glass-card rounded-2xl p-6 transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-lg bg-cyan-500/15 border border-cyan-500/30 font-mono text-xs text-cyan-300">LAYER 01 // PHOTONICS</span>
+              <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" data-i18n="pillar1_title">Photonics &amp; Masked Lithography</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4" data-i18n="pillar1_desc">
+              Bootstrapped in-house optical fabrication bench: custom micron-precision wafer stage, collimated UV masked exposure system, programmable spin coater, dip coater, and PID thermal curing beds for flat lenses and metalens arrays.
+            </p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 border border-slate-800">Micron Wafer Stage</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 border border-slate-800">UV Masked Exposure</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 border border-slate-800">Spin &amp; Dip Coaters</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 border border-slate-800">Flat Lenses / Metalenses</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Edge AI & Computer Vision -->
+          <div class="glass-card rounded-2xl p-6 transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 font-mono text-xs text-emerald-300">LAYER 02 // NEURAL COMPUTE</span>
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" data-i18n="pillar2_title">Edge AI &amp; Computer Vision</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4" data-i18n="pillar2_desc">
+              Real-time inference on low-power embedded GPUs and CPU-only pipelines. From custom Darknet/YOLO architectures (v4–v26) and CUDA C++ kernels to StyleGAN/Pix2Pix synthetic dataset generation and flat-lens deconvolution.
+            </p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-slate-800">YOLOv4–v26 / Darknet</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-slate-800">PyTorch / TensorFlow</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-slate-800">CUDA C++ / OpenCV</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-slate-800">StyleGAN / Pix2Pix</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-emerald-300 border border-slate-800">Monocular Depth</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Autonomous Robotics (UGV & UAV) -->
+          <div class="glass-card rounded-2xl p-6 transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 font-mono text-xs text-amber-300">LAYER 03 // AUTONOMY</span>
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" data-i18n="pillar3_title">Autonomous Robotics (UGV &amp; UAV)</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4" data-i18n="pillar3_desc">
+              Mechanical kinematics, chassis fabrication, and high-speed perception. Built the articulated Caterpillar Xs all-terrain UGV, patented 1,000 kph TRIO optical collision avoidance, live-NDVI UAV payloads, and rotor imbalance diagnostics.
+            </p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-slate-800">Caterpillar Xs UGV</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-slate-800">1000 kph TRIO Sense-Avoid</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-slate-800">ROS / Velodyne LIDAR</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-amber-300 border border-slate-800">Live-NDVI UAV Payloads</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4: Embedded Hardware & Ultra-Low-Power IoT -->
+          <div class="glass-card rounded-2xl p-6 transition">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-lg bg-purple-500/15 border border-purple-500/30 font-mono text-xs text-purple-300">LAYER 04 // SILICON &amp; RF</span>
+              <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+                <path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2" data-i18n="pillar4_title">Embedded Hardware &amp; Ultra-Low-Power IoT</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-4" data-i18n="pillar4_desc">
+              Over 50% of deployment circuit boards designed in-house from schematic to SMD assembly. Deep bare-metal and Linux embedded mastery across NVIDIA Jetson (8+ yrs), Raspberry Pi (10+ yrs), Arduino (15+ yrs), and 2.4GHz multi-hop WSNs.
+            </p>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-purple-300 border border-slate-800">&gt;50% In-House PCBs</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-purple-300 border border-slate-800">NVIDIA Jetson (8+ yrs)</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-purple-300 border border-slate-800">RPi (10+ yrs) / Arduino (15+ yrs)</span>
+              <span class="px-2.5 py-1 rounded bg-slate-900 text-purple-300 border border-slate-800">2.4GHz Multi-Hop WSN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FLAGSHIP INVENTIONS & ENGINEERING PORTFOLIO -->
+    <section id="inventions" class="py-16 sm:py-24 border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <div>
+            <div class="font-mono text-xs uppercase tracking-widest text-cyan-400" data-i18n="inv_kicker">03 // ENGINEERED &amp; FIELD-PROVEN SYSTEMS</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2" data-i18n="inv_heading">Flagship Inventions &amp; R&amp;D Portfolio</h2>
+          </div>
+
+          <!-- Interactive Domain Filter Pills -->
+          <div class="flex flex-wrap gap-2" id="domainFilters">
+            <button onclick="filterProjects('all')" data-filter="all"
+              class="filter-btn active px-3.5 py-2 rounded-xl font-mono text-xs font-semibold bg-cyan-500 text-slate-950 transition" data-i18n="filter_all">
+              All Systems (8)
+            </button>
+            <button onclick="filterProjects('photonics')" data-filter="photonics"
+              class="filter-btn px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/50 transition" data-i18n="filter_photonics">
+              Photonics &amp; Microscopy
+            </button>
+            <button onclick="filterProjects('agritech')" data-filter="agritech"
+              class="filter-btn px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/50 transition" data-i18n="filter_agritech">
+              Edge AI &amp; Agritech
+            </button>
+            <button onclick="filterProjects('robotics')" data-filter="robotics"
+              class="filter-btn px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/50 transition" data-i18n="filter_robotics">
+              Robotics &amp; Defense
+            </button>
+            <button onclick="filterProjects('iot')" data-filter="iot"
+              class="filter-btn px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/50 transition" data-i18n="filter_iot">
+              IoT &amp; Industrial
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Cards Grid (Rendered dynamically via JS for instant EN/TR switching & modal inspection) -->
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- 5. PATENTS & INTELLECTUAL PROPERTY VAULT -->
+    <section id="patents" class="py-16 sm:py-20 border-b border-slate-800/80 bg-[#0b101c]/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-10">
+          <div class="font-mono text-xs uppercase tracking-widest text-amber-400" data-i18n="pat_kicker">04 // INTELLECTUAL PROPERTY VAULT</div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2" data-i18n="pat_heading">Granted Patents &amp; Active Filings</h2>
+          <p class="text-slate-400 mt-2 text-base" data-i18n="pat_desc">
+            Original hardware, optical, and algorithmic inventions protected across Turkish, US (USPTO), and international patent jurisdictions.
+          </p>
+        </div>
+
+        <div id="patentsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- 6. GLOBAL RECOGNITION, POLICY ADVISORY & PUBLICATIONS -->
+    <section id="recognition" class="py-16 sm:py-20 border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-12">
+          <div class="font-mono text-xs uppercase tracking-widest text-emerald-400" data-i18n="rec_kicker">05 // GLOBAL VALIDATION &amp; POLICY IMPACT</div>
+          <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2" data-i18n="rec_heading">Grants, Keynotes &amp; National Advisory</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Column 1: Grants & Awards -->
+          <div class="glass-card rounded-2xl p-6 space-y-4">
+            <div class="flex items-center gap-2.5 text-amber-400 font-mono text-xs uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <span data-i18n="rec_col1_title">International Grants &amp; Honors</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300" id="awardsList"></ul>
+          </div>
+
+          <!-- Column 2: Keynotes & Delegations -->
+          <div class="glass-card rounded-2xl p-6 space-y-4">
+            <div class="flex items-center gap-2.5 text-cyan-400 font-mono text-xs uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <span data-i18n="rec_col2_title">Invited Keynotes &amp; Summits</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300" id="keynotesList"></ul>
+          </div>
+
+          <!-- Column 3: Strategic Advisory & Publications -->
+          <div class="glass-card rounded-2xl p-6 space-y-4">
+            <div class="flex items-center gap-2.5 text-emerald-400 font-mono text-xs uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span data-i18n="rec_col3_title">Defense/State Advisory &amp; Papers</span>
+            </div>
+            <ul class="space-y-3 text-sm text-slate-300" id="advisoryList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. INTERACTIVE CONTACT & COLLABORATION SECTION -->
+    <section id="contact" class="py-16 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 border border-cyan-500/25 relative overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <!-- Left Direct Telemetry -->
+            <div class="lg:col-span-6 space-y-6">
+              <div class="font-mono text-xs uppercase tracking-widest text-cyan-400" data-i18n="contact_kicker">06 // DIRECT CHANNEL</div>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white" data-i18n="contact_heading">
+                Initiate Technical Collaboration or R&amp;D Leadership Dialogue
+              </h2>
+              <p class="text-slate-300 text-base leading-relaxed" data-i18n="contact_desc">
+                Available for Principal Edge AI / Photonics / Robotics Architect roles, VP of R&amp;D leadership, defense &amp; aerospace optical payloads, and deep-tech strategic advisory.
+              </p>
+
+              <div class="space-y-3 font-mono text-sm">
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/90 border border-slate-800">
+                  <div>
+                    <div class="text-[11px] text-slate-400">EMAIL</div>
+                    <a href="mailto:cstezcan@gmail.com" class="text-cyan-300 hover:underline">cstezcan@gmail.com</a>
+                  </div>
+                  <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-400 text-xs text-slate-200 transition" data-i18n="btn_copy">
+                    Copy
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/90 border border-slate-800">
+                  <div>
+                    <div class="text-[11px] text-slate-400" data-i18n="phone_label">DIRECT PHONE / WHATSAPP</div>
+                    <a href="tel:+905068505798" class="text-emerald-300 hover:underline">+90 506 850 57 98</a>
+                  </div>
+                  <span class="text-xs text-slate-500">UTC+3</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800">
+                  <div class="text-[11px] text-slate-400" data-i18n="loc_label">LAB &amp; FIELD OPERATIONS</div>
+                  <div class="text-slate-200 mt-0.5" data-i18n="loc_value">Bursa &amp; Balıkesir, Türkiye (Global Deployment)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Interactive Inquiry Composer -->
+            <div class="lg:col-span-6">
+              <form onsubmit="handleContactSubmit(event)" class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 space-y-4">
+                <div class="font-mono text-xs text-slate-400 uppercase" data-i18n="form_header">TRANSMISSION DISPATCH // DIRECT TO INBOX</div>
+
+                <div>
+                  <label class="block text-xs font-mono text-slate-300 mb-1.5" data-i18n="form_focus_label">Collaboration Track</label>
+                  <select id="inquiryTrack" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400">
+                    <option value="R&D Leadership / Principal Architect" data-i18n="track_1">R&amp;D Leadership / Principal Architect Role</option>
+                    <option value="Photonics & Flat-Optics Licensing / Joint R&D" data-i18n="track_2">Photonics &amp; Flat-Optics Licensing / Joint R&amp;D</option>
+                    <option value="Edge AI, Robotics & Defense Payloads" data-i18n="track_3">Edge AI, Robotics &amp; Defense Optical Payloads</option>
+                    <option value="Deep-Tech Advisory & Keynote Speaking" data-i18n="track_4">Deep-Tech Advisory &amp; Keynote Speaking</option>
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5" data-i18n="form_name_label">Your Name / Organization</label>
+                    <input type="text" id="senderName" required placeholder="Dr. Jane Doe / DeepTech Labs"
+                      class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1.5" data-i18n="form_email_label">Return Email</label>
+                    <input type="email" id="senderEmail" required placeholder="jane@organization.com"
+                      class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-mono text-slate-300 mb-1.5" data-i18n="form_msg_label">Technical Brief / Inquiry</label>
+                  <textarea id="senderMessage" rows="4" required
+                    placeholder="Outline your optical, edge AI, robotics, or R&D leadership objective..."
+                    class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"></textarea>
+                </div>
+
+                <button type="submit"
+                  class="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-semibold text-sm hover:opacity-95 transition shadow-lg shadow-cyan-500/20"
+                  data-i18n="form_submit">
+                  Prepare &amp; Launch Direct Email Dispatch
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 py-8 text-center font-mono text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© 2026 CELİL SERHAN TEZCAN — <span data-i18n="footer_note">Autodidact Polymath Inventor • TARSENS R&amp;D Ltd. (Est. 2017)</span></div>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/cstezcan" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">GitHub</a>
+        <a href="https://linkedin.com/in/cstezcan" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">LinkedIn</a>
+        <a href="https://youtube.com/@SelfAwareDevices" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Project Inspection Modal -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md">
+    <div class="bg-[#0f1624] border border-cyan-500/40 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+      <button onclick="closeModal()" aria-label="Close Modal"
+        class="absolute top-5 right-5 p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-cyan-400">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Custom Non-Blocking Toast Notification (Replaces alert()) -->
+  <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 border border-cyan-400/60 text-cyan-200 font-mono text-xs shadow-2xl">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span id="toastText">Copied to clipboard</span>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. BILINGUAL DICTIONARY & STRUCTURED PORTFOLIO DATASET (ENG / TRK)
+    // =========================================================================
+    let currentLang = 'en';
+    let currentFilter = 'all';
+
+    const i18n = {
+      en: {
+        nav_origin: 'Origin',
+        nav_stack: 'Polymath Stack',
+        nav_inventions: 'Inventions',
+        nav_patents: 'Patents',
+        nav_recognition: 'Global Impact',
+        nav_contact: 'Contact',
+        hero_status: 'SOLO DEEP-TECH R&D ARCHITECT // BURSA & BALIKESİR, TÜRKİYE',
+        hero_tagline: 'Autodidact Polymath Inventor • Edge AI & Robotics Architect • Photonics & Lithography Pioneer',
+        hero_manifesto: 'I build deep-tech systems from the ground up—chemistry, photopolymers, custom PCBs, micron-precision wafer stages, autonomous robots, and CUDA-accelerated neural networks. As a 4th-generation farmer and 2nd-generation agricultural engineer, I founded TARSENS R&D Ltd. in 2017 as my personal engineering vehicle to take inventions from bare silicon and optical benches to commercial deployment across four continents.',
+        hero_cta_primary: 'Explore Inventions & Systems',
+        hero_cta_secondary: 'Collaborate / R&D Inquiry',
+        canvas_hint: 'Move cursor to steer UV wavefront',
+        badge_nvidia: 'GPU Grant Winner',
+        badge_esa: 'ActInSpace Story',
+        badge_tubitak: '1512 Deep-Tech',
+        metric_1_title: 'World-Record Vineyard Yield Accuracy',
+        metric_1_sub: 'Verified in California & EU',
+        metric_2_title: 'Flat-Optics AI Reconstruction',
+        metric_3_title: 'Faster-Than-Real-Time NDVI',
+        metric_3_sub: '<1 sec onboard vs. 1 hr cloud',
+        years_unit: 'Years',
+        metric_4_title: 'WSN Node Battery Life (2xAA)',
+        metric_4_sub: '3.5B+ points (-4°C to 72°C)',
+        metric_5_title: 'Patents & Active Filings',
+        metric_5_sub: 'TR, US & PCT Optical/AI IP',
+        origin_kicker: '01 // FIRST-PRINCIPLES PEDIGREE',
+        origin_heading: 'From Soil & Microcontrollers to Flat Optics & Orbital Manufacturing',
+        origin_sub: '4th-generation farmer • 2nd-generation Agricultural Engineer (BSc Animal Sciences, MSc Biosystems Engineering — Bursa Uludağ University).',
+        origin_p1: 'Growing up on family farmland with an agricultural engineer father gave me an unfiltered view of physical reality: if a sensor fails at 72°C inside a greenhouse or an algorithm takes an hour to process a drone flight, it is useless in the field. Without a formal electrical engineering or computer science degree, I taught myself circuit design, C++/CUDA programming, optics, and photopolymer lithography from first principles.',
+        origin_p2: 'In 2017, I established TARSENS R&D Ltd. as my personal engineering and commercialization vehicle. Whether designing over 50% of my PCBs in-house, machining micron-accurate wafer stages for masked UV lithography, or training generative adversarial networks on 1M+ agricultural images, I own the entire vertical stack so hardware and AI co-evolve without friction.',
+        stack_kicker: '02 // FULL-STACK VERTICAL OWNERSHIP',
+        stack_heading: 'The Polymath Engineering Stack',
+        stack_desc: 'Zero hand-offs between departments. Every layer—from photopolymer chemistry and custom PCBs to articulated UGV kinematics and CUDA kernels—is engineered as a unified physical-digital organism.',
+        pillar1_title: 'Photonics & Masked Lithography',
+        pillar1_desc: 'Bootstrapped in-house optical fabrication bench: custom micron-precision wafer stage, collimated UV masked exposure system, programmable spin coater, dip coater, and PID thermal curing beds for flat lenses and metalens arrays.',
+        pillar2_title: 'Edge AI & Computer Vision',
+        pillar2_desc: 'Real-time inference on low-power embedded GPUs and CPU-only pipelines. From custom Darknet/YOLO architectures (v4–v26) and CUDA C++ kernels to StyleGAN/Pix2Pix synthetic dataset generation and flat-lens deconvolution.',
+        pillar3_title: 'Autonomous Robotics (UGV & UAV)',
+        pillar3_desc: 'Mechanical kinematics, chassis fabrication, and high-speed perception. Built the articulated Caterpillar Xs all-terrain UGV, patented 1,000 kph TRIO optical collision avoidance, live-NDVI UAV payloads, and rotor imbalance diagnostics.',
+        pillar4_title: 'Embedded Hardware & Ultra-Low-Power IoT',
+        pillar4_desc: 'Over 50% of deployment circuit boards designed in-house from schematic to SMD assembly. Deep bare-metal and Linux embedded mastery across NVIDIA Jetson (8+ yrs), Raspberry Pi (10+ yrs), Arduino (15+ yrs), and 2.4GHz multi-hop WSNs.',
+        inv_kicker: '03 // ENGINEERED & FIELD-PROVEN SYSTEMS',
+        inv_heading: 'Flagship Inventions & R&D Portfolio',
+        filter_all: 'All Systems (8)',
+        filter_photonics: 'Photonics & Microscopy',
+        filter_agritech: 'Edge AI & Agritech',
+        filter_robotics: 'Robotics & Defense',
+        filter_iot: 'IoT & Industrial',
+        pat_kicker: '04 // INTELLECTUAL PROPERTY VAULT',
+        pat_heading: 'Granted Patents & Active Filings',
+        pat_desc: 'Original hardware, optical, and algorithmic inventions protected across Turkish, US (USPTO), and international patent jurisdictions.',
+        rec_kicker: '05 // GLOBAL VALIDATION & POLICY IMPACT',
+        rec_heading: 'Grants, Keynotes & National Advisory',
+        rec_col1_title: 'International Grants & Honors',
+        rec_col2_title: 'Invited Keynotes & Summits',
+        rec_col3_title: 'Defense/State Advisory & Papers',
+        contact_kicker: '06 // DIRECT CHANNEL',
+        contact_heading: 'Initiate Technical Collaboration or R&D Leadership Dialogue',
+        contact_desc: 'Available for Principal Edge AI / Photonics / Robotics Architect roles, VP of R&D leadership, defense & aerospace optical payloads, and deep-tech strategic advisory.',
+        btn_copy: 'Copy',
+        phone_label: 'DIRECT PHONE / WHATSAPP',
+        loc_label: 'LAB & FIELD OPERATIONS',
+        loc_value: 'Bursa & Balıkesir, Türkiye (Global Deployment)',
+        form_header: 'TRANSMISSION DISPATCH // DIRECT TO INBOX',
+        form_focus_label: 'Collaboration Track',
+        track_1: 'R&D Leadership / Principal Architect Role',
+        track_2: 'Photonics & Flat-Optics Licensing / Joint R&D',
+        track_3: 'Edge AI, Robotics & Defense Optical Payloads',
+        track_4: 'Deep-Tech Advisory & Keynote Speaking',
+        form_name_label: 'Your Name / Organization',
+        form_email_label: 'Return Email',
+        form_msg_label: 'Technical Brief / Inquiry',
+        form_submit: 'Prepare & Launch Direct Email Dispatch',
+        footer_note: 'Autodidact Polymath Inventor • TARSENS R&D Ltd. (Est. 2017)',
+        inspect_btn: 'Inspect Architecture & Specs →',
+        toast_copied: 'Email copied to clipboard: cstezcan@gmail.com',
+        toast_dispatch: 'Opening your email client with pre-formatted technical brief...'
+      },
+      tr: {
+        nav_origin: 'Köken',
+        nav_stack: 'Polimat Yığını',
+        nav_inventions: 'İcatlar',
+        nav_patents: 'Patentler',
+        nav_recognition: 'Küresel Etki',
+        nav_contact: 'İletişim',
+        hero_status: 'BAĞIMSIZ DERİN TEKNOLOJİ AR-GE MİMARI // BURSA & BALIKESİR, TÜRKİYE',
+        hero_tagline: 'Kendi Kendini Yetiştirmiş Polimat Mucit • Uçta Yapay Zeka ve Robotik Mimarı • Fotonik ve Litografi Öncüsü',
+        hero_manifesto: 'Derin teknoloji sistemlerini en temelden inşa ediyorum—kimya, fotopolimerler, özel PCB devre kartları, mikron hassasiyetli wafer tablaları, otonom robotlar ve CUDA hızlandırmalı sinir ağları. 4. kuşak bir çiftçi ve 2. kuşak bir Ziraat Mühendisi olarak; icatlarımı optik tezgahlardan dört kıtada ticari saha kullanımına taşımak üzere 2017 yılında kişisel Ar-Ge aracım olan TARSENS Ar-Ge Ltd.’yi kurdum.',
+        hero_cta_primary: 'İcatları ve Sistemleri İncele',
+        hero_cta_secondary: 'İş Birliği / Ar-Ge Talebi',
+        canvas_hint: 'UV dalga cephesini yönlendirmek için imleci hareket ettirin',
+        badge_nvidia: 'GPU Hibe Ödülü',
+        badge_esa: 'ActInSpace #1 Hikaye',
+        badge_tubitak: '1512 Teknogirişim',
+        metric_1_title: 'Dünya Rekoru Bağ Verim Doğruluğu',
+        metric_1_sub: 'Kaliforniya ve AB sahalarında doğrulandı',
+        metric_2_title: 'Düz Optik Yapay Zeka Geri Çatımı',
+        metric_3_title: 'Gerçek Zamandan Hızlı NDVI',
+        metric_3_sub: '1 saat bulut yerine <1 sn cihaz içi',
+        years_unit: 'Yıl',
+        metric_4_title: 'WSN Düğüm Pil Ömrü (2xAA)',
+        metric_4_sub: '3,5 Milyar+ veri (-4°C ile 72°C arası)',
+        metric_5_title: 'Patent ve Aktif Başvurular',
+        metric_5_sub: 'TR, ABD ve PCT Optik/YZ Fikri Mülkiyeti',
+        origin_kicker: '01 // İLK İLKELERDEN GELEN MÜHENDİSLİK KÖKENİ',
+        origin_heading: 'Toprak ve Mikrodenetleyicilerden Düz Optiklere ve Yörünge İçi Üretime',
+        origin_sub: '4. kuşak çiftçi • 2. kuşak Ziraat Mühendisi (Lisans: Zootekni, Yüksek Lisans: Biyosistem Mühendisliği — Bursa Uludağ Üniversitesi).',
+        origin_p1: 'Ziraat mühendisi bir babanın yanında aile çiftliğinde büyümek bana fiziksel gerçekliğin filtresiz bir resmini sundu: Bir sensör sera içinde 72°C sıcaklıkta bozuluyorsa veya bir algoritmanın drone uçuşunu işlemesi bir saat sürüyorsa sahada hiçbir hükmü yoktur. Resmi bir elektrik-elektronik veya bilgisayar mühendisliği diploması olmadan; devre tasarımını, C++/CUDA programlamayı, optiği ve fotopolimer litografiyi en temel ilkelerden kendi kendime öğrendim.',
+        origin_p2: '2017 yılında kişisel mühendislik ve ticarileştirme aracım olarak TARSENS Ar-Ge Ltd.’yi kurdum. Kullandığım baskı devre kartlarının %50’sinden fazlasını bizzat tasarlamaktan maskeli UV litografi için mikron hassasiyetli wafer tablaları üretmeye, 1 milyondan fazla tarımsal görüntüyle üretken çekişmeli ağlar (GAN) eğitmeye kadar tüm dikey yığına hakimim; böylece donanım ve yapay zeka sürtünmesiz biçimde birlikte evrimleşir.',
+        stack_kicker: '02 // TAM YIĞIN DİKEY MÜHENDİSLİK HAKİMİYETİ',
+        stack_heading: 'Polimat Mühendislik Yığını',
+        stack_desc: 'Departmanlar arası aktarım kaybı sıfır. Fotopolimer kimyasından özel PCB’lere, eklemli insansız kara aracı kinematiğinden CUDA çekirdeklerine kadar her katman tek bir fiziksel-dijital organizma olarak tasarlanır.',
+        pillar1_title: 'Fotonik ve Maskeli Litografi',
+        pillar1_desc: 'Kendi imkanlarımla sıfırdan kurduğum optik üretim tezgahı: mikron hassasiyetli wafer tablası, kolime UV maskeli pozlama düzeneği, programlanabilir spin kaplayıcı, daldırma (dip) kaplayıcı ve düz lens/metalens dizileri için PID termal kürleme yatakları.',
+        pillar2_title: 'Uçta Yapay Zeka ve Bilgisayarlı Görü',
+        pillar2_desc: 'Düşük güçlü gömülü GPU’lar ve yalnızca CPU kullanan hatlarda gerçek zamanlı çıkarım. Özel Darknet/YOLO mimarilerinden (v4–v26) ve CUDA C++ çekirdeklerinden StyleGAN/Pix2Pix sentetik veri üretimine ve düz lens dekonvolüsyonuna uzanan derinlik.',
+        pillar3_title: 'Otonom Robotik (İKA ve İHA)',
+        pillar3_desc: 'Mekanik kinematik, şasi üretimi ve yüksek hızlı algılama. Aşırı sıcak ve zorlu araziler için eklemli Caterpillar Xs İKA, 1.000 km/sa hızda çalışan patentli TRIO çarpışma önleme sistemi, canlı NDVI İHA faydalı yükleri ve pervane balanssızlık teşhisi.',
+        pillar4_title: 'Gömülü Donanım ve Ultra Düşük Güçlü IoT',
+        pillar4_desc: 'Saha devre kartlarının %50’sinden fazlası şematikten SMD dizgiye kadar kurum içi tasarlandı. NVIDIA Jetson (8+ yıl), Raspberry Pi (10+ yıl), Arduino (15+ yıl) ve 2.4GHz çok sekmeli kablosuz sensör ağlarında (WSN) derin donanım hakimiyeti.',
+        inv_kicker: '03 // MÜHENDİSLİĞİ YAPILMIŞ VE SAHADA KANITLANMIŞ SİSTEMLER',
+        inv_heading: 'Amiral Gemisi İcatlar ve Ar-Ge Portföyü',
+        filter_all: 'Tüm Sistemler (8)',
+        filter_photonics: 'Fotonik ve Mikroskopi',
+        filter_agritech: 'Uçta YZ ve Tarım Teknolojileri',
+        filter_robotics: 'Robotik ve Savunma',
+        filter_iot: 'IoT ve Endüstriyel',
+        pat_kicker: '04 // FİKRİ MÜLKİYET KASASI',
+        pat_heading: 'Tescilli Patentler ve Aktif Başvurular',
+        pat_desc: 'Türkiye, ABD (USPTO) ve uluslararası patent otoriteleri nezdinde koruma altına alınmış özgün donanım, optik ve algoritmik icatlar.',
+        rec_kicker: '05 // KÜRESEL DOĞRULAMA VE POLİTİKA ETKİSİ',
+        rec_heading: 'Hibeler, Davetli Konuşmalar ve Ulusal Danışmanlıklar',
+        rec_col1_title: 'Uluslararası Hibeler ve Ödüller',
+        rec_col2_title: 'Davetli Konuşmalar ve Zirveler',
+        rec_col3_title: 'Savunma/Devlet Danışmanlığı ve Yayınlar',
+        contact_kicker: '06 // DOĞRUDAN İLETİŞİM KANALI',
+        contact_heading: 'Teknik İş Birliği veya Ar-Ge Liderliği Görüşmesi Başlatın',
+        contact_desc: 'Baş Uçta Yapay Zeka / Fotonik / Robotik Mimarı rolleri, Ar-Ge Direktörlüğü (VP of R&D), savunma ve havacılık optik faydalı yükleri ve derin teknoloji stratejik danışmanlığı için ulaşabilirsiniz.',
+        btn_copy: 'Kopyala',
+        phone_label: 'DOĞRUDAN TELEFON / WHATSAPP',
+        loc_label: 'LABORATUVAR VE SAHA OPERASYONLARI',
+        loc_value: 'Bursa & Balıkesir, Türkiye (Küresel Saha Dağıtımı)',
+        form_header: 'İLETİ GÖNDERİMİ // DOĞRUDAN GELEN KUTUSUNA',
+        form_focus_label: 'İş Birliği Alanı',
+        track_1: 'Ar-Ge Liderliği / Baş Mimar Pozisyonu',
+        track_2: 'Fotonik ve Düz Optik Lisanslama / Ortak Ar-Ge',
+        track_3: 'Uçta Yapay Zeka, Robotik ve Savunma Optik Sistemleri',
+        track_4: 'Derin Teknoloji Danışmanlığı ve Konferans Konuşması',
+        form_name_label: 'Adınız / Kurumunuz',
+        form_email_label: 'Dönüş E-posta Adresiniz',
+        form_msg_label: 'Teknik Özet / Talebiniz',
+        form_submit: 'Doğrudan E-posta Gönderimini Hazırla ve Başlat',
+        footer_note: 'Kendi Kendini Yetiştirmiş Polimat Mucit • TARSENS Ar-Ge Ltd. (Kuruluş: 2017)',
+        inspect_btn: 'Mimariyi ve Teknik Verileri İncele →',
+        toast_copied: 'E-posta panoya kopyalandı: cstezcan@gmail.com',
+        toast_dispatch: 'Hazırlanan teknik özet ile e-posta istemciniz açılıyor...'
+      }
+    };
+
+    const projectsData = [
+      {
+        id: 'litholabs',
+        domain: 'photonics',
+        period: '2023 – 2026',
+        metricBadge: '0.996 SSIM // 42.85 dB PSNR',
+        accent: 'cyan',
+        en: {
+          title: 'LITHOLABS — Data-Driven Flat Optics & In-Situ Lithography',
+          tag: 'Photonics & Masked Lithography',
+          summary: 'Bootstrapped custom lithography hardware (micron wafer stage, spin/dip coaters, thermal beds) paired with Edge AI image reconstruction across 1024-lens arrays.',
+          details: [
+            'Built complete masked UV lithography & photopolymer fabrication equipment from scratch without cleanroom institutional budgets.',
+            'Engineered neural deconvolution models achieving 0.996 SSIM and 42.85 dB PSNR through ultra-thin flat microlens arrays.',
+            'Designed for extreme SWaP (Size, Weight, and Power) constrained UAVs, defense seekers, and orbital/in-situ optical manufacturing.'
+          ],
+          tech: ['Masked UV Lithography', 'Metalenses', 'Neural Deconvolution', 'Custom Wafer Stage', 'Photopolymers']
+        },
+        tr: {
+          title: 'LITHOLABS — Veri Odaklı Düz Optik ve Yerinde Litografi',
+          tag: 'Fotonik ve Maskeli Litografi',
+          summary: 'Sıfırdan inşa edilen özel litografi donanımı (mikron wafer tablası, spin/dip kaplayıcılar, termal yataklar) ve 1024 lensli dizilerde 0.996 SSIM ve 42.85 dB PSNR sunan Uçta YZ görüntü geri çatımı.',
+          details: [
+            'Temiz oda bütçeleri olmaksızın maskeli UV litografi ve fotopolimer üretim ekipmanlarının tamamı kurum içi tasarlanıp üretildi.',
+            'Ultra ince düz mikrolens dizileri üzerinden 0.996 SSIM ve 42.85 dB PSNR doğruluğuna ulaşan sinirsel dekonvolüsyon modelleri geliştirildi.',
+            'SWaP (Boyut, Ağırlık ve Güç) kısıtlı İHA’lar, savunma sistemleri ve yörünge içi optik üretim için optimize edildi.'
+          ],
+          tech: ['Maskeli UV Litografi', 'Metalensler', 'Sinirsel Dekonvolüsyon', 'Özel Wafer Tablası', 'Fotopolimerler']
+        }
+      },
+      {
+        id: 'yieldestimator',
+        domain: 'agritech',
+        period: '2019 – 2026',
+        metricBadge: '99.778% WORLD-RECORD ACCURACY',
+        accent: 'emerald',
+        en: {
+          title: 'YieldEstimator / VİTİMAP / ÆVUMVİTİFY',
+          tag: 'Edge AI & Precision Agritech',
+          summary: 'World’s highest-accuracy vineyard & orchard yield estimation and fruit geolocation engine (99.778% verified in California; deployed across Italy, France, Spain, Portugal, Türkiye).',
+          details: [
+            'Trained on 1M+ hand-labeled and StyleGAN/Pix2Pix synthetically generated grape bunches across diverse lighting and canopy occlusions.',
+            'Evolved into ÆVUMVİTİFY (2025): a hardware-agnostic, GPU-free one-click KML geodata pipeline cutting cloud/compute costs by up to 90%.',
+            'Delivers cluster-level geolocation and harvest tonnage forecasting prior to veraison and harvest.'
+          ],
+          tech: ['YOLOv4–v26', 'StyleGAN / Pix2Pix', 'GPU-Free Edge Pipeline', 'KML Geolocation', '1M+ Dataset']
+        },
+        tr: {
+          title: 'YieldEstimator / VİTİMAP / ÆVUMVİTİFY',
+          tag: 'Uçta Yapay Zeka ve Hassas Tarım',
+          summary: 'Dünyanın en yüksek doğruluğuna sahip bağ ve meyve bahçesi verim tahmin ve meyve konumlandırma motoru (Kaliforniya’da %99,778 doğrulandı; İtalya, Fransa, İspanya, Portekiz ve Türkiye’de aktif).',
+          details: [
+            '1 milyondan fazla elle etiketlenmiş ve StyleGAN/Pix2Pix ile sentetik olarak üretilmiş üzüm salkımı görüntüsü üzerinde eğitildi.',
+            '2025’te ÆVUMVİTİFY’a evrildi: Donanım bağımsız, GPU gerektirmeyen tek tıkla KML coğrafi veri hattı ile hesaplama maliyetlerini %90’a kadar düşürdü.',
+            'Hasat öncesi salkım düzeyinde coğrafi konumlandırma ve rekolte tahmini sağlar.'
+          ],
+          tech: ['YOLOv4–v26', 'StyleGAN / Pix2Pix', 'GPU-Bağımsız Hat', 'KML Coğrafi Veri', '1M+ Veri Seti']
+        }
+      },
+      {
+        id: 'fpm',
+        domain: 'photonics',
+        period: '2026',
+        metricBadge: 'OPEN-SOURCE 3D PHASE // OLED-FPM',
+        accent: 'cyan',
+        en: {
+          title: 'Mobile-OLED Fourier Ptychography & DPC Microscopy Suite',
+          tag: 'Computational Microscopy',
+          summary: 'Open-source computational microscopy architecture turning a smartphone OLED display into a programmable illumination array paired with a Raspberry Pi camera and Frankot-Chellappa 3D phase reconstruction.',
+          details: [
+            'Published open-source at github.com/CSTEZCAN/fourier_ptychography to democratize quantitative phase imaging.',
+            'Uses WebSocket + PyQt5 control to turn any mobile OLED screen into a sub-micron programmable condenser array on vintage microscopes.',
+            'Computes Differential Phase Contrast (DPC) and Frankot-Chellappa 3D quantitative phase maps without expensive optical hardware.'
+          ],
+          tech: ['Fourier Ptychography', 'Frankot-Chellappa 3D', 'WebSocket / PyQt5', 'Raspberry Pi Camera', 'Open Source']
+        },
+        tr: {
+          title: 'Mobil-OLED Fourier Ptychography ve DPC Mikroskopi Paketi',
+          tag: 'Hesaplamalı Mikroskopi',
+          summary: 'Bir akıllı telefon OLED ekranını WebSocket/PyQt5 üzerinden programlanabilir aydınlatma dizisine dönüştüren, Raspberry Pi kamera ve Frankot-Chellappa 3B faz geri çatımı kullanan açık kaynaklı mikroskopi mimarisi.',
+          details: [
+            'Nicel faz görüntülemeyi demokratikleştirmek amacıyla github.com/CSTEZCAN/fourier_ptychography adresinde açık kaynak yayınlandı.',
+            'WebSocket ve PyQt5 kontrolü ile standart mobil OLED ekranları eski mikroskoplar üzerinde programlanabilir kondansör dizisine dönüştürür.',
+            'Pahalı optik donanımlar olmadan Diferansiyel Faz Kontrastı (DPC) ve Frankot-Chellappa 3B faz haritaları üretir.'
+          ],
+          tech: ['Fourier Ptychography', 'Frankot-Chellappa 3B', 'WebSocket / PyQt5', 'Raspberry Pi Kamera', 'Açık Kaynak']
+        }
+      },
+      {
+        id: 'caterpillar-trio',
+        domain: 'robotics',
+        period: '2021 – 2025',
+        metricBadge: '1,000 KPH SENSE & AVOID // TRIO',
+        accent: 'amber',
+        en: {
+          title: 'Caterpillar Xs UGV & TRIO High-Speed Collision Avoidance',
+          tag: 'Autonomous Robotics & Defense',
+          summary: 'Articulated dual-chassis all-terrain autonomous rover engineered for extreme heat and vineyard/defense terrain, paired with patented TRIO 3D obstacle evasion up to 1,000 kph.',
+          details: [
+            'Caterpillar Xs features an articulated dual-tracked chassis with custom motor controllers, Velodyne LIDAR, and thermal resilience for extreme summer vineyard & defense operations.',
+            'Patented TRIO system (TR2022/014624 & US20250103056A1) uses a triple-camera geometric optical baseline for ultra-low-latency 3D obstacle avoidance at flight speeds up to 1,000 kph.'
+          ],
+          tech: ['Articulated UGV', 'TRIO Optical Baseline', '1,000 kph Avoidance', 'Velodyne LIDAR', 'ROS / C++']
+        },
+        tr: {
+          title: 'Caterpillar Xs İKA ve TRIO Yüksek Hızlı Çarpışma Önleme',
+          tag: 'Otonom Robotik ve Savunma',
+          summary: 'Aşırı sıcak ve zorlu bağ/savunma arazileri için geliştirilen eklemli çift şasili otonom paletli araç ile 1.000 km/sa hıza kadar 3B engel kaçınma sağlayan patentli TRIO optik sistemi.',
+          details: [
+            'Caterpillar Xs; özel motor sürücüleri, Velodyne LIDAR ve aşırı sıcaklık dayanımına sahip eklemli çift paletli şasi mimarisine sahiptir.',
+            'Patentli TRIO sistemi (TR2022/014624 ve US20250103056A1), üçlü kamera geometrik optik taban çizgisi ile 1.000 km/sa uçuş hızlarına kadar ultra düşük gecikmeli 3B engel kaçınma sağlar.'
+          ],
+          tech: ['Eklemli İKA', 'TRIO Optik Taban', '1.000 km/sa Kaçınma', 'Velodyne LIDAR', 'ROS / C++']
+        }
+      },
+      {
+        id: 'spectralix',
+        domain: 'agritech',
+        period: '2016 – 2024',
+        metricBadge: '3,600x SPEEDUP // 99.6% LAKE AI',
+        accent: 'emerald',
+        en: {
+          title: 'Spectralix Live-NDVI & GAN Satellite Hydrology',
+          tag: 'Multispectral & Remote Sensing',
+          summary: 'Patented onboard multispectral camera & field processing tablet accelerating orthophoto/NDVI generation by 3,600x (<1 sec vs. 1 hr), plus 99.6% accurate GAN satellite lake monitoring.',
+          details: [
+            'Patent TR2016/17566: Real-time onboard spectral band registration and NDVI synthesis eliminating post-flight cloud bottlenecks.',
+            'Developed GAN-based multi-temporal satellite surface area extraction achieving 99.6% accuracy across Lake Burdur, Lake Marmara, Atatürk Dam, and global reservoirs.'
+          ],
+          tech: ['Patent TR2016/17566', 'Live Onboard NDVI', 'CUDA Image Stitching', 'GAN Satellite Hydrology', 'Multispectral']
+        },
+        tr: {
+          title: 'Spectralix Canlı-NDVI ve GAN Uydu Hidrolojisi',
+          tag: 'Multispektral ve Uzaktan Algılama',
+          summary: 'Ortofoto ve NDVI üretimini 3.600 kat hızlandıran (1 saat yerine <1 sn) patentli çok bantlı kamera ve saha işleme tableti ile %99,6 doğruluklu GAN uydu göl izleme sistemi.',
+          details: [
+            'Patent TR2016/17566: Uçuş sonrası bulut darboğazlarını ortadan kaldıran gerçek zamanlı cihaz içi spektral bant hizalama ve NDVI sentezi.',
+            'Burdur Gölü, Marmara Gölü, Atatürk Barajı ve küresel su kütlelerinde %99,6 doğrulukla yüzey alanı değişimi tespit eden GAN tabanlı uydu görüntü işleme hattı.'
+          ],
+          tech: ['Patent TR2016/17566', 'Canlı Cihaz İçi NDVI', 'CUDA Görüntü Birleştirme', 'GAN Uydu Hidrolojisi', 'Multispektral']
+        }
+      },
+      {
+        id: 'beez',
+        domain: 'iot',
+        period: '2013 – 2020',
+        metricBadge: '8-YEAR BATTERY (2xAA) // 3.5B+ PTS',
+        accent: 'purple',
+        en: {
+          title: 'BEEZ! High-Endurance Wireless Sensor Network',
+          tag: 'Ultra-Low-Power IoT & Custom RF',
+          summary: '120 custom PCB sensor nodes (92 deployed over 3.5 years, 3.5B+ data points collected from -4°C to 72°C) achieving an 8-year theoretical battery life on 2xAA batteries.',
+          details: [
+            'Designed custom ultra-low-quiescent-current PCBs and proprietary 2.4GHz multi-hop mesh routing protocol.',
+            'Survived extreme agricultural thermal cycling (-4°C winter frost to 72°C greenhouse peaks) with over 2+ years of remaining battery capacity after 3.5 years of continuous field telemetry.'
+          ],
+          tech: ['120 Custom PCBs', '2.4GHz Multi-Hop Mesh', '2xAA / 8-Yr Life', '3.5B+ Telemetry Points', 'Bare-Metal C']
+        },
+        tr: {
+          title: 'BEEZ! Yüksek Dayanımlı Kablosuz Sensör Ağı (WSN)',
+          tag: 'Ultra Düşük Güçlü IoT ve Özel RF',
+          summary: '2 adet AA pille 8 yıllık teorik pil ömrüne ulaşan 120 özel PCB sensör düğümü (3,5 yıl boyunca sahada 92 düğüm ile -4°C ile 72°C arasında 3,5 milyardan fazla veri noktası toplandı).',
+          details: [
+            'Ultra düşük sızıntı akımlı özel baskı devre kartları (PCB) ve özgün 2.4GHz çok sekmeli (multi-hop) ağ yönlendirme protokolü tasarlandı.',
+            '-4°C kış donlarından 72°C sera zirvelerine kadar aşırı termal döngülere dayanarak 3,5 yıllık kesintisiz saha operasyonunun ardından dahi 2+ yıl kalan pil ömrü sundu.'
+          ],
+          tech: ['120 Özel PCB', '2.4GHz Multi-Hop Ağ', '2xAA / 8 Yıl Ömür', '3,5 Milyar+ Veri', 'Gömülü C']
+        }
+      },
+      {
+        id: 'evetbal',
+        domain: 'agritech',
+        period: '2024 – Present',
+        metricBadge: '4K HDR10+ // PALYNOLOGY AI',
+        accent: 'emerald',
+        en: {
+          title: 'EVETBAL — Palynology & Smart Apiculture Suite',
+          tag: 'Edge Vision & Bio-Telemetry',
+          summary: 'Multi-camera 4K HDR10+ hive monitoring, varroa mite & hornet/wasp entrance tracking, WSN microclimate telemetry, organic pest control, and microscopic pollen fingerprinting.',
+          details: [
+            'Tracks individual bee traffic, pollen load color/morphology, Varroa destructor mites, and predatory wasps at hive entrances in real time.',
+            'Combines internal acoustic/thermal WSN telemetry with automated microscopic palynology (pollen botanical origin classification).'
+          ],
+          tech: ['4K HDR10+ Vision', 'Varroa & Wasp Tracking', 'Microscopic Palynology', 'Hive WSN Telemetry', 'Organic Control']
+        },
+        tr: {
+          title: 'EVETBAL — Palinoloji ve Akıllı Arıcılık Paketi',
+          tag: 'Uçta Görüntü İşleme ve Biyo-Telemetri',
+          summary: 'Çok kameralı 4K HDR10+ kovan izleme, kovan girişinde varroa ve eşek arısı takibi, WSN mikroiklim telemetrisi, organik zararlı kontrolü ve mikroskobik polen parmak izi analizi.',
+          details: [
+            'Kovan girişinde arı trafiğini, polen yükü morfolojisini, Varroa akarlarını ve yırtıcı eşek arılarını gerçek zamanlı tespit eder.',
+            'Kovan içi akustik/termal WSN telemetrisini otomatik mikroskobik palinoloji (polenlerin botanik köken sınıflandırması) ile birleştirir.'
+          ],
+          tech: ['4K HDR10+ Görüntü', 'Varroa ve Eşek Arısı Takibi', 'Mikroskobik Palinoloji', 'Kovan WSN Telemetri', 'Organik Mücadele']
+        }
+      },
+      {
+        id: 'industrial-suite',
+        domain: 'iot',
+        period: '2018 – 2025',
+        metricBadge: 'MULTI-SECTOR EDGE AI & SAFETY',
+        accent: 'purple',
+        en: {
+          title: 'Precision Fertilizer Synthesizer & Industrial Vision Systems',
+          tag: 'Industrial AI, Safety & Mechatronics',
+          summary: 'Soil/plant-fingerprint controlled-release fertilizer generator, plus industrial AI inspection across road infrastructure, solar NIR, SMD solder, wind turbines, olive sorting, and heavy machinery safety.',
+          details: [
+            'Mechatronic on-plant fertilizer synthesizer formulating custom controlled-release nutrient pellets matched to real-time soil & leaf spectral fingerprints.',
+            'Industrial computer vision deployments: Canadian highway crack telemetry, solar panel NIR defect detection, PCB SMD solder inspection, wind turbine blade damage, patented optical olive sorting (TR2023/015217), and AgroExpo’24 hydraulic tree-shaker human-presence emergency stop system.'
+          ],
+          tech: ['Fertilizer Synthesizer', 'Olive Optical Sorter', 'Hydraulic Shaker Safety', 'Solar NIR / SMD AOI', 'Road Crack AI']
+        },
+        tr: {
+          title: 'Hassas Gübre Sentezleyici ve Endüstriyel Görü Sistemleri',
+          tag: 'Endüstriyel YZ, İş Güvenliği ve Mekatronik',
+          summary: 'Toprak/bitki parmak izine göre kontrollü salınımlı gübre üretici ile yol altyapısı, güneş paneli NIR, SMD lehim, rüzgar türbini, zeytin ayıklama ve ağır tarım makinesi insan güvenliği sistemleri.',
+          details: [
+            'Gerçek zamanlı toprak ve yaprak spektral parmak izlerine göre kişiselleştirilmiş kontrollü salınımlı gübre üreten mekatronik sistem.',
+            'Endüstriyel yapay zeka uygulamaları: Kanada otoyol çatlak izleme, güneş paneli NIR kusur tespiti, PCB SMD lehim kontrolü, rüzgar türbini kanat hasarı, patentli optik zeytin ayıklama (TR2023/015217) ve AgroExpo’24 hidrolik ağaç silkeleyici insan varlığı acil durdurma güvenlik sistemi.'
+          ],
+          tech: ['Gübre Sentezleyici', 'Optik Zeytin Ayıklama', 'Hidrolik Silkeleyici Güvenliği', 'Güneş NIR / SMD AOI', 'Yol Çatlak YZ']
+        }
+      }
+    ];
+
+    const patentsData = [
+      {
+        code: 'TR2022/014624 • US20250103056A1',
+        statusEn: 'Granted / US Published',
+        statusTr: 'Tescilli / ABD Yayınlandı',
+        titleEn: 'TRIO Triple-Camera High-Speed 3D Obstacle Avoidance System',
+        titleTr: 'TRIO Üç Kameralı Yüksek Hızlı 3B Engel Kaçınma Sistemi',
+        descEn: 'Geometric optical baseline architecture enabling real-time 3D collision avoidance for aerial platforms at speeds up to 1,000 kph.',
+        descTr: 'Hava platformları için 1.000 km/sa hıza kadar gerçek zamanlı 3B çarpışma önleme sağlayan geometrik optik taban çizgisi mimarisi.'
+      },
+      {
+        code: 'TR2023/011617',
+        statusEn: 'Granted Patent',
+        statusTr: 'Tescilli Patent',
+        titleEn: 'Metalens Anti-Glare Optical Prism & Stray-Light Suppression',
+        titleTr: 'Metalens Parlama Önleyici Optik Prizma ve Kaçak Işık Bastırma',
+        descEn: 'Nanostructured flat-optics prism element eliminating internal reflections and solar glare in compact imaging payloads.',
+        descTr: 'Kompakt görüntüleme faydalı yüklerinde iç yansımaları ve güneş parlamasını ortadan kaldıran nanoyapılı düz optik prizma elemanı.'
+      },
+      {
+        code: 'TR2016/17566',
+        statusEn: 'Granted Patent',
+        statusTr: 'Tescilli Patent',
+        titleEn: 'Spectralix Real-Time Onboard Multispectral & NDVI Camera',
+        titleTr: 'Spectralix Gerçek Zamanlı Cihaz İçi Multispektral ve NDVI Kamerası',
+        descEn: 'Hardware-synchronized multi-band optical sensor and field processing unit accelerating NDVI/orthophoto generation by 3,600x.',
+        descTr: 'NDVI ve ortofoto üretimini 3.600 kat hızlandıran donanım senkronizasyonlu çok bantlı optik sensör ve saha işleme birimi.'
+      },
+      {
+        code: 'TR2023/015217',
+        statusEn: 'Granted Patent',
+        statusTr: 'Tescilli Patent',
+        titleEn: 'High-Throughput Optical Produce & Olive Sorting System',
+        titleTr: 'Yüksek Kapasiteli Optik Ürün ve Zeytin Ayıklama Sistemi',
+        descEn: 'Real-time multi-angle machine vision and pneumatic ejection architecture for defect, maturity, and size grading.',
+        descTr: 'Kusur, olgunluk ve boyut sınıflandırması için gerçek zamanlı çok açılı yapay görme ve pnömatik ayıklama mimarisi.'
+      },
+      {
+        code: 'TR2023/014858 & TR2023/014762',
+        statusEn: 'Granted Patents (2x)',
+        statusTr: 'Tescilli Patentler (2 Adet)',
+        titleEn: 'Autonomous Agricultural Robotics & Precision Actuation',
+        titleTr: 'Otonom Tarımsal Robotik ve Hassas Eyleyici Sistemleri',
+        descEn: 'Patented electromechanical actuation, terrain adaptation, and autonomous field sensing subsystems.',
+        descTr: 'Patentli elektromekanik eyleme, arazi adaptasyonu ve otonom saha algılama alt sistemleri.'
+      },
+      {
+        code: '3x ACTIVE 2026 FILINGS',
+        statusEn: 'Pending (2026)',
+        statusTr: 'Başvuru Sürecinde (2026)',
+        titleEn: 'Next-Gen Masked Lithography, Flat-Optics & Edge AI Architectures',
+        titleTr: 'Yeni Nesil Maskeli Litografi, Düz Optik ve Uçta YZ Mimarileri',
+        descEn: 'Three new 2026 patent applications covering in-situ flat lens fabrication, neural optical reconstruction, and autonomous systems.',
+        descTr: 'Yerinde düz lens üretimi, sinirsel optik geri çatım ve otonom sistemleri kapsayan üç yeni 2026 patent başvurusu.'
+      }
+    ];
+
+    const recognitionData = {
+      awards: [
+        { en: '3x NVIDIA GPU Grant Recipient (2016, 2017, 2018) — Deep Learning & Edge Vision', tr: '3x NVIDIA GPU Hibe Ödülü (2016, 2017, 2018) — Derin Öğrenme ve Uçta Görü' },
+        { en: 'ESA & Airbus ActInSpace — Global 3rd Place & Ranked #1 International Success Story', tr: 'ESA ve Airbus ActInSpace — Dünya 3.’lüğü ve #1 Uluslararası Başarı Hikayesi' },
+        { en: 'TÜBİTAK 1512 Techno-Entrepreneurship Deep-Tech Grant Recipient', tr: 'TÜBİTAK 1512 Teknogirişim Sermayesi Desteği Sahibi' },
+        { en: 'EIT Food Test Farms & EIT Food Sales Booster Pan-European Laureate', tr: 'EIT Food Test Farms ve EIT Food Sales Booster Avrupa Programı Seçkisi' },
+        { en: 'Ministry of Agriculture — Young Minds of Agriculture Award (2020)', tr: 'T.C. Tarım ve Orman Bakanlığı — Tarımın Genç Beyinleri Ödülü (2020)' }
+      ],
+      keynotes: [
+        { en: 'Embedded Vision Summit (Santa Clara, California, USA) — Invited Speaker', tr: 'Embedded Vision Summit (Santa Clara, Kaliforniya, ABD) — Davetli Konuşmacı' },
+        { en: 'Nikkei AgSUM (Tokyo, Japan) — Invited Deep-Tech & Agritech Speaker', tr: 'Nikkei AgSUM (Tokyo, Japonya) — Davetli Derin Teknoloji Konuşmacısı' },
+        { en: 'GFIA — Global Forum for Innovations in Agriculture (Abu Dhabi, UAE)', tr: 'GFIA — Küresel Tarımsal İnovasyon Forumu (Abu Dabi, BAE)' },
+        { en: 'TOBB ASEAN Agritech Delegation — Official Turkish Deep-Tech Representative', tr: 'TOBB ASEAN Tarım Teknolojileri Delegasyonu — Türkiye Teknoloji Temsilcisi' }
+      ],
+      advisory: [
+        { en: 'Contributor to Presidency of Türkiye & SSB (Defense Industry Agency) OTAĞ Strategic Reports', tr: 'T.C. Cumhurbaşkanlığı ve Savunma Sanayii Başkanlığı (SSB) OTAĞ Stratejik Raporları Katkıcısı' },
+        { en: 'Contributor to BTK (Information & Communication Technologies Authority) 5G White Paper', tr: 'BTK (Bilgi Teknolojileri ve İletişim Kurumu) 5G Beyaz Kitabı Katkıcısı' },
+        { en: 'Referenced in UN FAO (Food and Agriculture Organization) Digital Agriculture Publications', tr: 'BM FAO (Gıda ve Tarım Örgütü) Dijital Tarım Yayınlarında Referans Gösterilen Çalışmalar' },
+        { en: 'Author of Peer-Reviewed Journal Papers on Edge Computer Vision, Multispectral Sensing & GAN Hydrology', tr: 'Uçta Bilgisayarlı Görü, Multispektral Algılama ve GAN Hidrolojisi Üzerine Hakemli Makaleler' }
+      ]
+    };
+
+    // =========================================================================
+    // 2. RENDERING FUNCTIONS & LANGUAGE TOGGLE
+    // =========================================================================
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = currentFilter === 'all'
+        ? projectsData
+        : projectsData.filter(p => p.domain === currentFilter);
+
+      const accentColors = {
+        cyan: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10',
+        emerald: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
+        amber: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
+        purple: 'text-purple-400 border-purple-500/30 bg-purple-500/10'
+      };
+
+      grid.innerHTML = filtered.map(proj => {
+        const content = proj[currentLang];
+        const badgeStyle = accentColors[proj.accent] || accentColors.cyan;
+        return `
+          <article onclick="openProjectModal('${proj.id}')"
+            class="glass-card rounded-2xl p-6 cursor-pointer transition flex flex-col justify-between group">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-2.5 py-1 rounded-md border font-mono text-[11px] font-semibold ${badgeStyle}">
+                  ${proj.metricBadge}
+                </span>
+                <span class="font-mono text-xs text-slate-400">${proj.period}</span>
+              </div>
+              <div class="font-mono text-[11px] uppercase tracking-wider text-slate-400 mb-1">${content.tag}</div>
+              <h3 class="text-xl font-bold text-white group-hover:text-cyan-300 transition mb-2.5">${content.title}</h3>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">${content.summary}</p>
+            </div>
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                ${content.tech.map(t => `<span class="px-2 py-0.5 rounded bg-slate-950/90 border border-slate-800 font-mono text-[11px] text-slate-300">${t}</span>`).join('')}
+              </div>
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between font-mono text-xs text-cyan-400 group-hover:text-cyan-300">
+                <span>${i18n[currentLang].inspect_btn}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderPatents() {
+      const grid = document.getElementById('patentsGrid');
+      grid.innerHTML = patentsData.map(pat => `
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="font-mono text-xs font-bold text-amber-300">${pat.code}</span>
+              <span class="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 font-mono text-[10px] text-amber-300">
+                ${currentLang === 'en' ? pat.statusEn : pat.statusTr}
+              </span>
+            </div>
+            <h3 class="text-base font-bold text-white mb-2">${currentLang === 'en' ? pat.titleEn : pat.titleTr}</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">${currentLang === 'en' ? pat.descEn : pat.descTr}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRecognition() {
+      const renderList = (items, dotColor) => items.map(item => `
+        <li class="flex items-start gap-2.5">
+          <span class="mt-1.5 w-1.5 h-1.5 rounded-full ${dotColor} shrink-0"></span>
+          <span>${item[currentLang]}</span>
+        </li>
+      `).join('');
+
+      document.getElementById('awardsList').innerHTML = renderList(recognitionData.awards, 'bg-amber-400');
+      document.getElementById('keynotesList').innerHTML = renderList(recognitionData.keynotes, 'bg-cyan-400');
+      document.getElementById('advisoryList').innerHTML = renderList(recognitionData.advisory, 'bg-emerald-400');
+    }
+
+    function applyTranslations() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[currentLang][key]) {
+          el.textContent = i18n[currentLang][key];
+        }
+      });
+
+      // Update active badge styling in navbar
+      const enBadge = document.getElementById('langBadgeEn');
+      const trBadge = document.getElementById('langBadgeTr');
+      if (currentLang === 'en') {
+        enBadge.className = 'px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300';
+        trBadge.className = 'px-1.5 py-0.5 rounded text-slate-400';
+      } else {
+        trBadge.className = 'px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300';
+        enBadge.className = 'px-1.5 py-0.5 rounded text-slate-400';
+      }
+
+      renderProjects();
+      renderPatents();
+      renderRecognition();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'tr' : 'en';
+      document.documentElement.lang = currentLang;
+      applyTranslations();
+    }
+
+    function filterProjects(domain) {
+      currentFilter = domain;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === domain) {
+          btn.className = 'filter-btn active px-3.5 py-2 rounded-xl font-mono text-xs font-semibold bg-cyan-500 text-slate-950 transition';
+        } else {
+          btn.className = 'filter-btn px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/50 transition';
+        }
+      });
+      renderProjects();
+    }
+
+    function openProjectModal(id) {
+      const proj = projectsData.find(p => p.id === id);
+      if (!proj) return;
+      const content = proj[currentLang];
+      const modal = document.getElementById('projectModal');
+      const body = document.getElementById('modalContent');
+
+      body.innerHTML = `
+        <div class="font-mono text-xs text-cyan-400 uppercase tracking-wider mb-1">${content.tag} // ${proj.period}</div>
+        <h3 class="text-2xl font-bold text-white pr-8 mb-3">${content.title}</h3>
+        <div class="inline-block px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 font-mono text-xs text-emerald-300 mb-5">
+          ${proj.metricBadge}
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-5">${content.summary}</p>
+        <div class="space-y-3 mb-6">
+          ${content.details.map(d => `
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 text-sm text-slate-200">
+              <span class="text-cyan-400 font-mono font-bold mt-0.5">▹</span>
+              <span>${d}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="flex flex-wrap gap-2">
+          ${content.tech.map(t => `<span class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 font-mono text-xs text-cyan-300">${t}</span>`).join('')}
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBanner');
+      document.getElementById('toastText').textContent = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3400);
+    }
+
+    function copyEmail() {
+      const tempInput = document.createElement('input');
+      tempInput.value = 'cstezcan@gmail.com';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        showToast(i18n[currentLang].toast_copied);
+      } catch (e) {
+        showToast('cstezcan@gmail.com');
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const track = document.getElementById('inquiryTrack').value;
+      const name = document.getElementById('senderName').value;
+      const email = document.getElementById('senderEmail').value;
+      const message = document.getElementById('senderMessage').value;
+
+      const subject = encodeURIComponent(`[Portfolio R&D Inquiry] ${track} — ${name}`);
+      const body = encodeURIComponent(`From: ${name} (${email})\nTrack: ${track}\n\n${message}`);
+      showToast(i18n[currentLang].toast_dispatch);
+      window.location.href = `mailto:cstezcan@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // =========================================================================
+    // 3. INTERACTIVE FLAT-OPTICS & INTERFEROMETRY CANVAS SIMULATION
+    // =========================================================================
+    function initOpticsCanvas() {
+      const canvas = document.getElementById('opticsCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let pointer = { x: 0.5, y: 0.5 };
+      let t = 0;
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        pointer.x = (e.clientX - rect.left) / rect.width;
+        pointer.y = (e.clientY - rect.top) / rect.height;
+      });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          pointer.x = (e.touches[0].clientX - rect.left) / rect.width;
+          pointer.y = (e.touches[0].clientY - rect.top) / rect.height;
+        }
+      }, { passive: true });
+
+      function animate() {
+        const rect = canvas.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+        t += 0.025;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw 16x10 Microlens / Metalens Phase Array
+        const cols = 16;
+        const rows = 10;
+        const cellW = w / cols;
+        const cellH = h / rows;
+        const focusX = pointer.x * w;
+        const focusY = pointer.y * h;
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const cx = (c + 0.5) * cellW;
+            const cy = (r + 0.5) * cellH;
+            const dist = Math.hypot(cx - focusX, cy - focusY);
+            const phase = Math.sin(dist * 0.045 - t * 2.2);
+            const radius = Math.max(2, (Math.min(cellW, cellH) * 0.34) * (0.65 + 0.35 * phase));
+
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            const alpha = 0.25 + 0.55 * ((phase + 1) / 2);
+            ctx.strokeStyle = phase > 0
+              ? `rgba(6, 182, 212, ${alpha.toFixed(2)})`
+              : `rgba(16, 185, 129, ${alpha.toFixed(2)})`;
+            ctx.lineWidth = 1.25;
+            ctx.stroke();
+
+            // Inner focal dot
+            ctx.beginPath();
+            ctx.arc(cx, cy, 1.1, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(226, 232, 240, ${(alpha * 0.8).toFixed(2)})`;
+            ctx.fill();
+          }
+        }
+
+        // Crosshair reticle at UV wavefront focal point
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(focusX, focusY, 18 + Math.sin(t * 3) * 3, 0, Math.PI * 2);
+        ctx.stroke();
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
+    // Close modal on Escape key or backdrop click
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+    document.getElementById('projectModal').addEventListener('click', (e) => {
+      if (e.target.id === 'projectModal') closeModal();
+    });
+
+    // Initialize on Window Load
+    window.onload = function () {
+      applyTranslations();
+      initOpticsCanvas();
+    };
+  </script>
+</body>
+</html>
