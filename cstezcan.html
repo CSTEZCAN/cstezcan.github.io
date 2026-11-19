@@ -189,7 +189,7 @@
                 @Canonest
               </a>
               <button onclick="copyEmail()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 hover:text-emerald-300 transition">
-                cstezcan@gmail.com
+                ai@tarsens.com
               </button>
             </div>
           </div>
@@ -504,7 +504,7 @@
                 <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/90 border border-slate-800">
                   <div>
                     <div class="text-[11px] text-slate-400">EMAIL</div>
-                    <a href="mailto:cstezcan@gmail.com" class="text-cyan-300 hover:underline">cstezcan@gmail.com</a>
+                    <a href="mailto:ai@tarsens.com" class="text-cyan-300 hover:underline">ai@tarsens.com</a>
                   </div>
                   <button onclick="copyEmail()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-400 text-xs text-slate-200 transition" data-i18n="btn_copy">
                     Copy
@@ -689,7 +689,7 @@
         form_submit: 'Prepare & Launch Direct Email Dispatch',
         footer_note: 'Autodidact Polymath Inventor • TARSENS R&D Ltd. (Est. 2017)',
         inspect_btn: 'Inspect Architecture & Specs →',
-        toast_copied: 'Email copied to clipboard: cstezcan@gmail.com',
+        toast_copied: 'Email copied to clipboard: ai@tarsens.com',
         toast_dispatch: 'Opening your email client with pre-formatted technical brief...'
       },
       tr: {
@@ -768,7 +768,7 @@
         form_submit: 'Doğrudan E-posta Gönderimini Hazırla ve Başlat',
         footer_note: 'Kendi Kendini Yetiştirmiş Polimat Mucit • TARSENS Ar-Ge Ltd. (Kuruluş: 2017)',
         inspect_btn: 'Mimariyi ve Teknik Verileri İncele →',
-        toast_copied: 'E-posta panoya kopyalandı: cstezcan@gmail.com',
+        toast_copied: 'E-posta panoya kopyalandı: ai@tarsens.com',
         toast_dispatch: 'Hazırlanan teknik özet ile e-posta istemciniz açılıyor...'
       }
     };
@@ -1251,14 +1251,14 @@
 
     function copyEmail() {
       const tempInput = document.createElement('input');
-      tempInput.value = 'cstezcan@gmail.com';
+      tempInput.value = 'ai@tarsens.com';
       document.body.appendChild(tempInput);
       tempInput.select();
       try {
         document.execCommand('copy');
         showToast(i18n[currentLang].toast_copied);
       } catch (e) {
-        showToast('cstezcan@gmail.com');
+        showToast('ai@tarsens.com');
       }
       document.body.removeChild(tempInput);
     }
@@ -1273,7 +1273,7 @@
       const subject = encodeURIComponent(`[Portfolio R&D Inquiry] ${track} — ${name}`);
       const body = encodeURIComponent(`From: ${name} (${email})\nTrack: ${track}\n\n${message}`);
       showToast(i18n[currentLang].toast_dispatch);
-      window.location.href = `mailto:cstezcan@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:ai@tarsens.com?subject=${subject}&body=${body}`;
     }
 
     // =========================================================================
