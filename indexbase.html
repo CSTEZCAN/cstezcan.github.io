@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARSENS R&D — Deep-Tech Research, IP Licensing & Engineering Advisory</title>
+  <meta name="description" content="Tactical Advanced Reconnaissance and Sensor Enhanced Network of Systems. Pure R&D house specializing in Flat Optics, Edge AI, Unmanned Platforms, and Multispectral Sensing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090d;
+      --bg-elevated: #0f1118;
+      --bg-card: #12151e;
+      --bg-card-hover: #171b26;
+      --nav-bg: rgba(8, 9, 13, 0.82);
+      --media-bg: #0b0d13;
+      --placeholder-bg: linear-gradient(145deg, #131722 0%, #0a0c10 100%);
+      --chip-bg: rgba(8, 9, 13, 0.85);
+      --tag-bg: rgba(255, 255, 255, 0.04);
+      --backdrop-bg: rgba(3, 5, 9, 0.78);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      --text: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-warm: #f59e0b;
+      --status-active: #10b981;
+      --status-completed: #818cf8;
+      --hero-grad-start: #f8fafc;
+      --hero-grad-end: #94a3b8;
+      --card-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.65);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+    }
+
+    body.light-mode {
+      --bg: #f1f5f9;
+      --bg-elevated: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --nav-bg: rgba(255, 255, 255, 0.86);
+      --media-bg: #e2e8f0;
+      --placeholder-bg: linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 100%);
+      --chip-bg: rgba(255, 255, 255, 0.92);
+      --tag-bg: rgba(15, 23, 42, 0.05);
+      --backdrop-bg: rgba(15, 23, 42, 0.55);
+      --border: rgba(15, 23, 42, 0.10);
+      --border-hover: rgba(15, 23, 42, 0.24);
+      --text: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-warm: #d97706;
+      --status-active: #059669;
+      --status-completed: #4f46e5;
+      --hero-grad-start: #0f172a;
+      --hero-grad-end: #475569;
+      --card-shadow: 0 14px 30px -10px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 45% at 50% -10%, rgba(56, 189, 248, 0.09), transparent),
+        radial-gradient(ellipse 50% 35% at 85% 15%, rgba(245, 158, 11, 0.05), transparent);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Sticky Glass Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 8px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      display: grid;
+      place-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 15px;
+      color: #04070d;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .logo-name {
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-left: 1px solid var(--border);
+      padding-left: 12px;
+    }
+
+    @media (max-width: 1024px) {
+      .logo-tag { display: none; }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Language & Theme Switchers */
+    .lang-switcher {
+      display: inline-flex;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+    }
+
+    .lang-btn.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--status-active);
+      box-shadow: 0 0 8px var(--status-active);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 40px;
+      align-items: end;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--hero-grad-start) 30%, var(--hero-grad-end) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 620px;
+    }
+
+    .hero-desc strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .metrics-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .metric-item {
+      padding: 8px;
+    }
+
+    .metric-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Section Header */
+    .section-block {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    /* What We Do (3 Pillars) */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .pillar-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent-warm);
+      margin-bottom: 8px;
+    }
+
+    .pillar-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pillar-card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .pillar-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .mini-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-secondary);
+      background: var(--tag-bg);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-btn:hover {
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+
+    .pill-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .status-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .search-input {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      width: 240px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    /* Modern Project Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .proj-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: var(--card-shadow);
+    }
+
+    .proj-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--media-bg);
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proj-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .proj-card:hover .proj-media img {
+      transform: scale(1.04);
+    }
+
+    .media-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      background: var(--placeholder-bg);
+    }
+
+    .media-placeholder span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .media-placeholder small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .status-chip {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-chip.active {
+      color: var(--status-active);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .status-chip.completed {
+      color: var(--status-completed);
+      border-color: rgba(129, 140, 248, 0.35);
+    }
+
+    .proj-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 8px;
+    }
+
+    .proj-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .proj-domain {
+      color: var(--accent-warm);
+      font-weight: 600;
+    }
+
+    .proj-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: var(--text);
+    }
+
+    .proj-one-liner {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .proj-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .proj-card:hover .proj-footer span:last-child {
+      color: var(--accent);
+    }
+
+    /* Slide-Over Sub-Page Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--backdrop-bg);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: none;
+      justify-content: flex-end;
+    }
+
+    .drawer-backdrop.open {
+      display: flex;
+    }
+
+    .drawer-panel {
+      width: 100%;
+      max-width: 760px;
+      height: 100%;
+      background: var(--bg-elevated);
+      border-left: 1px solid var(--border-hover);
+      overflow-y: auto;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      animation: slideIn 0.22s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(30px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .drawer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-hero-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--media-bg);
+      border: 1px solid var(--border);
+    }
+
+    .drawer-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .drawer-title {
+      font-size: 23px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .drawer-summary {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 560px) {
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .spec-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+    }
+
+    .spec-box-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .spec-box-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .outcome-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .outcome-list li {
+      padding-left: 18px;
+      position: relative;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .outcome-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      margin-top: 32px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo" onclick="closeDrawer()">
+        <div class="logo-icon">T</div>
+        <div class="logo-name">TARSENS</div>
+        <div class="logo-tag" id="nav-tag">R&amp;D • IP LICENSING • ADVISORY</div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#capabilities" id="nav-what">What We Do</a>
+        <a href="#programs" id="nav-programs">Active &amp; Completed R&amp;D</a>
+        <a href="https://www.youtube.com/@TARSENS" target="_blank" rel="noopener" id="nav-demos">Field Demos</a>
+        <a href="https://github.com/CSTEZCAN" target="_blank" rel="noopener" id="nav-oss">Open Source</a>
+      </div>
+
+      <div class="nav-controls">
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button class="lang-btn active" data-lang="en" onclick="setLang('en')">ENG</button>
+          <button class="lang-btn" data-lang="tr" onclick="setLang('tr')">TRK</button>
+          <button class="lang-btn" data-lang="es" onclick="setLang('es')">ESP</button>
+          <button class="lang-btn" data-lang="it" onclick="setLang('it')">ITA</button>
+        </div>
+
+        <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle color theme">
+          <span id="theme-icon">☀</span>
+          <span id="theme-label">LIGHT</span>
+        </button>
+
+        <a href="mailto:ai@tarsens.com?subject=TARSENS%20R%26D%20Partnership%20Inquiry" class="btn btn-primary" id="nav-cta">Engage TARSENS</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="pulse-dot"></span>
+        <span id="hero-eyebrow">EST. 2017 • BANDIRMA / BURSA, TÜRKİYE</span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1 id="hero-title"><span>Deep-Tech R&amp;D Lab.</span><br>Zero Retail Products. Pure IP &amp; Engineering.</h1>
+          <p class="hero-desc" id="hero-desc">
+            <strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> solves complex sensing, autonomy, and photonic challenges—from micron-scale flat optics to 1,000 km/h UAV collision avoidance. We partner with industry and defense leaders via <strong>Patent Licensing</strong>, <strong>Custom Engineering</strong>, and <strong>Technical Advisory</strong>.
+          </p>
+        </div>
+
+        <div class="metrics-card">
+          <div class="metric-item">
+            <div class="metric-val">0.996 SSIM</div>
+            <div class="metric-label" id="m1-label">Flat Optics + Edge AI Fidelity</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">99.78%</div>
+            <div class="metric-label" id="m2-label">Verified Yield Vision Accuracy</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val">3,600×</div>
+            <div class="metric-label" id="m3-label">Faster Onboard NDVI Processing</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-val" id="m4-val">4+ Patents</div>
+            <div class="metric-label" id="m4-label">Granted &amp; Pending IP Portfolio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Can Do -->
+  <section id="capabilities" class="section-block" style="border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker" id="cap-kicker">Engagement Models</div>
+          <h2 class="section-title" id="cap-title">What We Can Do For Your Organization</h2>
+        </div>
+        <a href="mailto:ai@tarsens.com?subject=Technical%20Briefing%20Request" class="btn" id="cap-cta">Request Technical Briefing →</a>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-num" id="p1-num">01 / IP TRANSFER</div>
+            <h3 id="p1-title">Patent Licensing</h3>
+            <p id="p1-desc">License field-proven, granted and pending patents directly into your hardware or software stack without multi-year R&amp;D risk.</p>
+          </div>
+          <div class="pillar-tags">
+            <span class="mini-tag">TR2022/014624 TRIO UAV</span>
+            <span class="mini-tag">TR2016/17566 Live NDVI</span>
+            <span class="mini-tag">TR2023/011617 Metalens</span>
+            <span class="mini-tag">TR2023/015217 Optical Sort</span>
+          </div>
+        </div>
+
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-num" id="p2-num">02 / BESPOKE PROTOTYPING</div>
+            <h3 id="p2-title">Custom Engineering Solutions</h3>
+            <p id="p2-desc">End-to-end R&amp;D execution spanning custom PCB design, NVIDIA Jetson Edge AI, unmanned platforms (UGV/UAV), and custom optical lithography rigs.</p>
+          </div>
+          <div class="pillar-tags">
+            <span class="mini-tag">Embedded Edge AI</span>
+            <span class="mini-tag">Multispectral Vision</span>
+            <span class="mini-tag">UGV / UAV Systems</span>
+            <span class="mini-tag">Custom PCBs</span>
+          </div>
+        </div>
+
+        <div class="pillar-card">
+          <div>
+            <div class="pillar-num" id="p3-num">03 / STRATEGIC GUIDANCE</div>
+            <h3 id="p3-title">Technical Advisory</h3>
+            <p id="p3-desc">Feasibility studies, due diligence, and technology roadmaps for defense agencies, ministries, holdings, and agritech ventures.</p>
+          </div>
+          <div class="pillar-tags">
+            <span class="mini-tag">SSB &amp; Ministry Reports</span>
+            <span class="mini-tag">ESA / Airbus Recognized</span>
+            <span class="mini-tag">3× NVIDIA GPU Grant</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active & Completed Projects -->
+  <section id="programs" class="section-block">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker" id="prog-kicker">R&amp;D Portfolio Archive</div>
+          <h2 class="section-title" id="prog-title">Current &amp; Completed R&amp;D Programs</h2>
+        </div>
+      </div>
+
+      <div class="controls-bar">
+        <div class="pill-group" id="status-filters">
+          <button class="pill-btn active" data-status="all" id="filter-all">All Programs (12)</button>
+          <button class="pill-btn" data-status="active">
+            <span class="status-indicator" style="background:var(--status-active)"></span>
+            <span id="filter-active">Active R&amp;D</span>
+          </button>
+          <button class="pill-btn" data-status="completed">
+            <span class="status-indicator" style="background:var(--status-completed)"></span>
+            <span id="filter-completed">Completed / Validated</span>
+          </button>
+        </div>
+
+        <input type="text" id="search-box" class="search-input" placeholder="Search optics, UAV, patent, yield..." />
+      </div>
+
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- Slide-Over Technical Sub-Page -->
+  <div class="drawer-backdrop" id="drawer-backdrop" onclick="if(event.target===this) closeDrawer()">
+    <aside class="drawer-panel" id="drawer-panel"></aside>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-flex">
+      <div id="footer-founder">
+        <strong style="color:var(--text);">TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> — Founded by Celil Serhan Tezcan (M.Sc.)
+      </div>
+      <div>
+        <a href="mailto:ai@tarsens.com" style="color:var(--accent);">ai@tarsens.com</a> &nbsp;•&nbsp;
+        <a href="tel:+905068505798">+90-506-850-57-98</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const UI_STRINGS = {
+      en: {
+        htmlLang: "en",
+        pageTitle: "TARSENS R&D — Deep-Tech Research, IP Licensing & Engineering Advisory",
+        navTag: "R&D • IP LICENSING • ADVISORY",
+        navWhat: "What We Do",
+        navPrograms: "Active & Completed R&D",
+        navDemos: "Field Demos",
+        navOss: "Open Source",
+        navCta: "Engage TARSENS",
+        themeLight: "LIGHT",
+        themeDark: "DARK",
+        heroEyebrow: "EST. 2017 • BANDIRMA / BURSA, TÜRKİYE",
+        heroTitle: "<span>Deep-Tech R&amp;D Lab.</span><br>Zero Retail Products. Pure IP &amp; Engineering.",
+        heroDesc: "<strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> solves complex sensing, autonomy, and photonic challenges—from micron-scale flat optics to 1,000 km/h UAV collision avoidance. We partner with industry and defense leaders via <strong>Patent Licensing</strong>, <strong>Custom Engineering</strong>, and <strong>Technical Advisory</strong>.",
+        m1Label: "Flat Optics + Edge AI Fidelity",
+        m2Label: "Verified Yield Vision Accuracy",
+        m3Label: "Faster Onboard NDVI Processing",
+        m4Val: "4+ Patents",
+        m4Label: "Granted &amp; Pending IP Portfolio",
+        capKicker: "Engagement Models",
+        capTitle: "What We Can Do For Your Organization",
+        capCta: "Request Technical Briefing →",
+        p1Num: "01 / IP TRANSFER",
+        p1Title: "Patent Licensing",
+        p1Desc: "License field-proven, granted and pending patents directly into your hardware or software stack without multi-year R&amp;D risk.",
+        p2Num: "02 / BESPOKE PROTOTYPING",
+        p2Title: "Custom Engineering Solutions",
+        p2Desc: "End-to-end R&amp;D execution spanning custom PCB design, NVIDIA Jetson Edge AI, unmanned platforms (UGV/UAV), and custom optical lithography rigs.",
+        p3Num: "03 / STRATEGIC GUIDANCE",
+        p3Title: "Technical Advisory",
+        p3Desc: "Feasibility studies, due diligence, and technology roadmaps for defense agencies, ministries, holdings, and agritech ventures.",
+        progKicker: "R&D Portfolio Archive",
+        progTitle: "Current &amp; Completed R&amp;D Programs",
+        filterAll: "All Programs (12)",
+        filterActive: "Active R&amp;D",
+        filterCompleted: "Completed / Validated",
+        searchPlaceholder: "Search optics, UAV, patent, yield...",
+        emptySearch: "No R&amp;D programs matched your search criteria.",
+        chipActive: "Active R&amp;D",
+        chipCompleted: "Completed / Proven",
+        openDossier: "Open Dossier →",
+        closeBtn: "Close ✕",
+        uploadHint: "Upload slide image to:",
+        metricsHead: "Validated Metrics &amp; IP Data",
+        archHead: "Technical Architecture &amp; Outcomes",
+        drawerCtaLead: "Interested in licensing or custom R&amp;D around this work?",
+        drawerCtaBtn: "Contact Engineering Team →",
+        footerFounder: "<strong style=\"color:var(--text);\">TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> — Founded by Celil Serhan Tezcan (M.Sc.)"
+      },
+      tr: {
+        htmlLang: "tr",
+        pageTitle: "TARSENS Ar-Ge — Derin Teknoloji Araştırma, Patent Lisanslama ve Mühendislik Danışmanlığı",
+        navTag: "AR-GE • PATENT LİSANSLAMA • DANIŞMANLIK",
+        navWhat: "Neler Yapıyoruz",
+        navPrograms: "Aktif ve Tamamlanan Ar-Ge",
+        navDemos: "Saha Videoları",
+        navOss: "Açık Kaynak",
+        navCta: "İletişime Geç",
+        themeLight: "AÇIK",
+        themeDark: "KOYU",
+        heroEyebrow: "KURULUŞ: 2017 • BANDIRMA / BURSA, TÜRKİYE",
+        heroTitle: "<span>Derin Teknoloji Ar-Ge Evi.</span><br>Hazır Raf Ürünü Yok. Saf IP ve Mühendislik.",
+        heroDesc: "<strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong>; mikron ölçekli düz optiklerden 1.000 km/sa hızda İHA çarpışma önlemeye kadar kritik algılama, otonomi ve fotonik problemleri çözer. Sanayi ve savunma liderleriyle <strong>Patent Lisanslama</strong>, <strong>Özel Mühendislik Çözümleri</strong> ve <strong>Teknik Danışmanlık</strong> modelleriyle çalışıyoruz.",
+        m1Label: "Düz Optik + Edge AI Sadakati",
+        m2Label: "Doğrulanmış Rekolte Görü Başarısı",
+        m3Label: "Daha Hızlı Uçuş İçi NDVI İşleme",
+        m4Val: "4+ Patent",
+        m4Label: "Tescilli ve Başvurulu IP Portföyü",
+        capKicker: "İş Birliği Modelleri",
+        capTitle: "Kurumunuz İçin Neler Yapabiliriz?",
+        capCta: "Teknik Sunum Talep Et →",
+        p1Num: "01 / FİKRİ MÜLKİYET TRANSFERİ",
+        p1Title: "Patent Lisanslama",
+        p1Desc: "Sahada doğrulanmış, tescilli ve başvuru aşamasındaki patentlerimizi yıllar süren Ar-Ge riskine girmeden doğrudan donanım veya yazılım altyapınıza entegre edin.",
+        p2Num: "02 / ÖZEL PROTOTİPLEME",
+        p2Title: "Özel Mühendislik Çözümleri",
+        p2Desc: "Özel PCB tasarımı, NVIDIA Jetson Edge AI, insansız platformlar (İKA/İHA) ve özel optik litografi düzeneklerini kapsayan uçtan uca Ar-Ge geliştirme.",
+        p3Num: "03 / STRATEJİK REHBERLİK",
+        p3Title: "Teknik Danışmanlık",
+        p3Desc: "Savunma kurumları, bakanlıklar, holdingler ve tarım teknolojisi girişimleri için fizibilite çalışmaları, teknik durum tespiti ve teknoloji yol haritaları.",
+        progKicker: "Ar-Ge Portföy Arşivi",
+        progTitle: "Devam Eden ve Tamamlanan Ar-Ge Programları",
+        filterAll: "Tüm Programlar (12)",
+        filterActive: "Aktif Ar-Ge",
+        filterCompleted: "Tamamlanan / Doğrulanan",
+        searchPlaceholder: "Optik, İHA, patent, rekolte ara...",
+        emptySearch: "Arama kriterlerinize uygun Ar-Ge programı bulunamadı.",
+        chipActive: "Aktif Ar-Ge",
+        chipCompleted: "Tamamlandı / Kanıtlandı",
+        openDossier: "Dosyayı Aç →",
+        closeBtn: "Kapat ✕",
+        uploadHint: "Görseli şu yola yükleyin:",
+        metricsHead: "Doğrulanmış Metrikler ve Patent Verileri",
+        archHead: "Teknik Mimari ve Ar-Ge Çıktıları",
+        drawerCtaLead: "Bu çalışma kapsamında lisanslama veya özel Ar-Ge ile ilgileniyor musunuz?",
+        drawerCtaBtn: "Mühendislik Ekibine Ulaş →",
+        footerFounder: "<strong style=\"color:var(--text);\">TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> — Kurucu: Celil Serhan Tezcan (Yük. Müh.)"
+      },
+      es: {
+        htmlLang: "es",
+        pageTitle: "TARSENS I+D — Investigación Deep-Tech, Licenciamiento de Patentes y Asesoría Técnica",
+        navTag: "I+D • LICENCIAS IP • ASESORÍA",
+        navWhat: "Qué Hacemos",
+        navPrograms: "I+D Activa y Completada",
+        navDemos: "Pruebas de Campo",
+        navOss: "Código Abierto",
+        navCta: "Contactar TARSENS",
+        themeLight: "CLARO",
+        themeDark: "OSCURO",
+        heroEyebrow: "FUNDADA EN 2017 • BANDIRMA / BURSA, TURQUÍA",
+        heroTitle: "<span>Laboratorio Deep-Tech de I+D.</span><br>Cero Productos Estándar. Pura PI e Ingeniería.",
+        heroDesc: "<strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> resuelve desafíos complejos de sensórica, autonomía y fotónica, desde óptica plana micrométrica hasta evitación de colisiones UAV a 1.000 km/h. Colaboramos mediante <strong>Licenciamiento de Patentes</strong>, <strong>Ingeniería a Medida</strong> y <strong>Asesoría Técnica</strong>.",
+        m1Label: "Fidelidad Óptica Plana + Edge AI",
+        m2Label: "Precisión Verificada en Cosecha",
+        m3Label: "Procesamiento NDVI a Bordo Más Rápido",
+        m4Val: "4+ Patentes",
+        m4Label: "Cartera PI Concedida y en Trámite",
+        capKicker: "Modelos de Colaboración",
+        capTitle: "Qué Podemos Hacer por su Organización",
+        capCta: "Solicitar Dossier Técnico →",
+        p1Num: "01 / TRANSFERENCIA DE PI",
+        p1Title: "Licenciamiento de Patentes",
+        p1Desc: "Licencie patentes validadas en campo, concedidas y en trámite directamente en su hardware o software sin riesgos de I+D multianuales.",
+        p2Num: "02 / PROTOTIPADO A MEDIDA",
+        p2Title: "Soluciones de Ingeniería a Medida",
+        p2Desc: "Ejecución integral de I+D: diseño de PCB personalizados, Edge AI en NVIDIA Jetson, plataformas no tripuladas (UGV/UAV) y equipos de litografía óptica.",
+        p3Num: "03 / ORIENTACIÓN ESTRATÉGICA",
+        p3Title: "Asesoría Técnica",
+        p3Desc: "Estudios de viabilidad, diligencia debida y hojas de ruta tecnológicas para agencias de defensa, ministerios, grupos empresariales y agrotech.",
+        progKicker: "Archivo de Portafolio I+D",
+        progTitle: "Programas de I+D Actuales y Completados",
+        filterAll: "Todos los Programas (12)",
+        filterActive: "I+D Activa",
+        filterCompleted: "Completados / Validados",
+        searchPlaceholder: "Buscar óptica, UAV, patente, cosecha...",
+        emptySearch: "Ningún programa de I+D coincide con su búsqueda.",
+        chipActive: "I+D Activa",
+        chipCompleted: "Completado / Validado",
+        openDossier: "Abrir Dossier →",
+        closeBtn: "Cerrar ✕",
+        uploadHint: "Subir imagen a:",
+        metricsHead: "Métricas Validadas y Datos de PI",
+        archHead: "Arquitectura Técnica y Resultados",
+        drawerCtaLead: "¿Interesado en licenciar o desarrollar I+D a medida sobre este proyecto?",
+        drawerCtaBtn: "Contactar al Equipo de Ingeniería →",
+        footerFounder: "<strong style=\"color:var(--text);\">TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> — Fundado por Celil Serhan Tezcan (M.Sc.)"
+      },
+      it: {
+        htmlLang: "it",
+        pageTitle: "TARSENS R&S — Ricerca Deep-Tech, Licenze Brevettuali e Consulenza Ingegneristica",
+        navTag: "R&S • LICENZE IP • CONSULENZA",
+        navWhat: "Cosa Facciamo",
+        navPrograms: "R&S Attiva e Completata",
+        navDemos: "Demo sul Campo",
+        navOss: "Open Source",
+        navCta: "Contatta TARSENS",
+        themeLight: "CHIARO",
+        themeDark: "SCURO",
+        heroEyebrow: "FONDATA NEL 2017 • BANDIRMA / BURSA, TURCHIA",
+        heroTitle: "<span>Laboratorio Deep-Tech R&amp;S.</span><br>Zero Prodotti Retail. Pura PI e Ingegneria.",
+        heroDesc: "<strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> risolve sfide complesse di sensoristica, autonomia e fotonica—dall'ottica piatta su scala micrometrica all'anticollisione UAV a 1.000 km/h. Collaboriamo tramite <strong>Licenze Brevettuali</strong>, <strong>Ingegneria su Misura</strong> e <strong>Consulenza Tecnica</strong>.",
+        m1Label: "Fedeltà Ottica Piatta + Edge AI",
+        m2Label: "Precisione Verificata Visione Resa",
+        m3Label: "Elaborazione NDVI a Bordo Più Veloce",
+        m4Val: "4+ Brevetti",
+        m4Label: "Portafoglio PI Concesso e Depositato",
+        capKicker: "Modelli di Collaborazione",
+        capTitle: "Cosa Possiamo Fare per la Tua Organizzazione",
+        capCta: "Richiedi Briefing Tecnico →",
+        p1Num: "01 / TRASFERIMENTO PI",
+        p1Title: "Licenze Brevettuali",
+        p1Desc: "Integra brevetti validati sul campo, concessi e in corso direttamente nel tuo hardware o software senza rischi di R&amp;S pluriennali.",
+        p2Num: "02 / PROTOTIPAZIONE SU MISURA",
+        p2Title: "Soluzioni Ingegneristiche su Misura",
+        p2Desc: "Sviluppo R&amp;S end-to-end: progettazione PCB personalizzati, Edge AI su NVIDIA Jetson, piattaforme senza pilota (UGV/UAV) e litografia ottica.",
+        p3Num: "03 / GUIDA STRATEGICA",
+        p3Title: "Consulenza Tecnica",
+        p3Desc: "Studi di fattibilità, due diligence e roadmap tecnologiche per enti della difesa, ministeri, holding e imprese agritech.",
+        progKicker: "Archivio Portafoglio R&S",
+        progTitle: "Programmi R&amp;S Attuali e Completati",
+        filterAll: "Tutti i Programmi (12)",
+        filterActive: "R&amp;S Attiva",
+        filterCompleted: "Completati / Validati",
+        searchPlaceholder: "Cerca ottica, UAV, brevetto, resa...",
+        emptySearch: "Nessun programma R&amp;S corrisponde ai criteri di ricerca.",
+        chipActive: "R&amp;S Attiva",
+        chipCompleted: "Completato / Validato",
+        openDossier: "Apri Dossier →",
+        closeBtn: "Chiudi ✕",
+        uploadHint: "Carica immagine in:",
+        metricsHead: "Metriche Validate e Dati PI",
+        archHead: "Architettura Tecnica e Risultati",
+        drawerCtaLead: "Interessato a licenze o sviluppo R&amp;S su misura su questo progetto?",
+        drawerCtaBtn: "Contatta il Team Ingegneristico →",
+        footerFounder: "<strong style=\"color:var(--text);\">TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> — Fondato da Celil Serhan Tezcan (M.Sc.)"
+      }
+    };
+
+    const PROGRAMS = [
+      {
+        id: "litholabs-flat-optics",
+        status: "active",
+        domain: "LITHOLABS • FLAT OPTICS",
+        ip: "SSIM 0.996 / 42.85 dB",
+        image: "assets/litholabs-wafer.jpg",
+        slideHint: "Slide 124 / 132",
+        i18n: {
+          en: {
+            statusLabel: "Active R&D • 2024–2026",
+            title: "Masked Lithography & Edge AI Photonic Reconstruction",
+            oneLiner: "Ultra-thin photopolymer metalenses paired with neural reconstruction achieving 0.996 SSIM for SWaP-constrained UAV and orbital platforms.",
+            summary: "Built from the ground up with custom-engineered micron wafer stages, UV masked lithography, and spin/dip coaters. LithoLabs replaces heavy multi-element glass optics with flat metalenses and real-time Edge AI image reconstruction—enabling asset-light prototyping and future in-situ orbital lens printing.",
+            specs: [
+              { label: "Image Fidelity", value: "0.996 Mean SSIM (0.9998 Peak)" },
+              { label: "Signal-to-Noise", value: "42.85 dB PSNR" },
+              { label: "Related Patent", value: "TR2023/011617 (Metalens Filter)" },
+              { label: "Target Platforms", value: "UAV/UGV, 27U CubeSat, Deep Space" }
+            ],
+            outcomes: [
+              "Custom-engineered full-stack micro-fabrication hardware: wafer stage, UV exposure array, spin/dip coaters, and precision thermal beds.",
+              "Eliminates chromatic aberration and glass lens weight penalties via neural reconstruction on embedded NVIDIA Jetson hardware.",
+              "Open for strategic co-development, licensing, and aerospace/defense pilot contracts."
+            ],
+            links: [{ label: "Live Reconstruction Demos (YouTube)", url: "https://www.youtube.com/@TARSENS/shorts" }]
+          },
+          tr: {
+            statusLabel: "Aktif Ar-Ge • 2024–2026",
+            title: "Maskeli Litografi ve Edge AI Fotonik Görüntü Rekonstrüksiyonu",
+            oneLiner: "SWaP kısıtlı İHA ve yörünge platformları için 0.996 SSIM doğruluğuna ulaşan ultra ince fotopolimer metalensler ve yapay zeka rekonstrüksiyonu.",
+            summary: "Şirket içinde özel tasarlanan mikron wafer tablaları, UV maskeli litografi ve spin/dip kaplama cihazlarıyla sıfırdan geliştirildi. LithoLabs, ağır çok elemanlı cam optiklerin yerini düz metalensler ve gerçek zamanlı Edge AI görüntü iyileştirme ile alarak yörüngede isteğe bağlı lens üretimine altyapı sunar.",
+            specs: [
+              { label: "Görüntü Sadakati", value: "0.996 Ortalama SSIM (0.9998 Maksimum)" },
+              { label: "Sinyal / Gürültü", value: "42.85 dB PSNR" },
+              { label: "İlgili Patent", value: "TR2023/011617 (Metalens Filtre)" },
+              { label: "Hedef Platformlar", value: "İHA/İKA, 27U CubeSat, Derin Uzay" }
+            ],
+            outcomes: [
+              "Tam yığın mikro-fabrikasyon donanımı şirket içinde üretildi: mikron wafer tablası, UV pozlama dizisi, spin/dip kaplayıcılar ve hassas termal tablalar.",
+              "Gömülü NVIDIA Jetson donanımı üzerinde sinirsel rekonstrüksiyon ile kromatik sapma ve cam mercek ağırlık dezavantajlarını ortadan kaldırır.",
+              "Stratejik ortak geliştirme, patent lisanslama ve havacılık/savunma pilot projelerine açıktır."
+            ],
+            links: [{ label: "Canlı Rekonstrüksiyon Videoları (YouTube)", url: "https://www.youtube.com/@TARSENS/shorts" }]
+          },
+          es: {
+            statusLabel: "I+D Activa • 2024–2026",
+            title: "Litografía Enmascarada y Reconstrucción Fotónica con Edge AI",
+            oneLiner: "Metalentes de fotopolímero ultrafinas con reconstrucción neuronal que alcanzan 0.996 SSIM para plataformas UAV y orbitales.",
+            summary: "Desarrollado íntegramente con etapas micrométricas de obleas propias, litografía UV enmascarada y recubridores spin/dip. LithoLabs sustituye la pesada óptica de vidrio por metalentes planas y reconstrucción Edge AI en tiempo real, habilitando la futura impresión óptica en órbita.",
+            specs: [
+              { label: "Fidelidad de Imagen", value: "0.996 SSIM Medio (0.9998 Máximo)" },
+              { label: "Relación Señal/Ruido", value: "42.85 dB PSNR" },
+              { label: "Patente Relacionada", value: "TR2023/011617 (Filtro Metalente)" },
+              { label: "Plataformas Objetivo", value: "UAV/UGV, CubeSat 27U, Espacio Profundo" }
+            ],
+            outcomes: [
+              "Hardware completo de microfabricación propio: etapa de obleas, matriz de exposición UV, recubridores spin/dip y camas térmicas de precisión.",
+              "Elimina la aberración cromática y el peso de las lentes de vidrio mediante reconstrucción neuronal en NVIDIA Jetson embebido.",
+              "Abierto a codesarrollo estratégico, licenciamiento y contratos piloto aeroespaciales y de defensa."
+            ],
+            links: [{ label: "Demos de Reconstrucción en Vivo (YouTube)", url: "https://www.youtube.com/@TARSENS/shorts" }]
+          },
+          it: {
+            statusLabel: "R&S Attiva • 2024–2026",
+            title: "Litografia Mascherata e Ricostruzione Fotonica con Edge AI",
+            oneLiner: "Metalenti in fotopolimero ultrasottili abbinate a ricostruzione neurale da 0.996 SSIM per UAV e piattaforme orbitali.",
+            summary: "Sviluppato internamente con stage micrometrici per wafer, litografia UV mascherata e rivestitori spin/dip su misura. LithoLabs sostituisce le pesanti ottiche in vetro con metalenti piatte e ricostruzione Edge AI in tempo reale, abilitando la futura stampa ottica in orbita.",
+            specs: [
+              { label: "Fedeltà d'Immagine", value: "0.996 SSIM Medio (0.9998 Massimo)" },
+              { label: "Rapporto Segnale/Rumore", value: "42.85 dB PSNR" },
+              { label: "Brevetto Correlato", value: "TR2023/011617 (Filtro Metalente)" },
+              { label: "Piattaforme Target", value: "UAV/UGV, CubeSat 27U, Spazio Profondo" }
+            ],
+            outcomes: [
+              "Hardware completo di microfabbricazione progettato internamente: stage wafer, esposizione UV, rivestitori spin/dip e letti termici.",
+              "Elimina l'aberrazione cromatica e il peso delle lenti in vetro tramite ricostruzione neurale su NVIDIA Jetson embedded.",
+              "Aperto a co-sviluppo strategico, licenze e contratti pilota aerospaziali e della difesa."
+            ],
+            links: [{ label: "Demo Ricostruzione dal Vivo (YouTube)", url: "https://www.youtube.com/@TARSENS/shorts" }]
+          }
+        }
+      },
+      {
+        id: "aevumvitify-cpu-engine",
+        status: "active",
+        domain: "ÆVUMVITIFY • EDGE VISION",
+        ip: "90% COMPUTE COST CUT",
+        image: "assets/aevumvitify-ui.jpg",
+        slideHint: "Slide 82",
+        i18n: {
+          en: {
+            statusLabel: "Active R&D • 2025–2026",
+            title: "Hardware-Agnostic Single-Click KML Yield Mapping Suite",
+            oneLiner: "Cross-platform CPU inference engine eliminating discrete GPU requirements for orchard and vineyard geospatial yield mapping.",
+            summary: "The newest evolution of the YieldEstimator and ViTiMAP ecosystem. ÆVUMVITIFY removes the dependency on discrete RTX 3060/3090 GPUs, allowing cross-platform batch video analysis and KML generation on standard Windows, macOS, and Linux machines.",
+            specs: [
+              { label: "Architecture", value: "CPU-Native Cross-Platform (Win/Mac/Linux)" },
+              { label: "Cost Impact", value: "Up to 90% hardware reduction" },
+              { label: "Output Format", value: "Direct GIS / KML Geolocation Layers" },
+              { label: "Availability", value: "Enterprise Integration & Licensing" }
+            ],
+            outcomes: [
+              "Processes multi-video field capture queues in a single click without cloud uploads or workstation GPUs.",
+              "Extracts embedded GPS telemetry and outputs ready-to-inspect KML layers for Google Earth, ArcGIS, and QGIS."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Aktif Ar-Ge • 2025–2026",
+            title: "Donanım Bağımsız Tek Tıkla KML Rekolte Haritalama Yazılımı",
+            oneLiner: "Bağ ve meyve bahçesi jeo-uzamsal haritalamasında harici ekran kartı (GPU) gereksinimini ortadan kaldıran çapraz platform CPU çıkarım motoru.",
+            summary: "YieldEstimator ve ViTiMAP ekosisteminin en yeni evrimi. ÆVUMVITIFY, harici RTX 3060/3090 GPU bağımlılığını kaldırarak standart Windows, macOS ve Linux bilgisayarlarda toplu video analizi ve KML üretimini mümkün kılar.",
+            specs: [
+              { label: "Mimari", value: "CPU Tabanlı Çapraz Platform (Win/Mac/Linux)" },
+              { label: "Maliyet Etkisi", value: "%90'a varan donanım maliyeti tasarrufu" },
+              { label: "Çıktı Formatı", value: "Doğrudan CBS / KML Konum Katmanları" },
+              { label: "Erişim Modeli", value: "Kurumsal Entegrasyon ve Lisanslama" }
+            ],
+            outcomes: [
+              "Bulut yüklemesi veya iş istasyonu GPU'su gerektirmeden çoklu saha video kuyruklarını tek tıkla işler.",
+              "Gömülü GPS telemetrisini ayıklar ve Google Earth, ArcGIS ile QGIS için hazır KML katmanları üretir."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "I+D Activa • 2025–2026",
+            title: "Suite de Mapeo KML en Un Clic Independiente del Hardware",
+            oneLiner: "Motor de inferencia CPU multiplataforma que elimina la necesidad de GPU dedicada para el mapeo geoespacial de cosechas.",
+            summary: "La evolución más reciente del ecosistema YieldEstimator y ViTiMAP. ÆVUMVITIFY elimina la dependencia de GPU RTX 3060/3090 dedicadas, permitiendo el análisis por lotes de vídeo y la generación de KML en ordenadores estándar Windows, macOS y Linux.",
+            specs: [
+              { label: "Arquitectura", value: "Multiplataforma Nativa en CPU (Win/Mac/Linux)" },
+              { label: "Impacto en Costes", value: "Hasta un 90% menos en hardware" },
+              { label: "Formato de Salida", value: "Capas Directas SIG / KML" },
+              { label: "Disponibilidad", value: "Integración Empresarial y Licenciamiento" }
+            ],
+            outcomes: [
+              "Procesa colas de vídeos capturados en campo en un solo clic sin subidas a la nube ni GPU de estación de trabajo.",
+              "Extrae la telemetría GPS integrada y genera capas KML listas para Google Earth, ArcGIS y QGIS."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "R&S Attiva • 2025–2026",
+            title: "Suite di Mappatura Resa KML in Un Clic Indipendente dall'Hardware",
+            oneLiner: "Motore di inferenza CPU multipiattaforma che elimina il requisito di GPU dedicate per la mappatura geospaziale dei raccolti.",
+            summary: "L'ultima evoluzione dell'ecosistema YieldEstimator e ViTiMAP. ÆVUMVITIFY rimuove la dipendenza da GPU RTX 3060/3090 dedicate, consentendo l'analisi video batch e la generazione KML su normali computer Windows, macOS e Linux.",
+            specs: [
+              { label: "Architettura", value: "Multipiattaforma Nativa su CPU (Win/Mac/Linux)" },
+              { label: "Impatto sui Costi", value: "Riduzione hardware fino al 90%" },
+              { label: "Formato Output", value: "Layer Diretti GIS / KML" },
+              { label: "Disponibilità", value: "Integrazione Enterprise e Licenza" }
+            ],
+            outcomes: [
+              "Elabora code di video acquisiti sul campo con un solo clic senza caricamenti in cloud né GPU workstation.",
+              "Estrae la telemetria GPS integrata e genera layer KML pronti per Google Earth, ArcGIS e QGIS."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "fourier-ptychography",
+        status: "active",
+        domain: "COMPUTATIONAL MICROSCOPY",
+        ip: "OPEN SOURCE • GITHUB",
+        image: "assets/fourier-ptychography.jpg",
+        slideHint: "Slide 172–173",
+        i18n: {
+          en: {
+            statusLabel: "Active Open R&D • 2026",
+            title: "Mobile-OLED Fourier Ptychography & 3D Phase Contrast Suite",
+            oneLiner: "Turns a smartphone OLED screen into a programmable illumination array for quantitative 3D phase reconstruction on vintage microscopes.",
+            summary: "An open-source hardware-software microscopy suite combining a WebSocket-controlled smartphone OLED condenser with Raspberry Pi low-light capture and Frankot-Chellappa Fourier integration to generate interactive 3D surface reconstructions.",
+            specs: [
+              { label: "Illumination", value: "Smartphone OLED (Flask + Socket.IO)" },
+              { label: "Acquisition", value: "Raspberry Pi Camera (12× gain, 1 FPS)" },
+              { label: "Solver", value: "Frankot-Chellappa 2D Phase Integration" },
+              { label: "Source Code", value: "Public on GitHub (CSTEZCAN)" }
+            ],
+            outcomes: [
+              "Replaces expensive motorized LED illumination domes with programmable OLED geometric patterns (Circle, Ring, Grid).",
+              "Validated on pollen grain palynology samples and Fresnel zone plate micro-structures."
+            ],
+            links: [
+              { label: "GitHub Repository", url: "https://github.com/CSTEZCAN/fourier_ptychography" },
+              { label: "3D Phase Reconstruction Video", url: "https://www.youtube.com/watch?v=OYcoacdYIvk" }
+            ]
+          },
+          tr: {
+            statusLabel: "Aktif Açık Ar-Ge • 2026",
+            title: "Mobil-OLED Fourier Ptychography ve 3B Faz Kontrast Mikroskopisi",
+            oneLiner: "Klasik mikroskoplarda nicel 3 boyutlu faz rekonstrüksiyonu için akıllı telefon OLED ekranını programlanabilir bir ışık kaynağına dönüştürür.",
+            summary: "WebSocket kontrollü akıllı telefon OLED kondansatörünü Raspberry Pi düşük ışık yakalama ve Frankot-Chellappa Fourier entegrasyonu ile birleştirerek etkileşimli 3B yüzey rekonstrüksiyonları üreten açık kaynaklı donanım-yazılım sistemi.",
+            specs: [
+              { label: "Aydınlatma", value: "Akıllı Telefon OLED (Flask + Socket.IO)" },
+              { label: "Görüntü Alma", value: "Raspberry Pi Kamera (12× kazanç, 1 FPS)" },
+              { label: "Çözücü", value: "Frankot-Chellappa 2B Faz Entegrasyonu" },
+              { label: "Kaynak Kod", value: "GitHub Üzerinde Açık (CSTEZCAN)" }
+            ],
+            outcomes: [
+              "Pahalı motorlu LED kubbe aydınlatmalarının yerini programlanabilir OLED geometrik desenleriyle (Daire, Halka, Izgara) alır.",
+              "Polen tanecikleri ve Fresnel bölge plakası mikro yapıları üzerinde doğrulandı."
+            ],
+            links: [
+              { label: "GitHub Deposu", url: "https://github.com/CSTEZCAN/fourier_ptychography" },
+              { label: "3B Faz Rekonstrüksiyon Videosu", url: "https://www.youtube.com/watch?v=OYcoacdYIvk" }
+            ]
+          },
+          es: {
+            statusLabel: "I+D Abierta Activa • 2026",
+            title: "Ptichografía de Fourier con OLED Móvil y Contraste de Fase 3D",
+            oneLiner: "Convierte la pantalla OLED de un smartphone en una matriz de iluminación programable para reconstrucción cuantitativa de fase 3D.",
+            summary: "Suite de microscopía computacional de código abierto que combina un condensador OLED de smartphone controlado por WebSocket con captura Raspberry Pi e integración de Fourier Frankot-Chellappa para generar reconstrucciones 3D interactivas.",
+            specs: [
+              { label: "Iluminación", value: "OLED de Smartphone (Flask + Socket.IO)" },
+              { label: "Adquisición", value: "Cámara Raspberry Pi (ganancia 12×, 1 FPS)" },
+              { label: "Solucionador", value: "Integración de Fase 2D Frankot-Chellappa" },
+              { label: "Código Fuente", value: "Público en GitHub (CSTEZCAN)" }
+            ],
+            outcomes: [
+              "Sustituye costosos domos motorizados de LED por patrones geométricos OLED programables (Círculo, Anillo, Rejilla).",
+              "Validado en muestras palinológicas de granos de polen y microestructuras de placas zonales de Fresnel."
+            ],
+            links: [
+              { label: "Repositorio GitHub", url: "https://github.com/CSTEZCAN/fourier_ptychography" },
+              { label: "Vídeo Reconstrucción de Fase 3D", url: "https://www.youtube.com/watch?v=OYcoacdYIvk" }
+            ]
+          },
+          it: {
+            statusLabel: "R&S Aperta Attiva • 2026",
+            title: "Ptychografia di Fourier con OLED Mobile e Contrasto di Fase 3D",
+            oneLiner: "Trasforma lo schermo OLED di uno smartphone in una matrice di illuminazione programmabile per ricostruzione quantitativa di fase 3D.",
+            summary: "Suite open-source di microscopia computazionale che unisce un condensatore OLED smartphone controllato via WebSocket, acquisizione Raspberry Pi e integrazione di Fourier Frankot-Chellappa per ricostruzioni 3D interattive.",
+            specs: [
+              { label: "Illuminazione", value: "OLED Smartphone (Flask + Socket.IO)" },
+              { label: "Acquisizione", value: "Fotocamera Raspberry Pi (guadagno 12×, 1 FPS)" },
+              { label: "Risolutore", value: "Integrazione di Fase 2D Frankot-Chellappa" },
+              { label: "Codice Sorgente", value: "Pubblico su GitHub (CSTEZCAN)" }
+            ],
+            outcomes: [
+              "Sostituisce costose cupole motorizzate a LED con pattern geometrici OLED programmabili (Cerchio, Anello, Griglia).",
+              "Validato su campioni palinologici di granuli pollinici e microstrutture di zone plate di Fresnel."
+            ],
+            links: [
+              { label: "Repository GitHub", url: "https://github.com/CSTEZCAN/fourier_ptychography" },
+              { label: "Video Ricostruzione Fase 3D", url: "https://www.youtube.com/watch?v=OYcoacdYIvk" }
+            ]
+          }
+        }
+      },
+      {
+        id: "evetbal-smart-apiary",
+        status: "active",
+        domain: "EVETBAL • BIO-TELEMETRY",
+        ip: "4K HDR + WSN + PALYNOLOGY",
+        image: "assets/evetbal-hive.jpg",
+        slideHint: "Slide 163–167",
+        i18n: {
+          en: {
+            statusLabel: "Active R&D • 2024–2026",
+            title: "Traceable Smart Apiary & Automated Varroa Entrance Vision",
+            oneLiner: "Multi-sensor hive intelligence combining entrance pest computer vision, internal micro-climate WSN, and pollen fingerprinting.",
+            summary: "Started as a family apiary R&D initiative and evolved into a full-stack traceability platform monitoring bee traffic, parasitic Varroa mites, predatory wasps, frame extraction weights, and microscopic pollen origin.",
+            specs: [
+              { label: "Entrance Vision", value: "4K HDR10+ Bee, Wasp & Varroa Tracking" },
+              { label: "Telemetry", value: "In-Hive WSN + Frame Load Weighing" },
+              { label: "Certification", value: "Microscopic Palynology Fingerprinting" },
+              { label: "Treatment", value: "Chemical-Free Organic Pest Protocols" }
+            ],
+            outcomes: [
+              "Detects Varroa and Tropilaelaps infestations early at the hive entrance.",
+              "Links each harvested honey batch to verified hive telemetry and botanical pollen profiles."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Aktif Ar-Ge • 2024–2026",
+            title: "İzlenebilir Akıllı Arılık ve Kovan Girişi Varroa Yapay Zekası",
+            oneLiner: "Kovan girişi zararlı bilgisayarlı görüsü, kovan içi mikro-iklim WSN ve polen parmak izini birleştiren çok sensörlü kovan zekası.",
+            summary: "Aile arıcılığı Ar-Ge girişimi olarak başlayıp arı trafiğini, parazit Varroa akarlarını, eşek arılarını, çerçeve sağım ağırlıklarını ve mikroskobik polen kökenini izleyen uçtan uca bir izlenebilirlik platformuna dönüştü.",
+            specs: [
+              { label: "Giriş Görüsü", value: "4K HDR10+ Arı, Eşek Arısı ve Varroa Takibi" },
+              { label: "Telemetri", value: "Kovan İçi WSN + Çerçeve Ağırlık Ölçümü" },
+              { label: "Sertifikasyon", value: "Mikroskobik Palinoloji Parmak İzi" },
+              { label: "Mücadele", value: "Kimyasalsız Organik Zararlı Protokolleri" }
+            ],
+            outcomes: [
+              "Varroa ve Tropilaelaps istilalarını kovan girişinde erken aşamada tespit eder.",
+              "Hasat edilen her bal partisini doğrulanmış kovan telemetrisi ve botanik polen profilleriyle eşleştirir."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "I+D Activa • 2024–2026",
+            title: "Apiario Inteligente Trazable y Visión Artificial de Varroa en Piquera",
+            oneLiner: "Inteligencia multisensor para colmenas que combina visión artificial de plagas en entrada, WSN interno y huella polínica.",
+            summary: "Iniciada como proyecto familiar de I+D apícola, evolucionó hacia una plataforma integral de trazabilidad que monitoriza el tráfico de abejas, ácaros Varroa, avispas depredadoras, pesaje de cuadros y origen microscópico del polen.",
+            specs: [
+              { label: "Visión en Entrada", value: "Seguimiento 4K HDR10+ Abejas, Avispas y Varroa" },
+              { label: "Telemetría", value: "WSN en Colmena + Pesaje de Extracción" },
+              { label: "Certificación", value: "Huella Palinológica Microscópica" },
+              { label: "Tratamiento", value: "Protocolos Orgánicos Sin Químicos" }
+            ],
+            outcomes: [
+              "Detecta infestaciones de Varroa y Tropilaelaps de forma temprana en la entrada de la colmena.",
+              "Vincula cada lote de miel cosechado con telemetría verificada y perfiles botánicos de polen."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "R&S Attiva • 2024–2026",
+            title: "Apiario Intelligente Tracciabile e Visione Artificiale Varroa all'Ingresso",
+            oneLiner: "Intelligenza multisensore per arnie che unisce visione artificiale parassiti all'ingresso, WSN interno e impronta pollinica.",
+            summary: "Nata come iniziativa familiare di R&S apistica, si è evoluta in una piattaforma completa di tracciabilità che monitora traffico api, acari Varroa, calabroni predatori, pesatura telaini e origine microscopica del polline.",
+            specs: [
+              { label: "Visione Ingresso", value: "Tracciamento 4K HDR10+ Api, Calabroni e Varroa" },
+              { label: "Telemetria", value: "WSN in Arnia + Pesatura Telaini" },
+              { label: "Certificazione", value: "Impronta Palinologica Microscopica" },
+              { label: "Trattamento", value: "Protocolli Biologici Senza Chimica" }
+            ],
+            outcomes: [
+              "Rileva precocemente infestazioni di Varroa e Tropilaelaps all'ingresso dell'arnia.",
+              "Collega ogni lotto di miele raccolto a telemetria verificata e profili botanici del polline."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "trio-collision-avoidance",
+        status: "completed",
+        domain: "AEROSPACE & UAV IP",
+        ip: "TR2022/014624 • US PENDING",
+        image: "assets/trio-collision.jpg",
+        slideHint: "Slide 24–25",
+        i18n: {
+          en: {
+            statusLabel: "Patent Granted • 2022–2025",
+            title: "TRIO: 1,000 km/h High-Velocity UAV 3D Collision Avoidance",
+            oneLiner: "Tri-camera high-speed optical architecture resolving third-dimension blind spots for ultra-fast unmanned aerial vehicles.",
+            summary: "Standard stereo cameras miss critical depth-axis closure velocity when objects approach head-on at high speed. TARSENS patented a synchronized three-camera high-speed optical geometry capable of tracking obstacles up to 1,000 km/h (600 mph).",
+            specs: [
+              { label: "Patent Status", value: "Internationally Granted (TR2022/014624)" },
+              { label: "US Status", value: "US Patent Pending" },
+              { label: "Max Velocity", value: "1,000 km/h (600 mph)" },
+              { label: "Engagement", value: "Available for Patent Licensing" }
+            ],
+            outcomes: [
+              "Eliminates depth-estimation blind zones inherent in dual-lens stereo collision systems.",
+              "Engineered for defense UAVs, autonomous interceptors, and high-speed aerial robotics."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Patent Tescilli • 2022–2025",
+            title: "TRIO: 1.000 km/sa Yüksek Hızlı İHA 3B Çarpışma Önleme Sistemi",
+            oneLiner: "Ultra hızlı insansız hava araçları için üçüncü boyut kör noktalarını çözen üç kameralı yüksek hızlı optik mimari.",
+            summary: "Standart stereo kameralar, nesneler yüksek hızda cepheden yaklaştığında kritik derinlik ekseni yaklaşma hızını kaçırır. TARSENS, 1.000 km/sa (600 mph) hıza kadar engelleri takip edebilen senkronize üç kameralı yüksek hızlı optik geometriyi patentledi.",
+            specs: [
+              { label: "Patent Durumu", value: "Uluslararası Tescilli (TR2022/014624)" },
+              { label: "ABD Durumu", value: "ABD Patent Başvurusu Yapıldı" },
+              { label: "Maksimum Hız", value: "1.000 km/sa (600 mph)" },
+              { label: "İş Birliği Modeli", value: "Patent Lisanslamaya Açık" }
+            ],
+            outcomes: [
+              "Çift lensli stereo çarpışma sistemlerinin doğasında bulunan derinlik tahmini kör bölgelerini ortadan kaldırır.",
+              "Savunma İHA'ları, otonom önleyiciler ve yüksek hızlı hava robotiği için geliştirildi."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "Patente Concedida • 2022–2025",
+            title: "TRIO: Evitación de Colisiones 3D para UAV de Alta Velocidad (1.000 km/h)",
+            oneLiner: "Arquitectura óptica triple de alta velocidad que resuelve los puntos ciegos de profundidad en vehículos aéreos ultrarrápidos.",
+            summary: "Las cámaras estéreo estándar pierden precisión de acercamiento frontal a alta velocidad. TARSENS patentó una geometría óptica sincronizada de tres cámaras capaz de rastrear obstáculos hasta 1.000 km/h (600 mph).",
+            specs: [
+              { label: "Estado de Patente", value: "Concedida Internacionalmente (TR2022/014624)" },
+              { label: "Estado en EE.UU.", value: "Patente en Trámite en EE.UU." },
+              { label: "Velocidad Máxima", value: "1.000 km/h (600 mph)" },
+              { label: "Colaboración", value: "Disponible para Licenciamiento" }
+            ],
+            outcomes: [
+              "Elimina las zonas ciegas de estimación de profundidad inherentes a los sistemas estéreo de doble lente.",
+              "Diseñado para UAV de defensa, interceptores autónomos y robótica aérea de alta velocidad."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "Brevetto Concesso • 2022–2025",
+            title: "TRIO: Anticollisione 3D per UAV ad Alta Velocità (1.000 km/h)",
+            oneLiner: "Architettura ottica tripla ad alta velocità che risolve i punti ciechi di profondità per velivoli senza pilota ultraveloci.",
+            summary: "Le telecamere stereo standard perdono la velocità di avvicinamento frontale ad alta velocità. TARSENS ha brevettato una geometria ottica sincronizzata a tre telecamere in grado di tracciare ostacoli fino a 1.000 km/h (600 mph).",
+            specs: [
+              { label: "Stato Brevetto", value: "Concesso Internazionalmente (TR2022/014624)" },
+              { label: "Stato USA", value: "Domanda di Brevetto USA in Corso" },
+              { label: "Velocità Massima", value: "1.000 km/h (600 mph)" },
+              { label: "Collaborazione", value: "Disponibile per Licenza Brevettuale" }
+            ],
+            outcomes: [
+              "Elimina le zone cieche di stima della profondità tipiche dei sistemi anticollisione stereo a doppia lente.",
+              "Progettato per UAV della difesa, intercettori autonomi e robotica aerea ad alta velocità."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "yieldestimator-vitimap",
+        status: "completed",
+        domain: "PRECISION AGRITECH AI",
+        ip: "99.778% VERIFIED ACCURACY",
+        image: "assets/vitimap-kml.jpg",
+        slideHint: "Slide 47 / 59",
+        i18n: {
+          en: {
+            statusLabel: "Field Proven • 2019–2024",
+            title: "YieldEstimator & ViTiMAP Global Fruit Geolocation Engine",
+            oneLiner: "Commercial-off-the-shelf GoPro computer vision validated across US, Italy, Spain, France, Portugal, and Türkiye.",
+            summary: "Trained on over 1 million hand-labeled grape clusters and synthetic GAN datasets. Mounted on standard tractors, ATVs, or scooters, ViTiMAP counts and geolocates every bunch or fruit onto centimeter-accurate GIS maps.",
+            specs: [
+              { label: "California Accuracy", value: "99.778% Verified Counting Accuracy" },
+              { label: "European Trials", value: "97.7% (Italy), 95% (France), 93% (Spain)" },
+              { label: "Sensor Hardware", value: "Standard GoPro Hero 8–13 (GPS)" },
+              { label: "Crops Validated", value: "Grapes, Kiwifruit, Citrus, Almonds, Walnuts" }
+            ],
+            outcomes: [
+              "Validated in independent harvest studies by Finest Grape Tech (Valpolicella/Udine, Italy) and EIT Food Test Farms (Bodegas Vetusta, Spain).",
+              "Includes stereo camera berry-sizing, thermal add-ons, leaf disease spotter, and wild boar/deer damage mapping."
+            ],
+            links: [
+              { label: "California Kiwifruit Demo", url: "https://www.youtube.com/watch?v=reNDRDNr1Cw" },
+              { label: "Portugal Almond Demo", url: "https://www.youtube.com/watch?v=DfPOWNrpPhM" }
+            ]
+          },
+          tr: {
+            statusLabel: "Sahada Doğrulandı • 2019–2024",
+            title: "YieldEstimator & ViTiMAP Küresel Meyve Konumlandırma Motoru",
+            oneLiner: "ABD, İtalya, İspanya, Fransa, Portekiz ve Türkiye'de doğrulanmış standart GoPro tabanlı bilgisayarlı görü sistemi.",
+            summary: "1 milyondan fazla elle etiketlenmiş üzüm salkımı ve sentetik GAN veri setleriyle eğitildi. Standart traktör, ATV veya scooterlara monte edilen ViTiMAP, her salkımı veya meyveyi sayarak santimetre hassasiyetli CBS haritalarına işler.",
+            specs: [
+              { label: "Kaliforniya Doğruluğu", value: "%99.778 Doğrulanmış Sayım Başarısı" },
+              { label: "Avrupa Testleri", value: "%97.7 (İtalya), %95 (Fransa), %93 (İspanya)" },
+              { label: "Sensör Donanımı", value: "Standart GoPro Hero 8–13 (GPS)" },
+              { label: "Doğrulanan Ürünler", value: "Üzüm, Kivi, Narenciye, Badem, Ceviz" }
+            ],
+            outcomes: [
+              "Finest Grape Tech (Valpolicella/Udine, İtalya) ve EIT Food Test Çiftlikleri (Bodegas Vetusta, İspanya) bağımsız hasat çalışmalarında doğrulandı.",
+              "Stereo kamera tane boyutlandırma, termal eklentiler, yaprak hastalığı tespiti ve yaban domuzu/geyik hasar haritalamayı içerir."
+            ],
+            links: [
+              { label: "Kaliforniya Kivi Demosu", url: "https://www.youtube.com/watch?v=reNDRDNr1Cw" },
+              { label: "Portekiz Badem Demosu", url: "https://www.youtube.com/watch?v=DfPOWNrpPhM" }
+            ]
+          },
+          es: {
+            statusLabel: "Probado en Campo • 2019–2024",
+            title: "YieldEstimator y ViTiMAP: Motor Global de Geolocalización de Cosecha",
+            oneLiner: "Visión artificial con cámaras GoPro comerciales validada en EE.UU., Italia, España, Francia, Portugal y Turquía.",
+            summary: "Entrenado con más de 1 millón de racimos etiquetados manualmente y conjuntos sintéticos GAN. Montado en tractores, quads o scooters estándar, ViTiMAP cuenta y geolocaliza cada racimo o fruto en mapas SIG de precisión centimétrica.",
+            specs: [
+              { label: "Precisión California", value: "99,778% Precisión Verificada" },
+              { label: "Ensayos Europeos", value: "97,7% (Italia), 95% (Francia), 93% (España)" },
+              { label: "Hardware Sensor", value: "GoPro Hero 8–13 Estándar (GPS)" },
+              { label: "Cultivos Validados", value: "Uva, Kiwi, Cítricos, Almendro, Nogal" }
+            ],
+            outcomes: [
+              "Validado en estudios independientes de vendimia por Finest Grape Tech (Valpolicella/Udine, Italia) y EIT Food Test Farms (Bodegas Vetusta, España).",
+              "Incluye calibración estéreo de bayas, módulos térmicos, detección de enfermedades foliares y mapeo de daños por fauna."
+            ],
+            links: [
+              { label: "Demo Kiwi en California", url: "https://www.youtube.com/watch?v=reNDRDNr1Cw" },
+              { label: "Demo Almendro en Portugal", url: "https://www.youtube.com/watch?v=DfPOWNrpPhM" }
+            ]
+          },
+          it: {
+            statusLabel: "Validato sul Campo • 2019–2024",
+            title: "YieldEstimator & ViTiMAP: Motore Globale di Geolocalizzazione Resa",
+            oneLiner: "Visione artificiale con GoPro commerciali validata in USA, Italia, Spagna, Francia, Portogallo e Turchia.",
+            summary: "Addestrato su oltre 1 milione di grappoli etichettati manualmente e dataset sintetici GAN. Montato su trattori, quad o scooter standard, ViTiMAP conta e geolocalizza ogni grappolo o frutto su mappe GIS di precisione centimetrica.",
+            specs: [
+              { label: "Precisione California", value: "99,778% Precisione Verificata" },
+              { label: "Test Europei", value: "97,7% (Italia), 95% (Francia), 93% (Spagna)" },
+              { label: "Hardware Sensore", value: "GoPro Hero 8–13 Standard (GPS)" },
+              { label: "Colture Validate", value: "Uva, Kiwi, Agrumi, Mandorle, Noci" }
+            ],
+            outcomes: [
+              "Validato in studi indipendenti di vendemmia da Finest Grape Tech (Valpolicella/Udine, Italia) ed EIT Food Test Farms (Bodegas Vetusta, Spagna).",
+              "Include calibrazione stereo degli acini, moduli termici, rilevamento malattie fogliari e mappatura danni da fauna selvatica."
+            ],
+            links: [
+              { label: "Demo Kiwi in California", url: "https://www.youtube.com/watch?v=reNDRDNr1Cw" },
+              { label: "Demo Mandorle in Portogallo", url: "https://www.youtube.com/watch?v=DfPOWNrpPhM" }
+            ]
+          }
+        }
+      },
+      {
+        id: "spectralix-realtime-ndvi",
+        status: "completed",
+        domain: "MULTISPECTRAL SENSING",
+        ip: "TR2016/17566 • 3,600× FASTER",
+        image: "assets/spectralix-ndvi.jpg",
+        slideHint: "Slide 22–23 / 93–95",
+        i18n: {
+          en: {
+            statusLabel: "Patent Granted • 2016–2023",
+            title: "Spectralix: Sub-Second Onboard Multispectral NDVI Camera",
+            oneLiner: "Patented multi-band camera with embedded Edge AI generating live NDVI vegetation health maps in under 1 second.",
+            summary: "Replaces slow post-flight cloud orthomosaic stitching with onboard embedded image processing, cutting a 90-minute flight-to-prescription workflow down to <1 second in-flight execution.",
+            specs: [
+              { label: "Patent Number", value: "Granted — TR2016/17566" },
+              { label: "Latency", value: "< 1 Second (3,600× speed increase)" },
+              { label: "Hardware", value: "4-Band Multispectral + GPS + FPV" },
+              { label: "Engagement", value: "Patent Licensing & Custom Payloads" }
+            ],
+            outcomes: [
+              "Streams live NDVI telemetry over FPV links during UAV reconnaissance flights.",
+              "Trained and validated across rice, corn, wheat, and tomato production fields."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Patent Tescilli • 2016–2023",
+            title: "Spectralix: 1 Saniyenin Altında Uçuş İçi Multispektral NDVI Kamera",
+            oneLiner: "1 saniyenin altında canlı NDVI bitki sağlığı haritaları üreten gömülü Edge AI işlemcili patentli çok bantlı kamera.",
+            summary: "Uçuş sonrası yavaş bulut ortomozaik birleştirme sürecini uçuş içi gömülü görüntü işleme ile değiştirerek 90 dakikalık iş akışını 1 saniyenin altına indirir.",
+            specs: [
+              { label: "Patent Numarası", value: "Tescilli — TR2016/17566" },
+              { label: "Gecikme Süresi", value: "< 1 Saniye (3.600× hız artışı)" },
+              { label: "Donanım", value: "4-Bant Multispektral + GPS + FPV" },
+              { label: "İş Birliği Modeli", value: "Patent Lisanslama ve Özel Faydalı Yükler" }
+            ],
+            outcomes: [
+              "İHA keşif uçuşları sırasında FPV bağlantıları üzerinden canlı NDVI telemetrisi aktarır.",
+              "Çeltik, mısır, buğday ve domates üretim alanlarında eğitildi ve doğrulandı."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "Patente Concedida • 2016–2023",
+            title: "Spectralix: Cámara Multiespectral NDVI a Bordo en Menos de 1 Segundo",
+            oneLiner: "Cámara multibanda patentada con Edge AI integrada que genera mapas de salud vegetal NDVI en vivo en menos de 1 segundo.",
+            summary: "Sustituye el lento cosido de ortomosaicos en la nube tras el vuelo por procesamiento embebido a bordo, reduciendo un flujo de 90 minutos a menos de 1 segundo en vuelo.",
+            specs: [
+              { label: "Número de Patente", value: "Concedida — TR2016/17566" },
+              { label: "Latencia", value: "< 1 Segundo (3.600× más rápido)" },
+              { label: "Hardware", value: "Multiespectral 4 Bandas + GPS + FPV" },
+              { label: "Colaboración", value: "Licenciamiento y Cargas Útiles a Medida" }
+            ],
+            outcomes: [
+              "Transmite telemetría NDVI en vivo mediante enlaces FPV durante vuelos de reconocimiento UAV.",
+              "Entrenada y validada en campos de producción de arroz, maíz, trigo y tomate."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "Brevetto Concesso • 2016–2023",
+            title: "Spectralix: Fotocamera Multispettrale NDVI a Bordo Sub-Secondo",
+            oneLiner: "Fotocamera multibanda brevettata con Edge AI integrata che genera mappe NDVI dal vivo in meno di 1 secondo.",
+            summary: "Sostituisce la lenta elaborazione ortomosaico in cloud post-volo con l'elaborazione immagini embedded a bordo, riducendo un flusso di 90 minuti a meno di 1 secondo in volo.",
+            specs: [
+              { label: "Numero Brevetto", value: "Concesso — TR2016/17566" },
+              { label: "Latenza", value: "< 1 Secondo (3.600× più veloce)" },
+              { label: "Hardware", value: "Multispettrale 4 Bande + GPS + FPV" },
+              { label: "Collaborazione", value: "Licenza Brevettuale e Payload su Misura" }
+            ],
+            outcomes: [
+              "Trasmette telemetria NDVI in tempo reale su collegamenti FPV durante i voli di ricognizione UAV.",
+              "Addestrata e validata su coltivazioni di riso, mais, grano e pomodoro."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "caterpillar-xs-ugv",
+        status: "completed",
+        domain: "UNMANNED GROUND VEHICLES",
+        ip: "ARTICULATED X/Y CHASSIS",
+        image: "assets/caterpillar-ugv.jpg",
+        slideHint: "Slide 31 / 35",
+        i18n: {
+          en: {
+            statusLabel: "Prototype Proven • 2017–2023",
+            title: "Caterpillar Xs & Ys High-Endurance Field Rovers",
+            oneLiner: "Articulated all-terrain Unmanned Ground Vehicles engineered for extreme heat, rough agricultural furrows, and defense recon.",
+            summary: "Designed with dual-body articulated X and Y chassis geometries to maintain full ground contact across uneven vineyard rows, mud, and rocky terrain while carrying multispectral and Edge AI payloads.",
+            specs: [
+              { label: "Platforms", value: "Caterpillar Xs (Built) & Ys (On-Demand)" },
+              { label: "Endurance Spec", value: "High-heat & ruggedized field rating" },
+              { label: "Autonomy", value: "Stereo/LiDAR navigation & Edge AI" },
+              { label: "Engagement", value: "Custom Platform Engineering" }
+            ],
+            outcomes: [
+              "Field-tested in commercial vineyards for autonomous row traversal and proximal crop scanning.",
+              "Modular architecture adaptable to defense reconnaissance and industrial perimeter inspection."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Prototip Doğrulandı • 2017–2023",
+            title: "Caterpillar Xs & Ys Yüksek Dayanımlı İnsansız Arazi Araçları",
+            oneLiner: "Aşırı sıcaklık, engebeli tarım karıkları ve savunma keşif görevleri için tasarlanan mafsallı her türlü araziye uygun İKA'lar.",
+            summary: "Multispektral ve Edge AI faydalı yükleri taşırken engebeli bağ sıraları, çamur ve kayalık arazide tam yer temasını korumak üzere çift gövdeli mafsallı X ve Y şasi geometrileriyle tasarlandı.",
+            specs: [
+              { label: "Platformlar", value: "Caterpillar Xs (Üretildi) & Ys (İsteğe Bağlı)" },
+              { label: "Dayanım Sınıfı", value: "Yüksek ısı ve zorlu saha koşulları" },
+              { label: "Otonomi", value: "Stereo/LiDAR navigasyon ve Edge AI" },
+              { label: "İş Birliği Modeli", value: "Özel Platform Mühendisliği" }
+            ],
+            outcomes: [
+              "Otonom sıra takibi ve yakın bitki taraması için ticari bağlarda saha testleri tamamlandı.",
+              "Savunma keşif ve endüstriyel çevre güvenliği denetimlerine uyarlanabilir modüler mimari."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "Prototipo Validado • 2017–2023",
+            title: "Vehículos Terrestres No Tripulados Caterpillar Xs e Ys de Alta Resistencia",
+            oneLiner: "UGV todoterreno articulados diseñados para calor extremo, surcos agrícolas irregulares y reconocimiento de defensa.",
+            summary: "Diseñados con geometrías de chasis articulado de doble cuerpo X e Y para mantener contacto total con el suelo en hileras irregulares, barro y terreno rocoso transportando cargas multiespectrales y Edge AI.",
+            specs: [
+              { label: "Plataformas", value: "Caterpillar Xs (Construido) e Ys (Bajo Demanda)" },
+              { label: "Resistencia", value: "Calificación de alta temperatura y campo extremo" },
+              { label: "Autonomía", value: "Navegación Estéreo/LiDAR y Edge AI" },
+              { label: "Colaboración", value: "Ingeniería de Plataformas a Medida" }
+            ],
+            outcomes: [
+              "Probado en campo en viñedos comerciales para recorrido autónomo de hileras y escaneo proximal.",
+              "Arquitectura modular adaptable a reconocimiento de defensa e inspección perimetral industrial."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "Prototipo Validato • 2017–2023",
+            title: "Rover Terrestri Senza Pilota Caterpillar Xs & Ys ad Alta Resistenza",
+            oneLiner: "UGV fuoristrada articolati progettati per calore estremo, solchi agricoli irregolari e ricognizione della difesa.",
+            summary: "Progettati con geometrie di telaio articolato a doppio corpo X e Y per mantenere contatto continuo con il suolo su filari irregolari, fango e terreni rocciosi trasportando payload multispettrali ed Edge AI.",
+            specs: [
+              { label: "Piattaforme", value: "Caterpillar Xs (Costruito) & Ys (Su Richiesta)" },
+              { label: "Resistenza", value: "Omologazione alte temperature e campo estremo" },
+              { label: "Autonomia", value: "Navigazione Stereo/LiDAR ed Edge AI" },
+              { label: "Collaborazione", value: "Ingegneria Piattaforme su Misura" }
+            ],
+            outcomes: [
+              "Testato sul campo in vigneti commerciali per attraversamento autonomo dei filari e scansione prossimale.",
+              "Architettura modulare adattabile a ricognizione difesa e ispezione perimetrale industriale."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "beez-endurance-wsn",
+        status: "completed",
+        domain: "EMBEDDED IOT & WSN",
+        ip: "8-YR BATTERY • 3.5B POINTS",
+        image: "assets/beez-wsn.jpg",
+        slideHint: "Slide 9 / 11",
+        i18n: {
+          en: {
+            statusLabel: "3.5-Yr Deployment • 2013–2020",
+            title: "BEEZ!: Ultra-Low-Power 2.4GHz Multi-Hop Wireless Sensor Network",
+            oneLiner: "92-node deployment running 3.5 continuous years (-4°C to +72°C) with over 2 years of AA battery life still remaining.",
+            summary: "Custom hardware and protocol stack built from scratch for extreme longevity in agricultural greenhouses and cold-chain logistics, featuring hot-swappable sensor cartridges and star-within-a-star multi-channel redundancy.",
+            specs: [
+              { label: "Battery Life", value: "8 Years (2×AA @ 25°C) / >5.5 Yrs Field" },
+              { label: "Data Logged", value: "320M+ Lines (~3.5 Billion Data Points)" },
+              { label: "Thermal Range", value: "-4°C to +72°C Operating Envelope" },
+              { label: "Publications", value: "2 Peer-Reviewed Papers + 1 Poster" }
+            ],
+            outcomes: [
+              "120 nodes manufactured; 92 deployed continuously for 3.5 years at Bursa Uludağ University.",
+              "Peer-reviewed statistical correlation published on meteorological impacts on 2.4GHz packet loss and battery discharge."
+            ],
+            links: [
+              { label: "Read Peer-Reviewed Paper", url: "https://www.researchgate.net/publication/360439114_The_Effect_of_Meteorological_Parameters_on_Wireless_Data_Transmission" }
+            ]
+          },
+          tr: {
+            statusLabel: "3,5 Yıllık Saha Görevi • 2013–2020",
+            title: "BEEZ!: Ultra Düşük Güçlü 2.4GHz Çok Sekmeli Kablosuz Sensör Ağı",
+            oneLiner: "-4°C ile +72°C arasında 3,5 yıl kesintisiz çalışan ve 2 yıldan fazla AA pil ömrü kalan 92 düğümlü saha ağı.",
+            summary: "Tarımsal seralar ve soğuk zincir lojistiğinde aşırı uzun ömür için sıfırdan geliştirilen özel donanım ve protokol yığını; çalışırken değiştirilebilir sensör kartuşları ve yıldız-içi-yıldız çok kanallı yedeklilik sunar.",
+            specs: [
+              { label: "Pil Ömrü", value: "8 Yıl (2×AA @ 25°C) / >5,5 Yıl Saha" },
+              { label: "Kaydedilen Veri", value: "320M+ Satır (~3,5 Milyar Veri Noktası)" },
+              { label: "Sıcaklık Aralığı", value: "-4°C ile +72°C Çalışma Zarfı" },
+              { label: "Yayınlar", value: "2 Hakemli Makale + 1 Poster" }
+            ],
+            outcomes: [
+              "120 düğüm üretildi; 92 adedi Bursa Uludağ Üniversitesi'nde 3,5 yıl kesintisiz çalıştırıldı.",
+              "Meteorolojik koşulların 2.4GHz paket kaybı ve pil deşarjı üzerindeki etkileri hakemli bilimsel makale olarak yayımlandı."
+            ],
+            links: [
+              { label: "Hakemli Makaleyi Oku", url: "https://www.researchgate.net/publication/360439114_The_Effect_of_Meteorological_Parameters_on_Wireless_Data_Transmission" }
+            ]
+          },
+          es: {
+            statusLabel: "Despliegue 3,5 Años • 2013–2020",
+            title: "BEEZ!: Red de Sensores Inalámbricos Multisalto 2.4GHz Ultrabajo Consumo",
+            oneLiner: "Despliegue de 92 nodos funcionando 3,5 años continuos (-4°C a +72°C) con más de 2 años de batería AA restante.",
+            summary: "Hardware y pila de protocolos diseñados desde cero para máxima longevidad en invernaderos y cadena de frío, con cartuchos de sensores intercambiables en caliente y redundancia multicanal estrella-en-estrella.",
+            specs: [
+              { label: "Vida de Batería", value: "8 Años (2×AA @ 25°C) / >5,5 Años en Campo" },
+              { label: "Datos Registrados", value: "+320M Líneas (~3.500 Millones de Puntos)" },
+              { label: "Rango Térmico", value: "Operación de -4°C a +72°C" },
+              { label: "Publicaciones", value: "2 Artículos Revisados por Pares + 1 Póster" }
+            ],
+            outcomes: [
+              "120 nodos fabricados; 92 desplegados continuamente durante 3,5 años en la Universidad Bursa Uludağ.",
+              "Correlación estadística publicada sobre el impacto meteorológico en la pérdida de paquetes 2.4GHz y descarga de baterías."
+            ],
+            links: [
+              { label: "Leer Artículo Científico", url: "https://www.researchgate.net/publication/360439114_The_Effect_of_Meteorological_Parameters_on_Wireless_Data_Transmission" }
+            ]
+          },
+          it: {
+            statusLabel: "Impiego 3,5 Anni • 2013–2020",
+            title: "BEEZ!: Rete di Sensori Wireless Multi-Hop 2.4GHz a Bassissimo Consumo",
+            oneLiner: "Rete da 92 nodi attiva per 3,5 anni continui (-4°C a +72°C) con oltre 2 anni di autonomia batterie AA residua.",
+            summary: "Hardware e stack di protocolli progettati da zero per estrema longevità in serre agricole e catena del freddo, con cartucce sensori hot-swappable e ridondanza multicanale star-within-a-star.",
+            specs: [
+              { label: "Durata Batteria", value: "8 Anni (2×AA @ 25°C) / >5,5 Anni sul Campo" },
+              { label: "Dati Registrati", value: "+320M Righe (~3,5 Miliardi di Punti)" },
+              { label: "Range Termico", value: "Operatività da -4°C a +72°C" },
+              { label: "Pubblicazioni", value: "2 Articoli Peer-Reviewed + 1 Poster" }
+            ],
+            outcomes: [
+              "120 nodi prodotti; 92 operativi continuamente per 3,5 anni presso l'Università Bursa Uludağ.",
+              "Correlazione statistica peer-reviewed pubblicata sull'impatto meteorologico su perdita pacchetti 2.4GHz e scarica batterie."
+            ],
+            links: [
+              { label: "Leggi Articolo Scientifico", url: "https://www.researchgate.net/publication/360439114_The_Effect_of_Meteorological_Parameters_on_Wireless_Data_Transmission" }
+            ]
+          }
+        }
+      },
+      {
+        id: "optical-olive-sorting",
+        status: "completed",
+        domain: "INDUSTRIAL MACHINE VISION",
+        ip: "TR2023/015217",
+        image: "assets/olive-sorting.jpg",
+        slideHint: "Slide 52",
+        i18n: {
+          en: {
+            statusLabel: "Patent Pending • 2023–2024",
+            title: "Multi-Band Optical Defect Sorting for Olive Processing Lines",
+            oneLiner: "Real-time RGB + NIR computer vision isolating bruised and pest-damaged olives invisible to conventional sorters.",
+            summary: "Combines visible-spectrum and narrowband near-infrared imaging to detect subsurface tissue bruising and fly-sting defects on high-speed food processing conveyors.",
+            specs: [
+              { label: "Patent Application", value: "TR2023/015217" },
+              { label: "Modalities", value: "Synchronized RGB + NIR Imaging" },
+              { label: "Related Vision QC", value: "SMD Solder, Glass Bottle, Solar NIR" },
+              { label: "Engagement", value: "IP Licensing & OEM Integration" }
+            ],
+            outcomes: [
+              "Highlights internal bruising with high contrast in NIR bands while preserving surface color grading.",
+              "Complements TARSENS' broader industrial QC track record (SMD solder inspection, wine bottle inspection, NIR solar cell crack detection)."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Patent Başvurulu • 2023–2024",
+            title: "Zeytin İşleme Hatları İçin Çok Bantlı Optik Kusur Ayıklama",
+            oneLiner: "Geleneksel ayıklayıcıların göremediği ezilmiş ve sinek vuruklu zeytinleri ayrıştıran gerçek zamanlı RGB + NIR bilgisayarlı görü.",
+            summary: "Yüksek hızlı gıda işleme bantlarında yüzey altı doku ezilmelerini ve zeytin sineği vuruklarını tespit etmek için görünür spektrum ve dar bant yakın kızılötesi (NIR) görüntülemeyi birleştirir.",
+            specs: [
+              { label: "Patent Başvurusu", value: "TR2023/015217" },
+              { label: "Görüntüleme", value: "Senkronize RGB + NIR Görüntüleme" },
+              { label: "İlgili Kalite Kontrol", value: "SMD Lehim, Cam Şişe, Güneş Hücresi NIR" },
+              { label: "İş Birliği Modeli", value: "Patent Lisanslama ve OEM Entegrasyonu" }
+            ],
+            outcomes: [
+              "Yüzey renk sınıflandırmasını korurken NIR bantlarında iç ezilmeleri yüksek kontrastla vurgular.",
+              "TARSENS'in geniş endüstriyel kalite kontrol birikimini (SMD lehim, şarap şişesi ve güneş paneli NIR çatlak tespiti) tamamlar."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "Patente en Trámite • 2023–2024",
+            title: "Clasificación Óptica Multibanda de Defectos en Líneas de Aceituna",
+            oneLiner: "Visión artificial RGB + NIR en tiempo real que aísla aceitunas magulladas y picadas invisibles a clasificadores convencionales.",
+            summary: "Combina imagen en espectro visible e infrarrojo cercano de banda estrecha para detectar magulladuras subcutáneas y picaduras de mosca en cintas transportadoras de alta velocidad.",
+            specs: [
+              { label: "Solicitud Patente", value: "TR2023/015217" },
+              { label: "Modalidades", value: "Imagen Sincronizada RGB + NIR" },
+              { label: "Otros Controles QC", value: "Soldadura SMD, Botellas, Solar NIR" },
+              { label: "Colaboración", value: "Licenciamiento PI e Integración OEM" }
+            ],
+            outcomes: [
+              "Resalta magulladuras internas con alto contraste en bandas NIR manteniendo la clasificación cromática superficial.",
+              "Complementa la experiencia de TARSENS en control industrial (soldadura SMD, botellas de vino y grietas en células solares)."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "Brevetto Depositato • 2023–2024",
+            title: "Selezione Ottica Multibanda dei Difetti per Linee Lavorazione Olive",
+            oneLiner: "Visione artificiale RGB + NIR in tempo reale che isola olive ammaccate e punte invisibili alle selezionatrici tradizionali.",
+            summary: "Combina imaging nello spettro visibile e nel vicino infrarosso a banda stretta per rilevare ammaccature sottocutanee e punture su nastri trasportatori ad alta velocità.",
+            specs: [
+              { label: "Domanda Brevetto", value: "TR2023/015217" },
+              { label: "Modalità", value: "Imaging Sincronizzato RGB + NIR" },
+              { label: "Altri Controlli QC", value: "Saldature SMD, Bottiglie, Solare NIR" },
+              { label: "Collaborazione", value: "Licenza PI e Integrazione OEM" }
+            ],
+            outcomes: [
+              "Evidenzia ammaccature interne ad alto contrasto nelle bande NIR preservando la selezione cromatica superficiale.",
+              "Completa l'esperienza TARSENS nel controllo qualità industriale (saldature SMD, bottiglie di vino e celle solari NIR)."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "ohs-hydraulic-shaker-ai",
+        status: "completed",
+        domain: "OCCUPATIONAL SAFETY AI",
+        ip: "AGROEXPO'24 DEMO",
+        image: "assets/ohs-safety.jpg",
+        slideHint: "Slide 120–121",
+        i18n: {
+          en: {
+            statusLabel: "Demonstrated • 2024",
+            title: "Encrypted Wireless AI Human-Presence & LiDAR Safety System",
+            oneLiner: "Real-time operator HUD with AI pedestrian detection and tree distance telemetry for remote-controlled hydraulic harvesters.",
+            summary: "Engineered with Kemal Aksezgin Agricultural Machinery to eliminate blind-spot injuries, hydraulic line hazards, and operator vibration exposure on remote-controlled olive tree shakers.",
+            specs: [
+              { label: "AI Module", value: "Real-Time Human Presence Detection" },
+              { label: "Telemetry", value: "Laser Distance + Encrypted Wireless Video" },
+              { label: "Public Debut", value: "AgroExpo '24 Live Demonstration" },
+              { label: "Engagement", value: "Custom Safety Retrofits & OEM R&D" }
+            ],
+            outcomes: [
+              "Delivers zero-lag encrypted video with AI human-proximity warnings straight to the operator's handheld console.",
+              "Mitigates severe noise, vibration, and line-of-sight blind-spot risks in heavy agricultural machinery."
+            ],
+            links: []
+          },
+          tr: {
+            statusLabel: "Sahada Gösterildi • 2024",
+            title: "Şifreli Kablosuz Yapay Zeka İnsan Algılama ve LiDAR Güvenlik Sistemi",
+            oneLiner: "Uzaktan kumandalı hidrolik hasat makineleri için yapay zeka insan algılama ve ağaç mesafe telemetrili gerçek zamanlı operatör ekranı.",
+            summary: "Uzaktan kumandalı zeytin silkme makinelerinde kör nokta kazalarını, hidrolik hat tehlikelerini ve operatör titreşim maruziyetini ortadan kaldırmak için Kemal Aksezgin Tarım Makineleri ile birlikte geliştirildi.",
+            specs: [
+              { label: "Yapay Zeka Modülü", value: "Gerçek Zamanlı İnsan Varlığı Algılama" },
+              { label: "Telemetri", value: "Lazer Mesafe + Şifreli Kablosuz Video" },
+              { label: "İlk Gösterim", value: "AgroExpo '24 Canlı Demonstrasyon" },
+              { label: "İş Birliği Modeli", value: "Özel Güvenlik Entegrasyonu ve OEM Ar-Ge" }
+            ],
+            outcomes: [
+              "Yapay zeka insan yakınlık uyarılarıyla gecikmesiz şifreli videoyu doğrudan operatörün el konsoluna iletir.",
+              "Ağır tarım makinelerindeki yüksek gürültü, titreşim ve görüş hattı kör nokta risklerini ortadan kaldırır."
+            ],
+            links: []
+          },
+          es: {
+            statusLabel: "Demostrado • 2024",
+            title: "Sistema Inalámbrico Cifrado de Seguridad LiDAR y Detección Humana por IA",
+            oneLiner: "HUD de operador en tiempo real con detección peatonal por IA y telemetría de distancia para vibradores hidráulicos teledirigidos.",
+            summary: "Desarrollado junto a Kemal Aksezgin Agricultural Machinery para eliminar accidentes por puntos ciegos, riesgos hidráulicos y exposición a vibraciones en vibradores de olivos por control remoto.",
+            specs: [
+              { label: "Módulo IA", value: "Detección Humana en Tiempo Real" },
+              { label: "Telemetría", value: "Distancia Láser + Vídeo Inalámbrico Cifrado" },
+              { label: "Debut Público", value: "Demostración en Vivo AgroExpo '24" },
+              { label: "Colaboración", value: "Adaptaciones de Seguridad e I+D OEM" }
+            ],
+            outcomes: [
+              "Envía vídeo cifrado sin latencia con alertas IA de proximidad humana directamente a la consola portátil del operador.",
+              "Mitiga riesgos graves de ruido, vibración y puntos ciegos en maquinaria agrícola pesada."
+            ],
+            links: []
+          },
+          it: {
+            statusLabel: "Dimostrato • 2024",
+            title: "Sistema Wireless Cifrato di Sicurezza LiDAR e Rilevamento Umano AI",
+            oneLiner: "HUD operatore in tempo reale con rilevamento pedoni AI e telemetria distanza per scuotitori idraulici radiocomandati.",
+            summary: "Progettato con Kemal Aksezgin Agricultural Machinery per eliminare infortuni da punti ciechi, rischi idraulici ed esposizione alle vibrazioni sugli scuotitori radiocomandati per ulivi.",
+            specs: [
+              { label: "Modulo AI", value: "Rilevamento Presenza Umana in Tempo Reale" },
+              { label: "Telemetria", value: "Distanza Laser + Video Wireless Cifrato" },
+              { label: "Debutto Pubblico", value: "Dimostrazione dal Vivo AgroExpo '24" },
+              { label: "Collaborazione", value: "Retrofit di Sicurezza e R&S OEM" }
+            ],
+            outcomes: [
+              "Trasmette video cifrato a latenza zero con avvisi AI di prossimità umana direttamente alla console portatile dell'operatore.",
+              "Mitiga gravi rischi di rumore, vibrazioni e punti ciechi nei macchinari agricoli pesanti."
+            ],
+            links: []
+          }
+        }
+      },
+      {
+        id: "defense-space-advisory",
+        status: "completed",
+        domain: "ADVISORY & RECOGNITION",
+        ip: "SSB • ESA/AIRBUS • NVIDIA",
+        image: "assets/advisory-recognition.jpg",
+        slideHint: "Slide 153 / 194–203",
+        i18n: {
+          en: {
+            statusLabel: "Ongoing Track Record • 2017–2026",
+            title: "Government, Defense & Enterprise R&D Advisory",
+            oneLiner: "Technical consultancy and white-paper authorship for the Presidency of Türkiye, Ministry of Defense (SSB), and global enterprises.",
+            summary: "Beyond laboratory hardware, TARSENS advises ministries, defense agencies, and international corporations on Edge AI architecture, remote sensing, autonomous systems, and deep-tech feasibility.",
+            specs: [
+              { label: "Defense Advisory", value: "Presidency of Türkiye & SSB Official Report" },
+              { label: "Space Validation", value: "ESA & Airbus ActInSpace Success Story" },
+              { label: "Global Invitations", value: "NIKKEI (Tokyo), Embedded Vision Summit (US)" },
+              { label: "Grants", value: "TUBITAK 1512 & 3× NVIDIA GPU Grant" }
+            ],
+            outcomes: [
+              "Contributed chapters to the Defence Industry Agency of Türkiye (SSB) strategic report and ICTA 5G & Beyond White Paper.",
+              "Delivered custom computer vision systems for Canadian road crack monitoring, sugar factory bag counting, and wind turbine damage detection.",
+              "Invited by Australia NSW Department of Primary Industries, TOBB ASEAN delegation, and Stanford/Silicon Valley vision forums."
+            ],
+            links: [
+              { label: "SSB Defense Report (PDF)", url: "https://www.ssb.gov.tr/Images/Uploads/MyContents/V_20250210140536038598.pdf" },
+              { label: "ESA & Airbus Success Story", url: "https://actinspace.org/success-stories" }
+            ]
+          },
+          tr: {
+            statusLabel: "Süregelen Referanslar • 2017–2026",
+            title: "Kamu, Savunma ve Kurumsal Ar-Ge Danışmanlığı",
+            oneLiner: "T.C. Cumhurbaşkanlığı, Savunma Sanayii Başkanlığı (SSB) ve küresel kuruluşlar için teknik danışmanlık ve strateji raporu yazarlığı.",
+            summary: "Laboratuvar donanımlarının ötesinde TARSENS; bakanlıklara, savunma kurumlarına ve uluslararası şirketlere Edge AI mimarisi, uzaktan algılama, otonom sistemler ve derin teknoloji fizibilitesi konularında danışmanlık verir.",
+            specs: [
+              { label: "Savunma Danışmanlığı", value: "T.C. Cumhurbaşkanlığı & SSB Resmi Raporu" },
+              { label: "Uzay Doğrulaması", value: "ESA & Airbus ActInSpace Başarı Hikayesi" },
+              { label: "Küresel Davetler", value: "NIKKEI (Tokyo), Embedded Vision Summit (ABD)" },
+              { label: "Hibeler", value: "TÜBİTAK 1512 & 3× NVIDIA GPU Hibesi" }
+            ],
+            outcomes: [
+              "T.C. Savunma Sanayii Başkanlığı (SSB) stratejik raporuna ve BTK 5G ve Ötesi Beyaz Kitabı'na bölüm katkısı sağlandı.",
+              "Kanada yol çatlağı izleme, şeker fabrikası çuval sayımı ve rüzgar türbini hasar tespiti için özel bilgisayarlı görü sistemleri teslim edildi.",
+              "Avustralya NSW Tarım Bakanlığı, TOBB ASEAN heyeti ve Stanford/Silikon Vadisi görüntü işleme forumlarına davet edildi."
+            ],
+            links: [
+              { label: "SSB Savunma Raporu (PDF)", url: "https://www.ssb.gov.tr/Images/Uploads/MyContents/V_20250210140536038598.pdf" },
+              { label: "ESA & Airbus Başarı Hikayesi", url: "https://actinspace.org/success-stories" }
+            ]
+          },
+          es: {
+            statusLabel: "Trayectoria Continua • 2017–2026",
+            title: "Asesoría de I+D para Gobiernos, Defensa y Empresas",
+            oneLiner: "Consultoría técnica y autoría de informes estratégicos para la Presidencia de Turquía, Defensa (SSB) y corporaciones globales.",
+            summary: "Más allá del hardware de laboratorio, TARSENS asesora a ministerios, agencias de defensa y corporaciones internacionales en arquitectura Edge AI, teledetección, sistemas autónomos y viabilidad deep-tech.",
+            specs: [
+              { label: "Asesoría Defensa", value: "Informe Oficial Presidencia de Turquía y SSB" },
+              { label: "Validación Espacial", value: "Caso de Éxito ESA y Airbus ActInSpace" },
+              { label: "Invitaciones Globales", value: "NIKKEI (Tokio), Embedded Vision Summit (EE.UU.)" },
+              { label: "Subvenciones", value: "TÜBİTAK 1512 y Subvención 3× NVIDIA GPU" }
+            ],
+            outcomes: [
+              "Contribución de capítulos al informe estratégico de la Agencia de Industria de Defensa (SSB) y el Libro Blanco 5G y Más Allá.",
+              "Entrega de sistemas de visión artificial a medida para monitoreo vial en Canadá, conteo de sacos y daños en aerogeneradores.",
+              "Invitado por el Departamento de Industrias Primarias de NSW Australia, delegación ASEAN y foros de visión en Silicon Valley."
+            ],
+            links: [
+              { label: "Informe de Defensa SSB (PDF)", url: "https://www.ssb.gov.tr/Images/Uploads/MyContents/V_20250210140536038598.pdf" },
+              { label: "Caso de Éxito ESA y Airbus", url: "https://actinspace.org/success-stories" }
+            ]
+          },
+          it: {
+            statusLabel: "Track Record Continuo • 2017–2026",
+            title: "Consulenza R&S per Governi, Difesa e Imprese",
+            oneLiner: "Consulenza tecnica e stesura di white-paper per la Presidenza della Turchia, Ministero della Difesa (SSB) e aziende globali.",
+            summary: "Oltre all'hardware di laboratorio, TARSENS fornisce consulenza a ministeri, agenzie della difesa e aziende internazionali su architettura Edge AI, telerilevamento, sistemi autonomi e fattibilità deep-tech.",
+            specs: [
+              { label: "Consulenza Difesa", value: "Report Ufficiale Presidenza Turchia e SSB" },
+              { label: "Validazione Spaziale", value: "Success Story ESA & Airbus ActInSpace" },
+              { label: "Inviti Globali", value: "NIKKEI (Tokyo), Embedded Vision Summit (USA)" },
+              { label: "Finanziamenti", value: "TÜBİTAK 1512 & Grant 3× NVIDIA GPU" }
+            ],
+            outcomes: [
+              "Contributo ai capitoli del report strategico dell'Agenzia Industria della Difesa (SSB) e del Libro Bianco 5G & Beyond.",
+              "Sviluppo di sistemi di visione artificiale su misura per monitoraggio stradale in Canada, conteggio sacchi e danni pale eoliche.",
+              "Invitato dal Dipartimento Industrie Primarie NSW Australia, delegazione ASEAN e forum di visione a Stanford/Silicon Valley."
+            ],
+            links: [
+              { label: "Report Difesa SSB (PDF)", url: "https://www.ssb.gov.tr/Images/Uploads/MyContents/V_20250210140536038598.pdf" },
+              { label: "Success Story ESA & Airbus", url: "https://actinspace.org/success-stories" }
+            ]
+          }
+        }
+      }
+    ];
+
+    const gridEl = document.getElementById("projects-grid");
+    const statusButtons = document.querySelectorAll("#status-filters .pill-btn");
+    const searchBox = document.getElementById("search-box");
+    const drawerBackdrop = document.getElementById("drawer-backdrop");
+    const drawerPanel = document.getElementById("drawer-panel");
+
+    let currentLang = localStorage.getItem("tarsens_lang") || "en";
+    let currentTheme = localStorage.getItem("tarsens_theme") || "dark";
+    let currentStatus = "all";
+    let currentQuery = "";
+    let openProjectId = null;
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem("tarsens_theme", theme);
+      const isLight = theme === "light";
+      document.body.classList.toggle("light-mode", isLight);
+      const t = UI_STRINGS[currentLang];
+      document.getElementById("theme-icon").textContent = isLight ? "☾" : "☀";
+      document.getElementById("theme-label").textContent = isLight ? t.themeDark : t.themeLight;
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === "dark" ? "light" : "dark");
+    }
+
+    function setLang(lang) {
+      if (!UI_STRINGS[lang]) return;
+      currentLang = lang;
+      localStorage.setItem("tarsens_lang", lang);
+
+      const t = UI_STRINGS[lang];
+      document.documentElement.lang = t.htmlLang;
+      document.title = t.pageTitle;
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      document.getElementById("nav-tag").textContent = t.navTag;
+      document.getElementById("nav-what").textContent = t.navWhat;
+      document.getElementById("nav-programs").textContent = t.navPrograms;
+      document.getElementById("nav-demos").textContent = t.navDemos;
+      document.getElementById("nav-oss").textContent = t.navOss;
+      document.getElementById("nav-cta").textContent = t.navCta;
+
+      document.getElementById("hero-eyebrow").textContent = t.heroEyebrow;
+      document.getElementById("hero-title").innerHTML = t.heroTitle;
+      document.getElementById("hero-desc").innerHTML = t.heroDesc;
+
+      document.getElementById("m1-label").textContent = t.m1Label;
+      document.getElementById("m2-label").textContent = t.m2Label;
+      document.getElementById("m3-label").textContent = t.m3Label;
+      document.getElementById("m4-val").textContent = t.m4Val;
+      document.getElementById("m4-label").innerHTML = t.m4Label;
+
+      document.getElementById("cap-kicker").textContent = t.capKicker;
+      document.getElementById("cap-title").textContent = t.capTitle;
+      document.getElementById("cap-cta").textContent = t.capCta;
+
+      document.getElementById("p1-num").textContent = t.p1Num;
+      document.getElementById("p1-title").textContent = t.p1Title;
+      document.getElementById("p1-desc").innerHTML = t.p1Desc;
+
+      document.getElementById("p2-num").textContent = t.p2Num;
+      document.getElementById("p2-title").textContent = t.p2Title;
+      document.getElementById("p2-desc").innerHTML = t.p2Desc;
+
+      document.getElementById("p3-num").textContent = t.p3Num;
+      document.getElementById("p3-title").textContent = t.p3Title;
+      document.getElementById("p3-desc").textContent = t.p3Desc;
+
+      document.getElementById("prog-kicker").textContent = t.progKicker;
+      document.getElementById("prog-title").innerHTML = t.progTitle;
+
+      document.getElementById("filter-all").textContent = t.filterAll;
+      document.getElementById("filter-active").innerHTML = t.filterActive;
+      document.getElementById("filter-completed").textContent = t.filterCompleted;
+      searchBox.placeholder = t.searchPlaceholder;
+
+      document.getElementById("footer-founder").innerHTML = t.footerFounder;
+
+      applyTheme(currentTheme);
+      renderProjects();
+
+      if (openProjectId) {
+        openDrawer(openProjectId, false);
+      }
+    }
+
+    function renderProjects() {
+      const t = UI_STRINGS[currentLang];
+      const list = PROGRAMS.filter(p => {
+        const loc = p.i18n[currentLang];
+        const matchStatus = currentStatus === "all" || p.status === currentStatus;
+        const blob = `${loc.title} ${loc.oneLiner} ${p.domain} ${p.ip} ${loc.summary}`.toLowerCase();
+        const matchQuery = !currentQuery || blob.includes(currentQuery.toLowerCase());
+        return matchStatus && matchQuery;
+      });
+
+      if (!list.length) {
+        gridEl.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:48px; color:var(--text-secondary); background:var(--bg-card); border:1px solid var(--border); border-radius:14px;">${t.emptySearch}</div>`;
+        return;
+      }
+
+      gridEl.innerHTML = list.map(p => {
+        const loc = p.i18n[currentLang];
+        return `
+          <article class="proj-card" onclick="openDrawer('${p.id}')">
+            <div class="proj-media">
+              <img src="${p.image}" alt="${loc.title}" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="media-placeholder" style="display:none;">
+                <span>${p.ip}</span>
+                <small>${p.image} (${p.slideHint})</small>
+              </div>
+              <div class="status-chip ${p.status}">
+                <span class="status-indicator" style="background:${p.status === 'active' ? 'var(--status-active)' : 'var(--status-completed)'}"></span>
+                ${p.status === 'active' ? t.chipActive : t.chipCompleted}
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-domain">${p.domain}</span>
+                <span>${p.ip}</span>
+              </div>
+              <h3 class="proj-title">${loc.title}</h3>
+              <p class="proj-one-liner">${loc.oneLiner}</p>
+              <div class="proj-footer">
+                <span>${loc.statusLabel}</span>
+                <span>${t.openDossier}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openDrawer(id, pushState = true) {
+      const p = PROGRAMS.find(item => item.id === id);
+      if (!p) return;
+
+      openProjectId = id;
+      const t = UI_STRINGS[currentLang];
+      const loc = p.i18n[currentLang];
+
+      if (pushState) {
+        history.pushState({ projectId: id }, "", `#project/${id}`);
+      }
+
+      const specsHtml = loc.specs.map(s => `
+        <div class="spec-box">
+          <div class="spec-box-label">${s.label}</div>
+          <div class="spec-box-val">${s.value}</div>
+        </div>
+      `).join("");
+
+      const outcomesHtml = loc.outcomes.map(o => `<li>${o}</li>`).join("");
+
+      const linksHtml = loc.links.length
+        ? `<div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;">
+            ${loc.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="btn">${l.label} ↗</a>`).join("")}
+           </div>`
+        : "";
+
+      drawerPanel.innerHTML = `
+        <div class="drawer-top">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--accent-warm); font-weight:700;">
+            ${p.domain} • ${p.ip}
+          </span>
+          <button class="btn" onclick="closeDrawer()">${t.closeBtn}</button>
+        </div>
+
+        <div class="drawer-hero-img">
+          <img src="${p.image}" alt="${loc.title}"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="media-placeholder" style="display:none;">
+            <span>${p.ip}</span>
+            <small>${t.uploadHint} <strong>${p.image}</strong> (${p.slideHint})</small>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-muted); margin-bottom:6px;">
+            ${loc.statusLabel}
+          </div>
+          <h2 class="drawer-title">${loc.title}</h2>
+        </div>
+
+        <p class="drawer-summary">${loc.summary}</p>
+
+        <div>
+          <div class="section-kicker" style="margin-bottom:10px;">${t.metricsHead}</div>
+          <div class="specs-grid">${specsHtml}</div>
+        </div>
+
+        <div>
+          <div class="section-kicker" style="margin-bottom:10px;">${t.archHead}</div>
+          <ul class="outcome-list">${outcomesHtml}</ul>
+        </div>
+
+        ${linksHtml}
+
+        <div style="margin-top:auto; padding-top:18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="font-size:12.5px; color:var(--text-secondary);">
+            ${t.drawerCtaLead}
+          </div>
+          <a href="mailto:ai@tarsens.com?subject=${encodeURIComponent('TARSENS R&D Inquiry: ' + loc.title)}" class="btn btn-primary">
+            ${t.drawerCtaBtn}
+          </a>
+        </div>
+      `;
+
+      drawerBackdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer(pushState = true) {
+      openProjectId = null;
+      drawerBackdrop.classList.remove("open");
+      document.body.style.overflow = "";
+      if (pushState && window.location.hash.startsWith("#project/")) {
+        history.pushState({}, "", window.location.pathname);
+      }
+    }
+
+    statusButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        statusButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentStatus = btn.dataset.status;
+        renderProjects();
+      });
+    });
+
+    searchBox.addEventListener("input", (e) => {
+      currentQuery = e.target.value.trim();
+      renderProjects();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDrawer();
+    });
+
+    function syncRoute() {
+      const hash = window.location.hash;
+      if (hash.startsWith("#project/")) {
+        openDrawer(hash.replace("#project/", ""), false);
+      } else {
+        closeDrawer(false);
+      }
+    }
+
+    window.addEventListener("popstate", syncRoute);
+
+    setLang(currentLang);
+    syncRoute();
+  </script>
+</body>
+</html>
