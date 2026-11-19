@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TARSENS R&D — Patent Licensing, Engineering Solutions & Advisory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Yüksek Kontrastlı Açık Tema (Varsayılan) */
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-alt: #eef2f6;
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --text-main: #0f172a;
+      --text-body: #1e293b;
+      --text-muted: #475569;
+      --accent: #0369a1;
+      --accent-bg: #e0f2fe;
+      --gold: #b45309;
+      --gold-bg: #fef3c7;
+      --active-green: #15803d;
+      --active-bg: #dcfce7;
+      --radius: 10px;
+    }
+
+    body.dark-mode {
+      --bg: #0b0f17;
+      --surface: #131926;
+      --surface-alt: #1b2333;
+      --border: #2d3748;
+      --border-strong: #4a5568;
+      --text-main: #f8fafc;
+      --text-body: #e2e8f0;
+      --text-muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-bg: rgba(56, 189, 248, 0.15);
+      --gold: #fbbf24;
+      --gold-bg: rgba(251, 191, 36, 0.15);
+      --active-green: #4ade80;
+      --active-bg: rgba(74, 222, 128, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-body);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Üst Menü */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .brand-badge {
+      background: #0f172a;
+      color: #f5b400;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 18px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    body.dark-mode .btn-primary {
+      background: #f5b400;
+      color: #0f172a;
+      border-color: #f5b400;
+    }
+
+    /* Tanıtım & Ne Yapıyoruz Alanı */
+    .hero {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 0;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-bg);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.22;
+      margin-bottom: 14px;
+      max-width: 900px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-body);
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    .service-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .service-box h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .service-box p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Filtre Alanı */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 0 20px;
+      flex-wrap: wrap;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text-body);
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+
+    body.dark-mode .tab-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+
+    .search-input {
+      padding: 10px 16px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-main);
+      width: 280px;
+    }
+
+    /* Proje Kartları (2 Sütun = Çok Daha Okunaklı ve Geniş) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      padding-bottom: 48px;
+    }
+
+    @media (max-width: 820px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .card-img-wrap {
+      aspect-ratio: 16 / 9;
+      background: #1e293b;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      color: #f8fafc;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .img-fallback strong {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: #fbbf24;
+      margin-bottom: 6px;
+    }
+
+    .img-fallback span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .photo-count-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 5px;
+    }
+
+    .tag-status.active {
+      background: var(--active-bg);
+      color: var(--active-green);
+    }
+
+    .tag-status.completed {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    .tag-ip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Alt Sayfa (Detay & Çoklu Fotoğraf Galerisi) */
+    .detail-page {
+      display: none;
+      padding: 32px 0 60px;
+    }
+
+    .detail-page.open {
+      display: block;
+    }
+
+    .detail-box {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 18px;
+    }
+
+    .detail-box h1 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 12px 0 16px;
+      line-height: 1.28;
+    }
+
+    .detail-lead {
+      font-size: 17px;
+      color: var(--text-body);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    .specs-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 700px) {
+      .specs-list { grid-template-columns: 1fr; }
+    }
+
+    .spec-card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 8px;
+    }
+
+    .spec-card small {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .spec-card strong {
+      font-size: 15.5px;
+      color: var(--text-main);
+    }
+
+    .bullets {
+      margin: 16px 0 32px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 16px;
+      color: var(--text-body);
+    }
+
+    /* Binlerce Fotoğraf İçin Sayfalamalı Galeri */
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 2px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .gallery-item {
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: var(--surface-alt);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Tam Ekran Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 86vh;
+      border-radius: 6px;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 800;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      font-size: 14.5px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-inner">
+      <div class="brand" onclick="goHome()">
+        <div class="brand-badge">TARSENS</div>
+        <div>
+          <span class="brand-title">TARSENS R&amp;D</span>
+          <span class="brand-sub">Patent Licensing • Custom Engineering • Advisory</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn" onclick="toggleTheme()" id="theme-btn">Dark Mode</button>
+        <a href="https://www.youtube.com/@TARSENS" target="_blank" rel="noopener" class="btn">YouTube</a>
+        <a href="https://github.com/CSTEZCAN" target="_blank" rel="noopener" class="btn">GitHub</a>
+        <a href="mailto:ai@tarsens.com?subject=TARSENS%20Inquiry" class="btn btn-primary">Contact / License</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANA SAYFA -->
+  <div id="home-view">
+    <section class="hero">
+      <div class="container">
+        <span class="hero-kicker">PURE R&amp;D HOUSE • EST. 2017</span>
+        <h1>We Don’t Sell Off-the-Shelf Products.<br>We Invent, Validate &amp; License Deep-Tech IP.</h1>
+        <p>
+          <strong>TARSENS Ar-Ge San. Tic. Ltd. Şti.</strong> develops breakthrough hardware and Edge AI systems across flat photonics, high-speed UAV collision avoidance, multispectral sensing, and autonomous field robotics.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-box">
+            <h3>01. Patent Licensing</h3>
+            <p>Direct licensing of granted and pending patents (TR2022/014624 TRIO 1000 km/h UAV, TR2016/17566 Live NDVI, TR2023/011617 Metalens, TR2023/015217 Olive Sorting).</p>
+          </div>
+          <div class="service-box">
+            <h3>02. Custom Engineering Solutions</h3>
+            <p>Bespoke hardware-software R&amp;D: custom PCBs, NVIDIA Jetson Edge AI, unmanned platforms (UGV/UAV), and specialized photopolymer lithography setups.</p>
+          </div>
+          <div class="service-box">
+            <h3>03. Technical Advisory</h3>
+            <p>Strategic R&amp;D consultancy for defense agencies, ministries, and enterprises—backed by SSB official reports, ESA/Airbus recognition, and 3× NVIDIA GPU grants.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <div class="toolbar">
+        <div class="tabs" id="filter-tabs">
+          <button class="tab-btn active" data-filter="all">All R&amp;D Programs (12)</button>
+          <button class="tab-btn" data-filter="active">Active R&amp;D</button>
+          <button class="tab-btn" data-filter="completed">Completed &amp; Patented</button>
+        </div>
+        <input type="text" id="search-input" class="search-input" placeholder="Search project, patent, year..." />
+      </div>
+
+      <div class="projects-grid" id="projects-grid"></div>
+    </main>
+  </div>
+
+  <!-- ALT SAYFA (PROJE DETAYI + ÇOKLU GALERİ) -->
+  <section id="detail-view" class="detail-page container">
+    <button class="btn" onclick="goHome()">← Back to All Projects</button>
+    <div id="detail-container"></div>
+  </section>
+
+  <!-- TAM EKRAN FOTOĞRAF GÖRÜNTÜLEYİCİ -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+    <img id="lightbox-img" src="" alt="Full resolution R&D photo" />
+  </div>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <div>© 2017–2026 TARSENS Ar-Ge San. Tic. Ltd. Şti. — Founded by Celil Serhan Tezcan</div>
+      <div>Bandırma / Bursa, Türkiye • <a href="mailto:ai@tarsens.com" style="color:var(--accent); font-weight:700;">ai@tarsens.com</a></div>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * HER PROJENİN `folder` ALANI `assets/<folder>/` KLASÖRÜNE KARŞILIK GELİR.
+     * Python scripti ile oluşturulan `gallery-manifest.json` dosyası varsa,
+     * o klasördeki yüzlerce/binlerce fotoğraf otomatik yüklenir!
+     */
+    const PROJECTS = [
+      {
+        id: "litholabs",
+        folder: "litholabs",
+        status: "active",
+        statusText: "Active R&D • 2024–2026",
+        ip: "0.996 SSIM / 42.85 dB PSNR",
+        title: "LithoLabs: Masked Lithography & Metalens Edge AI Reconstruction",
+        desc: "In-house micron wafer stage, UV masked lithography, and neural image reconstruction replacing bulky glass lenses for UAV and CubeSat payloads.",
+        cover: "assets/litholabs/cover.jpg",
+        specs: [
+          ["Fidelity Benchmark", "0.996 Mean SSIM (0.9998 Peak)"],
+          ["Signal Quality", "42.85 dB PSNR"],
+          ["Related Patent", "TR2023/011617 (Prismatic Metalens)"],
+          ["Target Platforms", "Defense UAV/UGV, LEO CubeSats"]
+        ],
+        bullets: [
+          "Custom-built micro-fabrication suite including micron wafer stage, UV exposure rig, and spin/dip coaters.",
+          "Eliminates chromatic aberration and glass lens weight penalties via real-time embedded AI reconstruction.",
+          "Enables future in-situ 'print-on-demand' optical lenses for orbital missions."
+        ],
+        links: [{ label: "YouTube Shorts Demos", url: "https://www.youtube.com/@TARSENS/shorts" }]
+      },
+      {
+        id: "trio-uav",
+        folder: "trio-uav",
+        status: "completed",
+        statusText: "Patent Granted • 2022–2025",
+        ip: "TR2022/014624 • US PENDING",
+        title: "TRIO: 1,000 km/h High-Velocity UAV 3D Collision Avoidance",
+        desc: "Triple high-speed camera architecture solving third-dimension depth blind spots for ultra-fast unmanned aerial vehicles up to 1,000 km/h.",
+        cover: "assets/trio-uav/cover.jpg",
+        specs: [
+          ["Patent Status", "Internationally Granted (TR2022/014624)"],
+          ["US Status", "US Patent Pending"],
+          ["Operating Speed", "Up to 1,000 km/h (600 mph)"],
+          ["Engagement", "Available for Patent Licensing"]
+        ],
+        bullets: [
+          "Solves depth-axis closure blind zones inherent in standard dual-camera stereo vision systems.",
+          "Engineered specifically for high-velocity UAVs, interceptors, and autonomous defense platforms."
+        ],
+        links: []
+      },
+      {
+        id: "spectralix",
+        folder: "spectralix",
+        status: "completed",
+        statusText: "Patent Granted • 2016–2023",
+        ip: "TR2016/17566 • 3,600× FASTER",
+        title: "Spectralix: Sub-Second Onboard Multispectral NDVI Camera",
+        desc: "Patented multi-band sensor with embedded Edge AI generating live NDVI vegetation health maps in under 1 second during flight.",
+        cover: "assets/spectralix/cover.jpg",
+        specs: [
+          ["Patent Number", "Granted — TR2016/17566"],
+          ["Processing Latency", "< 1 Second (3,600× faster than stitching)"],
+          ["Sensor Array", "Multi-band NIR + RGB + GPS + FPV"],
+          ["Engagement", "Patent Licensing & Custom Payloads"]
+        ],
+        bullets: [
+          "Eliminates hours of post-flight cloud photogrammetry stitching with real-time onboard processing.",
+          "Streams live NDVI telemetry over FPV links during UAV reconnaissance flights."
+        ],
+        links: []
+      },
+      {
+        id: "yieldestimator-vitimap",
+        folder: "yieldestimator",
+        status: "completed",
+        statusText: "Field Proven • 2019–2024",
+        ip: "99.778% VERIFIED ACCURACY",
+        title: "YieldEstimator & ViTiMAP: Global Fruit Yield & KML Geolocation",
+        desc: "Commercial GoPro computer vision trained on 1M+ labeled clusters, validated across California, Italy, Spain, France, Portugal, and Türkiye.",
+        cover: "assets/yieldestimator/cover.jpg",
+        specs: [
+          ["Verified Accuracy", "99.778% (California), 97.7% (Italy)"],
+          ["Training Scale", "1,000,000+ hand-labeled clusters + GANs"],
+          ["Required Hardware", "Standard GPS GoPro Hero 8–13"],
+          ["GIS Output", "Direct KML export for Google Earth / QGIS"]
+        ],
+        bullets: [
+          "Independently validated in commercial vineyards and orchards across 6 countries.",
+          "Includes stereo berry sizing, thermal/disease spotting, and wildlife damage mapping."
+        ],
+        links: [
+          { label: "CA Kiwifruit Demo", url: "https://www.youtube.com/watch?v=reNDRDNr1Cw" },
+          { label: "Portugal Almond Demo", url: "https://www.youtube.com/watch?v=DfPOWNrpPhM" }
+        ]
+      },
+      {
+        id: "aevumvitify",
+        folder: "aevumvitify",
+        status: "active",
+        statusText: "Active R&D • 2025–2026",
+        ip: "90% COMPUTE COST REDUCTION",
+        title: "ÆVUMVITIFY: GPU-Free Single-Click KML Yield Mapping Engine",
+        desc: "Hardware-agnostic cross-platform software eliminating RTX 3060/3090 GPU requirements for orchard and vineyard geospatial mapping.",
+        cover: "assets/aevumvitify/cover.jpg",
+        specs: [
+          ["Supported OS", "Windows, macOS, Linux (CPU-Native)"],
+          ["Cost Savings", "Up to 90% hardware compute cost cut"],
+          ["Output Format", "Automated GIS / KML Layers"],
+          ["Engagement", "Enterprise Software Licensing"]
+        ],
+        bullets: [
+          "Batch-processes multi-hour field video streams on standard laptops without discrete GPUs.",
+          "Outputs georeferenced KML yield layers in a single click."
+        ],
+        links: []
+      },
+      {
+        id: "beez-wsn",
+        folder: "beez-wsn",
+        status: "completed",
+        statusText: "3.5-Yr Field Proven • 2013–2020",
+        ip: "8-YR BATTERY • 3.5B DATA POINTS",
+        title: "BEEZ!: Ultra-Low-Power 2.4GHz Multi-Hop Wireless Sensor Network",
+        desc: "120 custom nodes built; 92 deployed continuously for 3.5 years (-4°C to +72°C) logging 3.5 billion data points with >2 years battery left.",
+        cover: "assets/beez-wsn/cover.jpg",
+        specs: [
+          ["Battery Life", "8 Years theoretical / >5.5 Yrs field proven"],
+          ["Data Collected", "320M+ lines (~3.5 billion sensor points)"],
+          ["Thermal Rating", "-4°C to +72°C Operating Envelope"],
+          ["Publications", "2 Peer-Reviewed Journal Papers"]
+        ],
+        bullets: [
+          "Custom multi-hop star-within-a-star 2.4GHz protocol with hot-swappable sensor modules.",
+          "Recovered nodes after 3.5 years in Bursa Uludağ University greenhouses still retained >2 years of AA battery life."
+        ],
+        links: [{ label: "Read Peer-Reviewed Paper", url: "https://www.researchgate.net/publication/360439114_The_Effect_of_Meteorological_Parameters_on_Wireless_Data_Transmission" }]
+      },
+      {
+        id: "fourier-ptychography",
+        folder: "fourier-ptychography",
+        status: "active",
+        statusText: "Active Open R&D • 2026",
+        ip: "OPEN SOURCE • GITHUB",
+        title: "Mobile-OLED Fourier Ptychography & 3D Phase Contrast Suite",
+        desc: "Open-source computational microscopy framework turning a smartphone OLED screen into a programmable multi-angle illumination condenser.",
+        cover: "assets/fourier-ptychography/cover.jpg",
+        specs: [
+          ["Illumination", "Smartphone OLED (Flask + Socket.IO)"],
+          ["Acquisition", "Raspberry Pi Camera (12× gain)"],
+          ["Reconstruction", "Frankot-Chellappa 2D Phase Integration"],
+          ["Repository", "Public on GitHub (CSTEZCAN)"]
+        ],
+        bullets: [
+          "Replaces costly motorized LED dome arrays with programmable geometric patterns on a phone screen.",
+          "Generates interactive 3D quantitative phase reconstructions of pollen grains and micro-optics."
+        ],
+        links: [
+          { label: "GitHub Repository", url: "https://github.com/CSTEZCAN/fourier_ptychography" },
+          { label: "3D Phase Video", url: "https://www.youtube.com/watch?v=OYcoacdYIvk" }
+        ]
+      },
+      {
+        id: "caterpillar-ugv",
+        folder: "caterpillar-ugv",
+        status: "completed",
+        statusText: "Prototype Proven • 2017–2023",
+        ip: "ARTICULATED X/Y CHASSIS",
+        title: "Caterpillar Xs & Ys: Articulated High-Endurance Field Rovers",
+        desc: "Defense-grade thermal and terrain endurance Unmanned Ground Vehicles engineered for rough agricultural furrows and autonomous recon.",
+        cover: "assets/caterpillar-ugv/cover.jpg",
+        specs: [
+          ["Variants", "Caterpillar Xs (Field Proven) & Ys (Design)"],
+          ["Chassis", "Dual-body articulated all-terrain suspension"],
+          ["Payloads", "Multispectral, Stereo/LiDAR, Edge AI"],
+          ["Engagement", "Custom Platform Engineering"]
+        ],
+        bullets: [
+          "Maintains continuous four-wheel traction across deep furrows, mud, and steep orchard slopes.",
+          "Modular payload bay adaptable for defense reconnaissance or autonomous crop scanning."
+        ],
+        links: []
+      },
+      {
+        id: "olive-sorting",
+        folder: "olive-sorting",
+        status: "completed",
+        statusText: "Patent Application • 2023–2024",
+        ip: "TR2023/015217",
+        title: "Multi-Band Optical Defect Sorting for Industrial Olive Lines",
+        desc: "Synchronized RGB + narrowband NIR machine vision isolating subsurface bruising and fly-sting defects on high-speed conveyors.",
+        cover: "assets/olive-sorting/cover.jpg",
+        specs: [
+          ["Patent Reference", "TR2023/015217"],
+          ["Vision Stack", "Dual-band RGB + Narrowband NIR"],
+          ["Related QC Work", "SMD Solder, Bottle QC, Solar NIR"],
+          ["Engagement", "IP Licensing & OEM Integration"]
+        ],
+        bullets: [
+          "Detects subsurface tissue bruising invisible to conventional color sorting cameras.",
+          "Part of TARSENS' broader industrial machine vision portfolio."
+        ],
+        links: []
+      },
+      {
+        id: "evetbal",
+        folder: "evetbal",
+        status: "active",
+        statusText: "Active R&D • 2024–2026",
+        ip: "4K HDR + WSN + PALYNOLOGY",
+        title: "EVETBAL: Traceable Smart Apiary & Varroa Entrance Vision",
+        desc: "Multi-sensor hive intelligence combining entrance Varroa/wasp computer vision, internal micro-climate WSN, and pollen fingerprinting.",
+        cover: "assets/evetbal/cover.jpg",
+        specs: [
+          ["Entrance AI", "4K HDR10+ Bee, Varroa & Wasp Tracking"],
+          ["Telemetry", "In-hive WSN + Frame Extraction Weighing"],
+          ["Traceability", "Microscopic Palynology Fingerprinting"],
+          ["Approach", "Chemical-Free Organic Apiary R&D"]
+        ],
+        bullets: [
+          "Monitors parasitic Varroa mites and predatory wasps at the hive entrance in real time.",
+          "Certifies botanical honey origin via digital pollen microscopy."
+        ],
+        links: []
+      },
+      {
+        id: "ohs-safety",
+        folder: "ohs-safety",
+        status: "completed",
+        statusText: "Demonstrated • 2024",
+        ip: "AGROEXPO'24 DEMO",
+        title: "Encrypted Wireless AI Human-Presence & LiDAR Safety System",
+        desc: "Real-time operator HUD with AI pedestrian detection and tree distance telemetry for remote-controlled hydraulic harvesters.",
+        cover: "assets/ohs-safety/cover.jpg",
+        specs: [
+          ["Safety Stack", "Real-Time AI Human Detection + LiDAR"],
+          ["Wireless Link", "Encrypted Low-Latency Video & Telemetry"],
+          ["Debut", "AgroExpo '24 Live Public Demonstration"],
+          ["Partner", "Kemal Aksezgin Agricultural Machinery"]
+        ],
+        bullets: [
+          "Eliminates blind-spot injuries and operator vibration exposure on heavy hydraulic tree shakers.",
+          "Streams live AI hazard bounding boxes straight to the operator's remote console."
+        ],
+        links: []
+      },
+      {
+        id: "advisory",
+        folder: "advisory",
+        status: "completed",
+        statusText: "Ongoing Track Record • 2017–2026",
+        ip: "SSB • ESA/AIRBUS • NVIDIA",
+        title: "Government, Defense & Enterprise Strategic R&D Advisory",
+        desc: "Technical consultancy and white-paper authorship for the Presidency of Türkiye, Ministry of Defense (SSB), and international enterprises.",
+        cover: "assets/advisory/cover.jpg",
+        specs: [
+          ["Defense & Gov", "Presidency of Türkiye & SSB Official Report"],
+          ["Aerospace", "ESA & Airbus ActInSpace Success Story"],
+          ["Global Forums", "NIKKEI (Tokyo), Embedded Vision Summit (US)"],
+          ["Grants", "TUBITAK 1512 & 3× NVIDIA GPU Grant"]
+        ],
+        bullets: [
+          "Co-authored official technology reports for the Defence Industry Agency of Türkiye (SSB) and ICTA 5G & Beyond White Paper.",
+          "Delivered custom AI systems for Canadian road crack monitoring, sugar factory bag counting, and wind turbine inspection."
+        ],
+        links: [
+          { label: "SSB Defense Report (PDF)", url: "https://www.ssb.gov.tr/Images/Uploads/MyContents/V_20250210140536038598.pdf" },
+          { label: "ESA & Airbus Success Story", url: "https://actinspace.org/success-stories" }
+        ]
+      }
+    ];
+
+    let MANIFEST = {};
+    let activeFilter = "all";
+    let searchQuery = "";
+    let galleryPage = 1;
+    const PHOTOS_PER_PAGE = 24;
+
+    // Tema Değiştirici (Açık / Koyu)
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      document.getElementById("theme-btn").textContent = isDark ? "Light Mode" : "Dark Mode";
+    }
+
+    // Otomatik Fotoğraf Manifestosu Yükle (varsa)
+    async function loadManifest() {
+      try {
+        const res = await fetch("gallery-manifest.json");
+        if (res.ok) {
+          MANIFEST = await res.json();
+        }
+      } catch (e) {
+        // Manifest henüz oluşturulmadıysa sessizce cover.jpg kullanır
+      }
+      renderGrid();
+      handleRoute();
+    }
+
+    function getProjectPhotos(p) {
+      if (MANIFEST[p.folder] && MANIFEST[p.folder].length > 0) {
+        return MANIFEST[p.folder];
+      }
+      return [p.cover];
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById("projects-grid");
+      const filtered = PROJECTS.filter(p => {
+        const okStatus = activeFilter === "all" || p.status === activeFilter;
+        const text = `${p.title} ${p.desc} ${p.ip} ${p.statusText}`.toLowerCase();
+        const okQuery = !searchQuery || text.includes(searchQuery.toLowerCase());
+        return okStatus && okQuery;
+      });
+
+      grid.innerHTML = filtered.map(p => {
+        const photos = getProjectPhotos(p);
+        const coverImg = photos[0];
+        const countBadge = photos.length > 1
+          ? `<span class="photo-count-badge">${photos.length} Photos</span>`
+          : "";
+
+        return `
+          <article class="card" onclick="openProject('${p.id}')">
+            <div class="card-img-wrap">
+              <img src="${coverImg}" alt="${p.title}" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="img-fallback" style="display:none;">
+                <strong>${p.ip}</strong>
+                <span>Klasör: assets/${p.folder}/cover.jpg</span>
+              </div>
+              ${countBadge}
+            </div>
+            <div class="card-body">
+              <div class="card-tags">
+                <span class="tag-status ${p.status}">${p.statusText}</span>
+                <span class="tag-ip">${p.ip}</span>
+              </div>
+              <h2 class="card-title">${p.title}</h2>
+              <p class="card-desc">${p.desc}</p>
+              <div class="card-footer">
+                <span>Specs &amp; Archive</span>
+                <span>Open Project →</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openProject(id, pushHash = true) {
+      const p = PROJECTS.find(item => item.id === id);
+      if (!p) return goHome();
+
+      if (pushHash) history.pushState({ id }, "", `#project/${id}`);
+      galleryPage = 1;
+
+      const photos = getProjectPhotos(p);
+      const specsHtml = p.specs.map(([k, v]) => `
+        <div class="spec-card">
+          <small>${k}</small>
+          <strong>${v}</strong>
+        </div>
+      `).join("");
+
+      const bulletsHtml = p.bullets.map(b => `<li>${b}</li>`).join("");
+      const linksHtml = p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="btn">${l.label} ↗</a>`).join("");
+
+      document.getElementById("detail-container").innerHTML = `
+        <div class="detail-box">
+          <div class="card-tags">
+            <span class="tag-status ${p.status}">${p.statusText}</span>
+            <span class="tag-ip">${p.ip}</span>
+          </div>
+          <h1>${p.title}</h1>
+          <p class="detail-lead">${p.desc}</p>
+
+          <div class="specs-list">${specsHtml}</div>
+
+          <h3 style="font-size:18px; color:var(--text-main);">Technical Architecture &amp; R&amp;D Outcomes</h3>
+          <ul class="bullets">${bulletsHtml}</ul>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px;">
+            <a href="mailto:ai@tarsens.com?subject=${encodeURIComponent('TARSENS Inquiry: ' + p.title)}" class="btn btn-primary">
+              Inquire About IP Licensing / Engineering
+            </a>
+            ${linksHtml}
+          </div>
+
+          <div class="gallery-header">
+            <h3 style="font-size:18px; color:var(--text-main);">
+              Project Photo Archive (${photos.length} ${photos.length === 1 ? 'Photo' : 'Photos'})
+            </h3>
+            <div id="gallery-pagination" style="display:flex; gap:8px; align-items:center;"></div>
+          </div>
+          <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+      `;
+
+      renderGalleryPage(photos);
+
+      document.getElementById("home-view").style.display = "none";
+      document.getElementById("detail-view").classList.add("open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderGalleryPage(photos) {
+      const totalPages = Math.ceil(photos.length / PHOTOS_PER_PAGE);
+      const start = (galleryPage - 1) * PHOTOS_PER_PAGE;
+      const slice = photos.slice(start, start + PHOTOS_PER_PAGE);
+
+      document.getElementById("gallery-grid").innerHTML = slice.map(src => `
+        <div class="gallery-item" onclick="openLightbox('${src}')">
+          <img src="${src}" alt="R&D Archive Photo" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div style=\\'padding:16px;font-size:12px;color:var(--text-muted);\\'>Upload photos to <b>${src}</b></div>'" />
+        </div>
+      `).join("");
+
+      const pagEl = document.getElementById("gallery-pagination");
+      if (totalPages > 1) {
+        pagEl.innerHTML = `
+          <button class="btn" ${galleryPage === 1 ? 'disabled' : ''} onclick="changeGalleryPage(-1)">← Prev</button>
+          <span style="font-size:14px; font-weight:600;">Page ${galleryPage} / ${totalPages}</span>
+          <button class="btn" ${galleryPage === totalPages ? 'disabled' : ''} onclick="changeGalleryPage(1)">Next →</button>
+        `;
+      } else {
+        pagEl.innerHTML = `<span style="font-size:13px; color:var(--text-muted);">Folder: <code>assets/${photos[0].split('/')[1]}/</code></span>`;
+      }
+    }
+
+    function changeGalleryPage(delta) {
+      const hash = window.location.hash.replace("#project/", "");
+      const p = PROJECTS.find(item => item.id === hash);
+      if (!p) return;
+      galleryPage += delta;
+      renderGalleryPage(getProjectPhotos(p));
+    }
+
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("open");
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+
+    function goHome(pushHash = true) {
+      if (pushHash) history.pushState({}, "", window.location.pathname);
+      document.getElementById("detail-view").classList.remove("open");
+      document.getElementById("home-view").style.display = "block";
+    }
+
+    document.querySelectorAll("#filter-tabs .tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#filter-tabs .tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.filter;
+        renderGrid();
+      });
+    });
+
+    document.getElementById("search-input").addEventListener("input", e => {
+      searchQuery = e.target.value.trim();
+      renderGrid();
+    });
+
+    function handleRoute() {
+      const hash = window.location.hash;
+      if (hash.startsWith("#project/")) {
+        openProject(hash.replace("#project/", ""), false);
+      } else {
+        goHome(false);
+      }
+    }
+
+    window.addEventListener("popstate", handleRoute);
+    loadManifest();
+  </script>
+</body>
+</html>
